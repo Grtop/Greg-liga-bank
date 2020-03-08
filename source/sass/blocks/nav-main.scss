@@ -19,7 +19,7 @@
 
   a {
     font-family: $font-primary;
-    color: $color-text-dark;
+    color: $color-text-title-dark;
     text-decoration: none;
   }
 }
@@ -69,6 +69,7 @@
   .nojs {
     .nav-main {
       position: static;
+      height: auto;
     }
   }
 }

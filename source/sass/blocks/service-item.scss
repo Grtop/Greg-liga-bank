@@ -1,0 +1,363 @@
+.service-item {
+  &_deposit .service-item__body,
+  &_credit .service-item__body,
+  &_insurance .service-item__body,
+  &_online .service-item__body {
+    background-repeat: no-repeat;
+    background-position: 81.5% 50%;
+  }
+
+  &_deposit {
+    .service-item__head {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .service-item__body {
+      background-image: url("../img/service-piggy.jpg");
+    }
+
+    .service-item__list {
+      width: 41%;
+    }
+  }
+
+  &_credit {
+    .service-item__head {
+      position: absolute;
+      top: 0;
+      left: 25%;
+    }
+
+    .service-item__body {
+      background-image: url("../img/service-car.jpg");
+    }
+
+    .service-item__title {
+      width: 32%;
+    }
+
+    .service-item__list {
+      margin: 0 0 30px 0;
+    }
+  }
+
+  &_insurance {
+    .service-item__head {
+      position: absolute;
+      top: 0;
+      left: 50%;
+    }
+
+    .service-item__body {
+      background-image: url("../img/service-padlock.jpg");
+    }
+  }
+
+  &_online {
+    .service-item__head {
+      position: absolute;
+      top: 0;
+      left: 75%;
+    }
+
+    .service-item__body {
+      background-image: url("../img/service-mobile.jpg");
+    }
+
+    .service-item__title {
+      width: 40%;
+    }
+
+    .service-item__list {
+      width: 35%;
+    }
+  }
+
+  &_active {
+    .service-item__head,
+    .service-item__body {
+      background-color: $color-bg-block;
+    }
+
+    .service-item__body {
+      display: inline-block;
+      vertical-align: middle;
+      width: 100%;
+      margin-top: 93px;
+    }
+  }
+}
+
+.service-item__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  padding: 30px 0;
+  cursor: pointer;
+}
+
+.service-item__head-title,
+.service-item__title {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+.service-item__body {
+  display: none;
+  padding: 53px 70px 57px 70px;
+}
+
+.service-item__list {
+  margin: 0 0 35px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-item__head-title {
+  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+.service-item__title {
+  width: 37%;
+  margin-bottom: 27px;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 31px;
+}
+
+.service-item__desc {
+  width: 35%;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.service-item__list-item {
+  position: relative;
+  margin-bottom: 15px;
+  padding-left: 20px;
+  font-size: 18px;
+  line-height: 23px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 11px;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    background-image: url("../img/icon-list-item.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    transform: translateY(-50%);
+  }
+}
+
+.nojs {
+  .service-item {
+    &_deposit .service-item__head {
+      position: static;
+    }
+
+    &_credit .service-item__head {
+      position: relative;
+      left: 25%;
+    }
+
+    &_insurance .service-item__head {
+      position: relative;
+      left: 50%;
+    }
+
+    &_online .service-item__head {
+      position: relative;
+      left: 75%;
+    }
+
+    &_active .service-item__body {
+      display: block;
+      margin: 0;
+    }
+  }
+
+  .service-item__head {
+    position: static;
+  }
+
+  .service-item__body {
+    display: block;
+  }
+
+  .service-item__head,
+  .service-item__body {
+    background-color: $color-bg-block;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  .service-item {
+    &_deposit .service-item__body,
+    &_credit .service-item__body {
+      background-position: 88.5% 55%;
+      background-size: 50%;
+    }
+
+    &_insurance .service-item__body {
+      background-position: 96.5% 61%;
+      background-size: 45%;
+    }
+
+    &_online .service-item__body {
+      background-position: 102% 56%;
+      background-size: 51.5%;
+    }
+
+    &_deposit {
+      .service-item__list {
+        width: 55%;
+      }
+    }
+
+    &_credit {
+      .service-item__title {
+        width: 35%;
+      }
+
+      .service-item__desc {
+        width: 45%;
+      }
+    }
+
+    &_online {
+      .service-item__title {
+        width: 50%;
+      }
+
+      .service-item__list {
+        width: 50%;
+      }
+    }
+
+    &_active .service-item__body {
+      display: block;
+      margin-top: 0;
+    }
+  }
+
+  .service-item__head {
+    display: none;
+  }
+
+  .service-item__body {
+    display: block;
+    padding: 55px 44px 60px;
+  }
+
+  .service-item__title {
+    width: 45%;
+    margin-bottom: 22px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+  }
+
+  .service-item__desc {
+    font-size: 16px;
+    line-height: 21px;
+  }
+
+  .service-item__list {
+    margin: 0 0 30px 0;
+  }
+
+  .service-item__list-item {
+    font-size: 16px;
+    line-height: 21px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .service-item {
+    &_deposit .service-item__body,
+    &_credit .service-item__body {
+      background-position: 138% 27%;
+      background-size: 73%;
+    }
+
+    &_deposit {
+      .service-item__list {
+        width: 95%;
+      }
+    }
+
+    &_credit {
+      .service-item__title {
+        width: 80%;
+      }
+
+      .service-item__desc {
+        width: 95%;
+      }
+
+      .service-item__list {
+        margin: 0 0 22px;
+      }
+    }
+
+    &_insurance {
+      .service-item__title {
+        width: 90%;
+      }
+    }
+
+    &_online {
+      .service-item__title {
+        width: 80%;
+      }
+
+      .service-item__list {
+        width: 80%;
+        margin: 0 0 25px;
+      }
+    }
+  }
+
+  .service-item__body {
+    padding: 55px 15px 60px;
+  }
+
+  .service-item__title {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 22px;
+  }
+
+  .service-item__desc {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .service-item__list-item {
+    margin-bottom: 12px;
+    padding-left: 15px;
+    font-size: 14px;
+    line-height: 18px;
+
+    &::before {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

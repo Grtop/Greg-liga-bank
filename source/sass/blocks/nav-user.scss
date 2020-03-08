@@ -8,7 +8,7 @@
   list-style: none;
 
   li {
-    max-width: 150px;
+    max-width: 210px;
     margin-right: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -23,7 +23,7 @@
     flex-direction: row;
     align-items: center;
     font-family: $font-primary;
-    color: $color-text-dark;
+    color: $color-text-title-dark;
     text-decoration: none;
   }
 

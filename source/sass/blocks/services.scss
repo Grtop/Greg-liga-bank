@@ -1,0 +1,14 @@
+.services__list {
+  position: relative;
+  margin: 60px 83px 60px 97px;
+}
+
+@media (max-width: $width-desktop) {
+  .services {
+    overflow: hidden;
+  }
+
+  .services__list {
+    margin: 0;
+  }
+}

@@ -1,0 +1,32 @@
+.slider-pagination {
+  position: absolute;
+  z-index: 100;
+
+  // &:last-of-type {
+  //   left: 48.5%;
+  //   bottom: 35px;
+  // }
+}
+
+.slider-pagination__item {
+  width: 8px;
+  height: 8px;
+  margin: 0 9px 0 0;
+  padding: 0;
+  background-color: $color-bullet;
+  border: none;
+  border-radius: 50%;
+
+  &_active {
+    background-color: $color-bullet-active;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  // .slider-pagination {
+  //   &:last-of-type {
+  //     left: 47.5%;
+  //     bottom: 15px;
+  //   }
+  // }
+}

@@ -1,0 +1,36 @@
+.btn {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 16px 35px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  border-radius: 4px;
+  text-decoration: none;
+
+  &_blue {
+    color: $color-text-title-light;
+    background-color: $color-bg-btn-blue;
+  }
+
+  &_white {
+    color: $color-text-title-dark;
+    background-color: $color-bg-btn-white;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  .btn {
+    padding: 15px 31px;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .btn {
+    padding: 14px 30px;
+    font-size: 14px;
+    line-height: 16px;
+  }
+}

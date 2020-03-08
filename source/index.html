@@ -55,9 +55,110 @@
         </div>
       </div>
     </header>
+    <main class="main">
+      <h1 class="visually-hidden">Главная страница сайта Лига-банка.</h1>
+      <div class="slider">
+        <div class="slider__list swiper-wrapper">
+          <div class="slider__item slider-item slider-item_dark slider-item_blue swiper-slide">
+            <div class="slider__item-wrapper">
+              <h2 class="slider__item-title slider-item__title">Лига-Банк</h2>
+              <p class="slider__item-desc slider-item__desc">Кредиты на любой случай</p>
+              <a class="btn btn_white" href="#">Рассчитать кредит</a>
+            </div>
+          </div>
+          <div class="slider__item slider-item  slider-item_light slider-item_man swiper-slide">
+            <div class="slider__item-wrapper">
+              <h2 class="slider__item-title slider-item__title">Лига-Банк</h2>
+              <p class="slider__item-desc slider-item__desc">Ваша уверенность в завтрашнем дне</p>
+            </div>
+          </div>
+          <div class="slider__item slider-item  slider-item_light slider-item_girl swiper-slide">
+            <div class="slider__item-wrapper">
+              <h2 class="slider__item-title slider-item__title">Лига-Банк</h2>
+              <p class="slider__item-desc slider-item__desc">Всегда рядом</p>
+              <a class="btn btn_blue" href="#">Найти отделение</a>
+            </div>
+          </div>
+        </div>
+        <div class="slider-pagination"></div>
+      </div>
+      <div class="services">
+        <div class="services__list">
+          <div class="service__item service-item service-item_deposit service-item_active">
+              <div class="service-item__head">
+                <svg width="34" height="33">
+                  <use xlink:href="#icon-vault">
+                </svg>
+                <h2 class="service-item__head-title">Вклады</h2>
+              </div>
+              <div class="service-item__body">
+                <p class="service-item__title">Вклады Лига Банка – это выгодная инвестиция в свое будущее</p>
+                <ul class="service-item__list">
+                  <li class="service-item__list-item">Проценты по вкладам до 7%</li>
+                  <li class="service-item__list-item">Разнообразные условия</li>
+                  <li class="service-item__list-item">Возможность ежемесячной капитализации или вывод процентов на банковскую карту</li>
+                </ul>
+                <a class="btn btn_blue" href="#">Узнать подробнее</a>
+              </div>
+          </div>
+          <div class="service__item service-item service-item_credit">
+              <div class="service-item__head">
+                <svg width="34" height="30">
+                  <use xlink:href="#icon-cards">
+                </svg>
+                <h2 class="service-item__head-title">Кредиты</h2>
+              </div>
+              <div class="service-item__body">
+                <p class="service-item__title">Лига Банк выдает кредиты под любые цели</p>
+                <ul class="service-item__list">
+                  <li class="service-item__list-item">Ипотечный кредит</li>
+                  <li class="service-item__list-item">Автокредит</li>
+                  <li class="service-item__list-item">Потребительский кредит</li>
+                </ul>
+                <p class="service-item__desc">Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим кредитным калькулятором</p>
+              </div>
+          </div>
+          <div class="service__item service-item service-item_insurance">
+              <div class="service-item__head">
+                <svg width="28" height="34">
+                  <use xlink:href="#icon-security">
+                </svg>
+                <h2 class="service-item__head-title">Страхование</h2>
+              </div>
+              <div class="service-item__body">
+                <p class="service-item__title">Лига Страхование — застрахуем все что захотите</p>
+                <ul class="service-item__list">
+                  <li class="service-item__list-item">Автомобильное страхование</li>
+                  <li class="service-item__list-item">Страхование жизни и здоровья</li>
+                  <li class="service-item__list-item">Страхование недвижимости</li>
+                </ul>
+                <a class="btn btn_blue" href="#">Узнать подробнее</a>
+              </div>
+          </div>
+          <div class="service__item service-item service-item_online">
+              <div class="service-item__head">
+                <svg width="20" height="34">
+                  <use xlink:href="#icon-phone">
+                </svg>
+                <h2 class="service-item__head-title">Онлайн-сервисы</h2>
+              </div>
+              <div class="service-item__body">
+                <p class="service-item__title">Лига Банк — это огромное количество онлайн-сервисов для вашего удобства</p>
+                <ul class="service-item__list">
+                  <li class="service-item__list-item">Мобильный банк, который всегда под рукой</li>
+                  <li class="service-item__list-item">Приложение Лига-проездной позволит вам оплачивать билеты по всему миру</li>
+                </ul>
+                <a class="btn btn_blue" href="#">Узнать подробнее</a>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </main>
     <div style="display: none">
       <include src="build/img/sprite_auto.svg"></include>
     </div>
+    <script src="js/vendor.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
