@@ -133,7 +133,15 @@
     if (document.body.offsetWidth <= TABLET_SIZE) {
       if (document.querySelector('.services')) {
         var sliderService = new Swiper('.services', {
-          loop: true
+          loop: true,
+          pagination: {
+            el: '.services-pagination',
+            type: 'bullets',
+            bulletElement: 'button',
+            clickable: true,
+            bulletClass: 'services-pagination__item',
+            bulletActiveClass: 'services-pagination__item_active'
+          },
         });
       }
     }

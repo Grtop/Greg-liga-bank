@@ -1,4 +1,4 @@
-.slider-pagination {
+.services-pagination {
   position: absolute;
   z-index: 100;
 
@@ -8,7 +8,7 @@
   }
 }
 
-.slider-pagination__item {
+.services-pagination__item {
   width: 8px;
   height: 8px;
   margin: 0 9px 0 0;
@@ -23,7 +23,7 @@
 }
 
 @media (max-width: $width-desktop) {
-  .slider-pagination {
+  .services-pagination {
     &:last-of-type {
       left: 47.5%;
       bottom: 12px;
@@ -32,16 +32,16 @@
 }
 
 @media (max-width: $width-tablet) {
-  .slider-pagination {
+  .services-pagination {
     &:last-of-type {
-      left: 45.5%;
-      bottom: 8px;
+      left: 43.5%;
+      bottom: 17px;
     }
   }
 
-  .slider-pagination__item {
-    width: 5px;
-    height: 5px;
-    margin: 0 7px 0 0;
+  .services-pagination__item {
+    width: 6px;
+    height: 6px;
+    margin: 0 6px 0 0;
   }
 }

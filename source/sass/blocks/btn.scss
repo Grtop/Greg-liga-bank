@@ -17,6 +17,11 @@
     color: $color-text-title-dark;
     background-color: $color-bg-btn-white;
   }
+
+  &_short {
+    padding: 15px 35px;
+    letter-spacing: -1.5px;
+  }
 }
 
 @media (max-width: $width-desktop) {
@@ -24,6 +29,10 @@
     padding: 15px 31px;
     font-size: 16px;
     line-height: 19px;
+
+    &_short {
+      letter-spacing: 0;
+    }
   }
 }
 
@@ -32,5 +41,10 @@
     padding: 14px 30px;
     font-size: 14px;
     line-height: 16px;
+
+    &_short {
+      width: 80%;
+      text-align: center;
+    }
   }
 }

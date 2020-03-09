@@ -23,19 +23,37 @@
   }
 
   &_blue {
-    background-image: url("../img/card-black.png"), url("../img/card-white.png"), url("../img/gradient-blue.jpg");
+    background-image: url("../img/card-black@1x.png"), url("../img/card-white@1x.png"), url("../img/gradient-blue@1x.jpg");
     background-size: 21.5%, 21.5%, cover;
-    background-position: 67% 63%, 77% 37%, 0 0;
+    background-position: 68% 63%, 78% 37%, 0 0;
   }
 
   &_man {
-    background-image: url("../img/person-man.jpg");
+    background-image: url("../img/person-man@1x.jpg");
     background-position: center;
   }
 
   &_girl {
-    background-image: url("../img/person-girl.jpg");
+    background-image: url("../img/person-girl@1x.jpg");
     background-position: center;
+  }
+}
+
+@media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .slider-item {
+    &_blue {
+      background-image: url("../img/card-black@2x.png"), url("../img/card-white@2x.png"), url("../img/gradient-blue@2x.jpg");
+      background-size: 24.5%, 25%, cover;
+      background-position: 68.5% 68%, 79.5% 35%, 0 0;
+    }
+
+    &_man {
+      background-image: url("../img/person-man@2x.jpg");
+    }
+
+    &_girl {
+      background-image: url("../img/person-girl@2x.jpg");
+    }
   }
 }
 
@@ -61,6 +79,16 @@
     }
   }
 
+  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .slider-item {
+      &_blue {
+        background-image: url("../img/card-black@2x.png"), url("../img/card-white@2x.png"), url("../img/gradient-blue@2x.jpg");
+        background-size: 34%, 34%, cover;
+        background-position: 70% 72%, 87% 34%, 0 0;
+      }
+    }
+  }
+
   .slider-item__title {
     font-size: 46px;
     line-height: 54px;
@@ -75,7 +103,7 @@
 @media (max-width: $width-mobile) {
   .slider-item {
     &_blue {
-      background-image: url("../img/card-black.png"), url("../img/gradient-blue.jpg");
+      background-image: url("../img/card-black@1x.png"), url("../img/gradient-blue@1x.jpg");
       background-size: 65%, cover;
       background-position: 212% 53%, 0 0;
     }
@@ -83,6 +111,16 @@
     &_man,
     &_girl {
       background-position: 65%;
+    }
+  }
+
+  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .slider-item {
+      &_blue {
+        background-image: url("../img/card-black@2x.png"), url("../img/gradient-blue@2x.jpg");
+        background-size: 76%, cover;
+        background-position: 288% 58%, 0 0;
+      }
     }
   }
 

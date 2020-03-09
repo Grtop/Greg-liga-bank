@@ -40,11 +40,12 @@
 @media (max-width: $width-tablet) {
   .nav-main {
     position: fixed;
-    top: 54px;
+    top: 47px;
     display: flex;
     flex-direction: column;
     width: 95%;
     height: 100vh;
+    z-index: 9999;
 
     &_closed {
       left: -95%;

@@ -9,13 +9,11 @@
 
   &_deposit {
     .service-item__head {
-      position: absolute;
-      top: 0;
       left: 0;
     }
 
     .service-item__body {
-      background-image: url("../img/service-piggy.jpg");
+      background-image: url("../img/service-piggy@1x.jpg");
     }
 
     .service-item__list {
@@ -25,13 +23,11 @@
 
   &_credit {
     .service-item__head {
-      position: absolute;
-      top: 0;
       left: 25%;
     }
 
     .service-item__body {
-      background-image: url("../img/service-car.jpg");
+      background-image: url("../img/service-car@1x.jpg");
     }
 
     .service-item__title {
@@ -45,25 +41,21 @@
 
   &_insurance {
     .service-item__head {
-      position: absolute;
-      top: 0;
       left: 50%;
     }
 
     .service-item__body {
-      background-image: url("../img/service-padlock.jpg");
+      background-image: url("../img/service-padlock@1x.jpg");
     }
   }
 
   &_online {
     .service-item__head {
-      position: absolute;
-      top: 0;
       left: 75%;
     }
 
     .service-item__body {
-      background-image: url("../img/service-mobile.jpg");
+      background-image: url("../img/service-mobile@1x.jpg");
     }
 
     .service-item__title {
@@ -90,13 +82,47 @@
   }
 }
 
+@media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+  .service-item {
+    &_deposit {
+      .service-item__body {
+        background-image: url("../img/service-piggy@2x.jpg");
+        background-size: 38%;
+      }
+    }
+
+    &_credit {
+      .service-item__body {
+        background-image: url("../img/service-car@2x.jpg");
+        background-size: 38%;
+      }
+    }
+
+    &_insurance {
+      .service-item__body {
+        background-image: url("../img/service-padlock@2x.jpg");
+        background-size: 38%;
+      }
+    }
+
+    &_online {
+      .service-item__body {
+        background-image: url("../img/service-mobile@2x.jpg");
+        background-size: 38%;
+      }
+    }
+  }
+}
+
 .service-item__head {
+  position: absolute;
+  top: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   width: 25%;
-  padding: 30px 0;
+  padding: 30px 0 33px 0;
   cursor: pointer;
 }
 
@@ -110,6 +136,7 @@
 
 .service-item__body {
   display: none;
+  height: 100%;
   padding: 53px 70px 57px 70px;
 }
 
@@ -206,29 +233,28 @@
 
 @media (max-width: $width-desktop) {
   .service-item {
-    &_deposit .service-item__body,
-    &_credit .service-item__body {
-      background-position: 88.5% 55%;
-      background-size: 50%;
-    }
-
-    &_insurance .service-item__body {
-      background-position: 96.5% 61%;
-      background-size: 45%;
-    }
-
-    &_online .service-item__body {
-      background-position: 102% 56%;
-      background-size: 51.5%;
-    }
+    min-height: 380px;
+    background-color: $color-bg-block;
 
     &_deposit {
+      .service-item__body {
+        background-image: url("../img/service-piggy_tablet@1x.jpg");
+        background-position: 88.5% 55%;
+        background-size: 36%;
+      }
+
       .service-item__list {
         width: 55%;
       }
     }
 
     &_credit {
+      .service-item__body {
+        background-image: url("../img/service-car_tablet@1x.jpg");
+        background-position: 88.5% 55%;
+        background-size: 36%;
+      }
+
       .service-item__title {
         width: 35%;
       }
@@ -238,7 +264,21 @@
       }
     }
 
+    &_insurance {
+      .service-item__body {
+        background-image: url("../img/service-padlock_tablet@1x.jpg");
+        background-position: 90.5% 61%;
+        background-size: 37%;
+      }
+    }
+
     &_online {
+      .service-item__body {
+        background-image: url("../img/service-mobile_tablet@1x.jpg");
+        background-position: 90% 56%;
+        background-size: 37.5%;
+      }
+
       .service-item__title {
         width: 50%;
       }
@@ -251,6 +291,34 @@
     &_active .service-item__body {
       display: block;
       margin-top: 0;
+    }
+  }
+
+  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .service-item {
+      &_deposit {
+        .service-item__body {
+          background-image: url("../img/service-piggy_tablet@2x.jpg");
+        }
+      }
+
+      &_credit {
+        .service-item__body {
+          background-image: url("../img/service-car_tablet@2x.jpg");
+        }
+      }
+
+      &_insurance {
+        .service-item__body {
+          background-image: url("../img/service-padlock_tablet@2x.jpg");
+        }
+      }
+
+      &_online {
+        .service-item__body {
+          background-image: url("../img/service-mobile_tablet@2x.jpg");
+        }
+      }
     }
   }
 
@@ -288,6 +356,8 @@
 
 @media (max-width: $width-tablet) {
   .service-item {
+    min-height: 362px;
+
     &_deposit .service-item__body,
     &_credit .service-item__body {
       background-position: 138% 27%;
@@ -295,12 +365,25 @@
     }
 
     &_deposit {
+      .service-item__body {
+        background-image: url("../img/service-piggy_mobile@1x.jpg");
+        background-position: 100% 39%;
+        background-size: 28%;
+      }
+
       .service-item__list {
-        width: 95%;
+        width: 90%;
+        margin: 0 0 26px;
       }
     }
 
     &_credit {
+      .service-item__body {
+        background-image: url("../img/service-car_mobile@1x.jpg");
+        background-position: 100% 43%;
+        background-size: 27%;
+      }
+
       .service-item__title {
         width: 80%;
       }
@@ -315,12 +398,28 @@
     }
 
     &_insurance {
+      .service-item__body {
+        background-image: url("../img/service-padlock_mobile@1x.jpg");
+        background-position: 100% 45%;
+        background-size: 27%;
+      }
+
+      .service-item__list {
+        margin: 0 0 26px;
+      }
+
       .service-item__title {
         width: 90%;
       }
     }
 
     &_online {
+      .service-item__body {
+        background-image: url("../img/service-mobile_mobile@1x.jpg");
+        background-position: 100% 38%;
+        background-size: 27%;
+      }
+
       .service-item__title {
         width: 80%;
       }
@@ -328,6 +427,34 @@
       .service-item__list {
         width: 80%;
         margin: 0 0 25px;
+      }
+    }
+  }
+
+  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
+    .service-item {
+      &_deposit {
+        .service-item__body {
+          background-image: url("../img/service-piggy_mobile@2x.jpg");
+        }
+      }
+
+      &_credit {
+        .service-item__body {
+          background-image: url("../img/service-car_mobile@2x.jpg");
+        }
+      }
+
+      &_insurance {
+        .service-item__body {
+          background-image: url("../img/service-padlock_mobile@2x.jpg");
+        }
+      }
+
+      &_online {
+        .service-item__body {
+          background-image: url("../img/service-mobile_mobile@2x.jpg");
+        }
       }
     }
   }
