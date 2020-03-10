@@ -145,6 +145,15 @@
         });
       }
     }
+
+    // SELECT - start
+    if (document.querySelector('.select')) {
+      var credit = new Select('.select', {
+        idSelect: '#credit-target',
+        classElement: 'select__item',
+        classActiveElement: 'select__item_selected'
+      });
+    }
   };
 
   window.addEventListener('load', initPage);
