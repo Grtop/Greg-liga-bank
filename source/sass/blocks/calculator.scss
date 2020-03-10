@@ -1,0 +1,126 @@
+.calculator {
+  width: 50%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  fieldset {
+    display: flex;
+    flex-direction: column;
+  }
+
+  legend {
+    margin: 0;
+    padding: 0;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 31px;
+  }
+
+  input {
+    padding: 24px 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    text-align: center;
+    border: 1px solid $color-text-title-dark;
+    border-radius: 4px;
+  }
+
+  label {
+    font-size: 16px;
+    line-height: 22px;
+    color: $color-text-label;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 24px;
+    font-size: 16px;
+    line-height: 22px;
+    color: $color-text-title-dark;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 45%;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid $color-icon-active;
+      border-radius: 2px;
+      transform: translateY(-50%);
+    }
+  }
+
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: $color-icon-active;
+      background-image: url("../img/icon-checkbox_checked.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.calculator__title {
+  font-size: 41px;
+  line-height: 57px;
+}
+
+.calculator__input-desc {
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-grey;
+}
+
+@media (max-width: $width-desktop) {
+  .calculator {
+    width: 100%;
+
+    legend {
+      font-size: 18px;
+      line-height: 25px;
+    }
+
+    input {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  .calculator__title {
+    font-size: 32px;
+    line-height: 45px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .calculator {
+    legend {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    input {
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    input[type="checkbox"] + label {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  .calculator__title {
+    font-size: 22px;
+    line-height: 31px;
+  }
+}

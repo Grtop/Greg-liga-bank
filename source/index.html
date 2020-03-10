@@ -57,7 +57,8 @@
     </header>
     <main class="main">
       <h1 class="visually-hidden">Главная страница сайта Лига-банка.</h1>
-      <div class="slider">
+      <section class="slider">
+        <h2 class="visually-hidden">Слайдер</h2>
         <div class="slider__list swiper-wrapper">
           <div class="slider__item slider-item slider-item_dark slider-item_blue swiper-slide">
             <div class="slider__item-wrapper">
@@ -81,15 +82,16 @@
           </div>
         </div>
         <div class="slider-pagination"></div>
-      </div>
-      <div class="services">
+      </section>
+      <section class="services">
+        <h2 class="visually-hidden">Услуги</h2>
         <div class="services__list">
           <div class="services__item service-item service-item_deposit service-item_active">
               <div class="service-item__head">
                 <svg width="34" height="33">
                   <use xlink:href="#icon-vault">
                 </svg>
-                <h2 class="service-item__head-title">Вклады</h2>
+                <h3 class="service-item__head-title">Вклады</h3>
               </div>
               <div class="service-item__body">
                 <p class="service-item__title">Вклады Лига Банка – это выгодная инвестиция в свое будущее</p>
@@ -106,7 +108,7 @@
                 <svg width="34" height="30">
                   <use xlink:href="#icon-cards">
                 </svg>
-                <h2 class="service-item__head-title">Кредиты</h2>
+                <h3 class="service-item__head-title">Кредиты</h3>
               </div>
               <div class="service-item__body">
                 <p class="service-item__title">Лига Банк выдает кредиты под любые цели</p>
@@ -123,7 +125,7 @@
                 <svg width="28" height="34">
                   <use xlink:href="#icon-security">
                 </svg>
-                <h2 class="service-item__head-title">Страхование</h2>
+                <h3 class="service-item__head-title">Страхование</h3>
               </div>
               <div class="service-item__body">
                 <p class="service-item__title">Лига Страхование — застрахуем все что захотите</p>
@@ -140,7 +142,7 @@
                 <svg width="20" height="34">
                   <use xlink:href="#icon-phone">
                 </svg>
-                <h2 class="service-item__head-title">Онлайн-сервисы</h2>
+                <h3 class="service-item__head-title">Онлайн-сервисы</h3>
               </div>
               <div class="service-item__body">
                 <p class="service-item__title">Лига Банк — это огромное количество онлайн-сервисов для вашего удобства</p>
@@ -153,7 +155,99 @@
           </div>
         </div>
         <div class="services-pagination"></div>
-      </div>
+      </section>
+      <section class="calculator">
+        <div class="container">
+          <h2 class="calculator__title">Кредитный калькулятор</h2>
+
+          <form action="https://echo.htmlacademy.ru" method="post">
+
+            <fieldset>
+              <legend>Шаг 1. Цель кредита</legend>
+
+              <select name="credit-targer" id="credit-target">
+                <option value="" selected>Выберете цель кредита</option>
+                <option value="mortgage-loan">Ипотечное кредитование</option>
+                <option value="car-loan">Автомобильное кредитование</option>
+                <option value="consumer-loan">Потребительский кредит</option>
+              </select>
+
+              <ul class="select">
+                <li class="select__item">Выберете цель кредита</li>
+              </ul>
+
+            </fieldset>
+
+            <fieldset>
+              <legend>Шаг 2. Введите параметры кредита</legend>
+
+              <div class="calculator__input input-price">
+
+                <label for="price-target">Стоимость недвижимости</label>
+
+                <div class="input-price__wrapper">
+                  <input type="text" id="price-target" value="0">
+                  <button class="input-price__btn input-price__btn_plus" type="button">
+                    <svg width="16" height="16">
+                      <use xlink:href="#icon-btn_plus">
+                    </svg>
+                    <span class="visually-hidden">Уменьшить сумму</span>
+                  </button>
+                  <button class="input-price__btn input-price__btn_minus" type="button">
+                    <svg width="16" height="16">
+                      <use xlink:href="#icon-btn_minus">
+                    </svg>
+                    <span class="visually-hidden">Увеличить сумму</span>
+                  </button>
+
+                </div>
+
+                <p class="calculator__input-desc">0</p>
+              </div>
+
+              <div class="calculator__input input-price">
+
+                <label for="price-first">Первоначальный взнос</label>
+
+                <input type="text" id="price-first" value="0">
+                <input type="range" id="price-first-range" min="0" max="100" step="10" value="0">
+
+                <div class="range range__price-first">
+                  <div class="range__line">
+                    <div class="range__roller"></div>
+                    <span class="range__value">0%</span>
+                  </div>
+                  <div class="range__fill"></div>
+                </div>
+
+              </div>
+
+              <div class="calculator__input input-price">
+                <label for="credit-period">Срок кредитования</label>
+
+                <input type="text" id="credit-period" value="5">
+                <input type="range" id="credit-period-range" min="5" max="10" step="1" value="5">
+
+                <div class="range range__credit-period">
+                  <div class="range__line">
+                    <div class="range__roller"></div>
+                  </div>
+                  <div class="range__limit">
+                    <span class="range__limit-start">0</span>
+                    <span class="range__limit-end">0</span>
+                  </div>
+                  <div class="range__fill"></div>
+                </div>
+              </div>
+
+              <input type="checkbox" id="parent-capital" name="parent-capital">
+              <label for="parent-capital">Использовать материнский капитал</label>
+
+            </fieldset>
+
+          </form>
+        </div>
+      </section>
     </div>
     </main>
     <div style="display: none">

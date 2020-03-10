@@ -1,0 +1,27 @@
+.input-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-price__wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-price__btn {
+  position: absolute;
+  top: 50%;
+  background-color: transparent;
+  border: none;
+  transform: translateY(-50%);
+
+  &_plus {
+    right: 24px;
+  }
+
+  &_minus {
+    left: 24px;
+  }
+}

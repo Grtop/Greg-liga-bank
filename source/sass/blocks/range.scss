@@ -1,0 +1,53 @@
+// $color-range-line
+.range {
+  position: relative;
+  min-height: 35px;
+}
+
+.range__line,
+.range__fill {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  height: 1px;
+}
+
+.range__line {
+  width: 100%;
+  background-color: $color-range-line;
+}
+
+.range__fill {
+  width: 0;
+  background-color: $color-range-roller;
+}
+
+.range__roller {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: $color-range-roller;
+  transform: translateY(-50%);
+}
+
+.range__value {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-grey;
+}
+
+.range__limit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color-text-grey;
+}
