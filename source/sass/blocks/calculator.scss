@@ -7,11 +7,17 @@
   }
 
   fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .fieldset {
     display: flex;
     flex-direction: column;
   }
 
-  legend {
+  .legend {
     margin: 0;
     padding: 0;
     font-size: 22px;
@@ -84,7 +90,7 @@
   .calculator {
     width: 100%;
 
-    legend {
+    .legend {
       font-size: 18px;
       line-height: 25px;
     }
@@ -103,7 +109,7 @@
 
 @media (max-width: $width-tablet) {
   .calculator {
-    legend {
+    .legend {
       font-size: 16px;
       line-height: 22px;
     }

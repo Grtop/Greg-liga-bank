@@ -1,3 +1,8 @@
+@mixin btn-color ($cText, $cBg) {
+  color: $cText;
+  background-color: $cBg;
+}
+
 .btn {
   display: inline-block;
   vertical-align: middle;
@@ -9,13 +14,11 @@
   text-decoration: none;
 
   &_blue {
-    color: $color-text-title-light;
-    background-color: $color-bg-btn-blue;
+    @include btn-color($color-text-title-light, $color-bg-btn-blue);
   }
 
   &_white {
-    color: $color-text-title-dark;
-    background-color: $color-bg-btn-white;
+    @include btn-color($color-text-title-dark, $color-bg-btn-white);
   }
 
   &_short {

@@ -1,79 +1,78 @@
 .service-item {
-  &_deposit .service-item__body,
-  &_credit .service-item__body,
-  &_insurance .service-item__body,
-  &_online .service-item__body {
+  $bl: ".service-item";
+
+  #{$bl}__body {
     background-repeat: no-repeat;
     background-position: 81.5% 50%;
   }
 
   &_deposit {
-    .service-item__head {
+    #{$bl}__head {
       left: 0;
     }
 
-    .service-item__body {
+    #{$bl}__body {
       background-image: url("../img/service-piggy@1x.jpg");
     }
 
-    .service-item__list {
+    #{$bl}__list {
       width: 41%;
     }
   }
 
   &_credit {
-    .service-item__head {
+    #{$bl}__head {
       left: 25%;
     }
 
-    .service-item__body {
+    #{$bl}__body {
       background-image: url("../img/service-car@1x.jpg");
     }
 
-    .service-item__title {
+    #{$bl}__title {
       width: 32%;
     }
 
-    .service-item__list {
+    #{$bl}__list {
       margin: 0 0 30px 0;
     }
   }
 
   &_insurance {
-    .service-item__head {
+    #{$bl}__head {
       left: 50%;
     }
 
-    .service-item__body {
+    #{$bl}__body {
       background-image: url("../img/service-padlock@1x.jpg");
     }
   }
 
   &_online {
-    .service-item__head {
+    #{$bl}__head {
       left: 75%;
     }
 
-    .service-item__body {
+    #{$bl}__body {
       background-image: url("../img/service-mobile@1x.jpg");
     }
 
-    .service-item__title {
+    #{$bl}__title {
       width: 40%;
     }
 
-    .service-item__list {
+    #{$bl}__list {
       width: 35%;
     }
   }
 
   &_active {
-    .service-item__head,
-    .service-item__body {
+    #{$bl}__head,
+    #{$bl}__body {
       background-color: $color-bg-block;
     }
 
-    .service-item__body {
+    #{$bl}__body {
       display: inline-block;
       vertical-align: middle;
       width: 100%;
@@ -84,29 +83,31 @@
 
 @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
   .service-item {
+    $bl: ".service-item";
+
     &_deposit {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-piggy@2x.jpg");
         background-size: 38%;
       }
     }
 
     &_credit {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-car@2x.jpg");
         background-size: 38%;
       }
     }
 
     &_insurance {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-padlock@2x.jpg");
         background-size: 38%;
       }
     }
 
     &_online {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-mobile@2x.jpg");
         background-size: 38%;
       }
@@ -233,39 +234,41 @@
 
 @media (max-width: $width-desktop) {
   .service-item {
+    $bl: ".service-item";
+
     min-height: 380px;
     background-color: $color-bg-block;
 
     &_deposit {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-piggy_tablet@1x.jpg");
         background-position: 88.5% 55%;
         background-size: 36%;
       }
 
-      .service-item__list {
+      #{$bl}__list {
         width: 55%;
       }
     }
 
     &_credit {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-car_tablet@1x.jpg");
         background-position: 88.5% 55%;
         background-size: 36%;
       }
 
-      .service-item__title {
+      #{$bl}__title {
         width: 35%;
       }
 
-      .service-item__desc {
+      #{$bl}__desc {
         width: 45%;
       }
     }
 
     &_insurance {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-padlock_tablet@1x.jpg");
         background-position: 90.5% 61%;
         background-size: 37%;
@@ -273,22 +276,22 @@
     }
 
     &_online {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-mobile_tablet@1x.jpg");
         background-position: 90% 56%;
         background-size: 37.5%;
       }
 
-      .service-item__title {
+      #{$bl}__title {
         width: 50%;
       }
 
-      .service-item__list {
+      #{$bl}__list {
         width: 50%;
       }
     }
 
-    &_active .service-item__body {
+    &_active #{$bl}__body {
       display: block;
       margin-top: 0;
     }
@@ -296,26 +299,28 @@
 
   @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
     .service-item {
+      $bl: ".service-item";
+
       &_deposit {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-piggy_tablet@2x.jpg");
         }
       }
 
       &_credit {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-car_tablet@2x.jpg");
         }
       }
 
       &_insurance {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-padlock_tablet@2x.jpg");
         }
       }
 
       &_online {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-mobile_tablet@2x.jpg");
         }
       }
@@ -356,75 +361,76 @@
 
 @media (max-width: $width-tablet) {
   .service-item {
+    $bl: ".service-item";
     min-height: 362px;
 
-    &_deposit .service-item__body,
-    &_credit .service-item__body {
+    &_deposit #{$bl}__body,
+    &_credit #{$bl}__body {
       background-position: 138% 27%;
       background-size: 73%;
     }
 
     &_deposit {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-piggy_mobile@1x.jpg");
         background-position: 100% 39%;
         background-size: 28%;
       }
 
-      .service-item__list {
+      #{$bl}__list {
         width: 90%;
         margin: 0 0 26px;
       }
     }
 
     &_credit {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-car_mobile@1x.jpg");
         background-position: 100% 43%;
         background-size: 27%;
       }
 
-      .service-item__title {
+      #{$bl}__title {
         width: 80%;
       }
 
-      .service-item__desc {
+      #{$bl}__desc {
         width: 95%;
       }
 
-      .service-item__list {
+      #{$bl}__list {
         margin: 0 0 22px;
       }
     }
 
     &_insurance {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-padlock_mobile@1x.jpg");
         background-position: 100% 45%;
         background-size: 27%;
       }
 
-      .service-item__list {
+      #{$bl}__list {
         margin: 0 0 26px;
       }
 
-      .service-item__title {
+      #{$bl}__title {
         width: 90%;
       }
     }
 
     &_online {
-      .service-item__body {
+      #{$bl}__body {
         background-image: url("../img/service-mobile_mobile@1x.jpg");
         background-position: 100% 38%;
         background-size: 27%;
       }
 
-      .service-item__title {
+      #{$bl}__title {
         width: 80%;
       }
 
-      .service-item__list {
+      #{$bl}__list {
         width: 80%;
         margin: 0 0 25px;
       }
@@ -433,26 +439,28 @@
 
   @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
     .service-item {
+      $bl: ".service-item";
+
       &_deposit {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-piggy_mobile@2x.jpg");
         }
       }
 
       &_credit {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-car_mobile@2x.jpg");
         }
       }
 
       &_insurance {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-padlock_mobile@2x.jpg");
         }
       }
 
       &_online {
-        .service-item__body {
+        #{$bl}__body {
           background-image: url("../img/service-mobile_mobile@2x.jpg");
         }
       }

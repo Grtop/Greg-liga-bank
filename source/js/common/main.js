@@ -77,7 +77,7 @@
     };
     // HANDLERS - end
 
-    var TABLET_SIZE = 1023;
+    var TABLET_SIZE = 1008;
 
     var controlItems = {
       nav: 'header__nav-toggle',
@@ -131,8 +131,8 @@
     }
 
     if (document.body.offsetWidth <= TABLET_SIZE) {
-      if (document.querySelector('.services')) {
-        var sliderService = new Swiper('.services', {
+      if (document.querySelector('.services__slider')) {
+        var sliderService = new Swiper('.services__slider', {
           loop: true,
           pagination: {
             el: '.services-pagination',

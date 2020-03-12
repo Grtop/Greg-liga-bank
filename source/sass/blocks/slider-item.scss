@@ -1,58 +1,94 @@
 .slider-item {
+  $bl: ".slider-item";
   background-repeat: no-repeat;
   background-size: cover;
 
   &_dark {
-    .slider-item__title {
+    #{$bl}__title {
       color: $color-text-title-light;
     }
 
-    .slider-item__desc {
+    #{$bl}__desc {
       color: $color-text-desc-light;
     }
   }
 
   &_light {
-    .slider-item__title {
+    #{$bl}__title {
       color: $color-text-title-dark;
     }
 
-    .slider-item__desc {
+    #{$bl}__desc {
       color: $color-text-desc-dark;
     }
   }
 
   &_blue {
-    background-image: url("../img/card-black@1x.png"), url("../img/card-white@1x.png"), url("../img/gradient-blue@1x.jpg");
-    background-size: 21.5%, 21.5%, cover;
-    background-position: 68% 63%, 78% 37%, 0 0;
+    background-image: url("../img/gradient-blue@1x.jpg");
+    background-size: cover;
+    background-position: 0 0;
+
+    #{$bl}__wrapper {
+      background-image: url("../img/card-black@1x.png"), url("../img/card-white@1x.png");
+      background-size: 21.5%, 21.5%;
+      background-position: 68% 64%, 78% 37%;
+    }
   }
 
   &_man {
-    background-image: url("../img/person-man@1x.jpg");
-    background-position: center;
+    background: $color-gradient-first;
+    background: linear-gradient(90deg, $color-gradient-first 0%, $color-gradient-second 75%, $color-gradient-second 85%, $color-gradient-first 100%);
+
+    #{$bl}__wrapper {
+      background-image: url("../img/person-man@1x.png");
+      background-position: 79% 0;
+      background-size: auto 100%;
+    }
   }
 
   &_girl {
-    background-image: url("../img/person-girl@1x.jpg");
-    background-position: center;
+    background: $color-gradient-first;
+    background: linear-gradient(90deg, $color-gradient-first 0%, $color-gradient-second 75%, $color-gradient-second 85%, $color-gradient-first 100%);
+
+    #{$bl}__wrapper {
+      background-image: url("../img/person-girl@1x.png");
+      background-position: 78% 0;
+      background-size: auto 100%;
+    }
   }
+}
+
+.slider-item__wrapper {
+  height: 100%;
+  background-repeat: no-repeat;
 }
 
 @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
   .slider-item {
+    $bl: ".slider-item";
+
     &_blue {
-      background-image: url("../img/card-black@2x.png"), url("../img/card-white@2x.png"), url("../img/gradient-blue@2x.jpg");
-      background-size: 24.5%, 25%, cover;
-      background-position: 68.5% 68%, 79.5% 35%, 0 0;
+      background-image: url("../img/gradient-blue@2x.jpg");
+      background-size: cover;
+      background-position: 0 0;
+
+      #{$bl}__wrapper {
+        background-image: url("../img/card-black@2x.png"), url("../img/card-white@2x.png");
+        background-size: 24.5%, 25%;
+        background-position: 68.5% 68%, 79.5% 35%;
+      }
     }
 
     &_man {
-      background-image: url("../img/person-man@2x.jpg");
+      #{$bl}__wrapper {
+        background-image: url("../img/person-man@2x.png");
+      }
     }
 
     &_girl {
-      background-image: url("../img/person-girl@2x.jpg");
+      #{$bl}__wrapper {
+        background-image: url("../img/person-girl@2x.png");
+      }
     }
   }
 }
@@ -73,18 +109,37 @@
 
 @media (max-width: $width-desktop) {
   .slider-item {
+    $bl: ".slider-item";
+
     &_blue {
-      background-size: 29.5%, 29.5%, cover;
-      background-position: 68% 63%, 84% 37%, 0 0;
+      #{$bl}__wrapper {
+        background-size: 29%, 29%;
+        background-position: 68% 64%, 84% 36%;
+      }
+    }
+
+    &_man {
+      #{$bl}__wrapper {
+        background-position: 87% 0;
+      }
+    }
+
+    &_girl {
+      #{$bl}__wrapper {
+        background-position: 90% 0;
+      }
     }
   }
 
   @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
     .slider-item {
+      $bl: ".slider-item";
+
       &_blue {
-        background-image: url("../img/card-black@2x.png"), url("../img/card-white@2x.png"), url("../img/gradient-blue@2x.jpg");
-        background-size: 34%, 34%, cover;
-        background-position: 70% 72%, 87% 34%, 0 0;
+        #{$bl}__wrapper {
+          background-size: 34%, 34%;
+          background-position: 70% 70%, 86% 34%;
+        }
       }
     }
   }
@@ -102,24 +157,35 @@
 
 @media (max-width: $width-mobile) {
   .slider-item {
+    $bl: ".slider-item";
+
     &_blue {
-      background-image: url("../img/card-black@1x.png"), url("../img/gradient-blue@1x.jpg");
-      background-size: 65%, cover;
-      background-position: 212% 53%, 0 0;
+      #{$bl}__wrapper {
+        background-image: url("../img/card-black@1x.png");
+        background-size: 67%;
+        background-position: 224% 52%;
+      }
     }
 
-    &_man,
-    &_girl {
-      background-position: 65%;
+    &_man #{$bl}__wrapper {
+      background-position: 129%;
+    }
+
+    &_girl #{$bl}__wrapper {
+      background-position: 130%;
     }
   }
 
   @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
     .slider-item {
+      $bl: ".slider-item";
+
       &_blue {
-        background-image: url("../img/card-black@2x.png"), url("../img/gradient-blue@2x.jpg");
-        background-size: 76%, cover;
-        background-position: 288% 58%, 0 0;
+        #{$bl}__wrapper {
+          background-image: url("../img/card-black@2x.png");
+          background-size: 77%;
+          background-position: 300% 58%;
+        }
       }
     }
   }
