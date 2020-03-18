@@ -172,7 +172,7 @@
                 <h3 class="legend">Шаг 1. Цель кредита</h3>
 
                 <select name="credit-targer" id="credit-target">
-                  <option value="" selected>Выберете цель кредита</option>
+                  <option value="none" selected>Выберете цель кредита</option>
                   <option value="mortgage-loan">Ипотечное кредитование</option>
                   <option value="car-loan">Автомобильное кредитование</option>
                   <option value="consumer-loan">Потребительский кредит</option>
@@ -189,12 +189,12 @@
                 <legend class="visually-hidden">Шаг 2. Введите параметры кредита</legend>
                 <h3 class="legend">Шаг 2. Введите параметры кредита</h3>
 
-                <div class="calculator__input input-price">
+                <div class="calculator__input input-price input-price__sum">
 
-                  <label for="price-target">Стоимость недвижимости</label>
+                  <label for="price-target">Сумма объекта</label>
 
                   <div class="input-price__wrapper">
-                    <input type="text" id="price-target" value="0">
+                    <input type="text" id="price-target" value="0" required>
                     <button class="input-price__btn input-price__btn_plus" type="button">
                       <svg width="16" height="16">
                         <use xlink:href="#icon-btn_plus">
@@ -207,13 +207,12 @@
                       </svg>
                       <span class="visually-hidden">Увеличить сумму</span>
                     </button>
-
                   </div>
 
-                  <p class="calculator__input-desc">0</p>
+                  <p class="calculator__input-desc">От __ до __</p>
                 </div>
 
-                <div class="calculator__input input-price">
+                <div class="calculator__input input-price input-price__initial">
 
                   <label for="price-first">Первоначальный взнос</label>
 

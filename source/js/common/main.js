@@ -147,6 +147,110 @@
     }
 
     // SELECT - start
+    var creditTerms = {
+      status: 0,
+      label: '',
+      desc: '',
+      minSumTarget: 0,
+      maxSumTarget: 0,
+      stepSumTarget: 0,
+    };
+
+    // SELECT -- handlers
+    var selectCreditChange = function (scEvt) {
+      scEvt.preventDefault();
+      var root = scEvt.target;
+
+      var listStatus = {
+        none: 'none',
+        mortgage: 'mortgage-loan',
+        car: 'car-loan',
+        consumer: 'consumer-loan'
+      }
+
+      var updateInitialChange = function (uiEvt) {
+        window.initialPrice.update();
+      };
+
+      for (var i = 0; i < root.children.length; i++) {
+        if (root.children[i].hasAttribute('selected')) {
+          var currentValue = root.children[i].getAttribute('value');
+        }
+      }
+
+      switch (currentValue) {
+        case listStatus.none:
+          creditTerms = {
+            status: 0
+          }
+          break;
+        case listStatus.mortgage:
+          creditTerms = {
+            status: 1,
+            label: 'Стоимость недвижимости',
+            minSumTarget: 1200000,
+            maxSumTarget: 25000000,
+            stepSumTarget: 100000,
+            initialSum: 0,
+            currency: 'рублей'
+          }
+          break;
+        case listStatus.car:
+          creditTerms = {
+            status: 2,
+            label: 'Стоимость автомобиля',
+            minSumTarget: 500000,
+            maxSumTarget: 5000000,
+            stepSumTarget: 50000,
+            initialSum: 0,
+            currency: 'рублей'
+          }
+          break;
+        case listStatus.consumer:
+          creditTerms = {
+            status: 3,
+            label: 'Сумма потребительского кредита',
+            minSumTarget: 500000,
+            maxSumTarget: 3000000,
+            stepSumTarget: 50000,
+            initialSum: 0,
+            currency: 'рублей'
+          }
+          break;
+      }
+
+      if (creditTerms.status !== 0) {
+        creditTerms.desc = 'от ' + creditTerms.minSumTarget +' до ' + creditTerms.maxSumTarget + ' ' + creditTerms.currency;
+        creditTerms.currentSum = creditTerms.minSumTarget;
+
+        if (document.querySelector('.input-price__sum')) {
+          var targetPrice = new inputPrice('.input-price__sum', creditTerms, {
+            inputEl: '#price-target',
+            descEl: '.calculator__input-desc',
+            btnIncrease: '.input-price__btn_minus',
+            btnDecrease: '.input-price__btn_plus'
+          });
+        }
+
+        if (document.querySelector('.input-price__initial')) {
+          var firstPrice = new initialPrice('.input-price__initial', creditTerms, {
+            percent: 0.1,
+            percentStep: 0.05,
+            inputEl: '#price-first',
+            rangeEl: '.range__price-first',
+            rangeToggleEl: '.range__roller',
+            rangeValueEl: '.range__value'
+          });
+          document.querySelector('#price-target').addEventListener('change', updateInitialChange);
+        }
+      }
+
+      window.inputPrice.update();
+      window.initialPrice.update();
+    };
+
+    // SELECT -- init
+
     if (document.querySelector('.select')) {
       var credit = new Select('.select', {
         idSelect: '#credit-target',
@@ -154,6 +258,8 @@
         classActiveElement: 'select__item_selected'
       });
     }
+
+    document.querySelector('#credit-target').addEventListener('change', selectCreditChange);
   };
 
   window.addEventListener('load', initPage);

@@ -21,6 +21,7 @@ function Select(classEl, param) {
   };
 
   var removeListValue = function (collection) {
+    collection[0].classList.remove(param.classActiveElement);
     for (var k = collection.length - 1; k > 0; k--) {
       collection[k].remove();
     }
@@ -30,9 +31,9 @@ function Select(classEl, param) {
     var listElements = selectEl.children;
     for (var i = 0; i < listElements.length; i++) {
       if (listElements[i].innerText === value) {
-        listElements[i].selected = true;
+        listElements[i].setAttribute('selected', 'selected');
       } else {
-        listElements[i].selected = false;
+        listElements[i].removeAttribute('selected');
       }
     }
   };
@@ -46,7 +47,6 @@ function Select(classEl, param) {
       } else {
         var element = originalItem.cloneNode();
         element.innerText = arrayItems[i];
-        element.setAttribute('data-index', i);
         element.addEventListener('click', clickListElementClick);
         fragment.appendChild(element);
       }
@@ -68,8 +68,6 @@ function Select(classEl, param) {
     listEl.children[0].addEventListener('click', toggleListClick);
   };
 
-  // FUNCTION - end
-
   // HANDLER - start
 
   var toggleListClick = function (tsEvt) {
@@ -87,10 +85,13 @@ function Select(classEl, param) {
     var listItems = getListValue(formElement.children);
     removeListValue(root.children);
     root.appendChild(setListValue(listItems, cleEvt.currentTarget.innerText, root.children[0]));
+    root.children[0].classList.add(param.classActiveElement);
     compareListValue(formElement, cleEvt.currentTarget.innerText);
+    var eventChange = new Event('change');
+    formElement.dispatchEvent(eventChange);
   };
 
-  // HANDLER - end
+  // init
 
   var ulElement = getElement(classEl);
   var formElement = getElement(param.idSelect);
