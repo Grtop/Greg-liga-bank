@@ -1,12 +1,12 @@
 'use strict';
 
-function inputPrice (classEl, terms, param) {
+function InputPrice(classEl, terms, param) {
   var root = document.querySelector(classEl);
 
   var Errors = {
     message: 'Некорректное значение',
     color: 'red'
-  }
+  };
 
   // FUNCTION - start
 
@@ -28,12 +28,12 @@ function inputPrice (classEl, terms, param) {
     }
   };
 
-  var setErrorMessage = function(element) {
+  var setErrorMessage = function (element) {
     element.style.border = '1px solid ' + Errors.color;
     element.value = Errors.message;
   };
 
-  var removeErrorMessage = function(element) {
+  var removeErrorMessage = function (element) {
     element.style.border = '';
   };
 
@@ -58,9 +58,6 @@ function inputPrice (classEl, terms, param) {
       setValueInput(root.querySelector(param.inputEl), terms.currentSum + ' ' + terms.currency);
       root.querySelector(param.inputEl).value = terms.currentSum + ' ' + terms.currency;
       window.initialPrice.update();
-
-      // control for parameters - need remove on publish
-      console.log(terms);
     }
   };
 
@@ -89,9 +86,8 @@ function inputPrice (classEl, terms, param) {
       removeErrorMessage(root.querySelector(param.inputEl));
       setValueInput(root.querySelector(param.inputEl), terms.currentSum + ' ' + terms.currency);
       root.querySelector(param.inputEl).value = terms.currentSum + ' ' + terms.currency;
-      window.initialPrice.update()
+      window.initialPrice.update();
     }
-
   };
 
   // init
@@ -112,4 +108,4 @@ function inputPrice (classEl, terms, param) {
   window.inputPrice = {
     update: update
   };
-};
+}

@@ -166,9 +166,10 @@
         mortgage: 'mortgage-loan',
         car: 'car-loan',
         consumer: 'consumer-loan'
-      }
+      };
 
       var updateInitialChange = function (uiEvt) {
+        uiEvt.preventDefault();
         window.initialPrice.update();
       };
 
@@ -182,7 +183,7 @@
         case listStatus.none:
           creditTerms = {
             status: 0
-          }
+          };
           break;
         case listStatus.mortgage:
           creditTerms = {
@@ -193,7 +194,7 @@
             stepSumTarget: 100000,
             initialSum: 0,
             currency: 'рублей'
-          }
+          };
           break;
         case listStatus.car:
           creditTerms = {
@@ -204,7 +205,7 @@
             stepSumTarget: 50000,
             initialSum: 0,
             currency: 'рублей'
-          }
+          };
           break;
         case listStatus.consumer:
           creditTerms = {
@@ -215,16 +216,16 @@
             stepSumTarget: 50000,
             initialSum: 0,
             currency: 'рублей'
-          }
+          };
           break;
       }
 
       if (creditTerms.status !== 0) {
-        creditTerms.desc = 'от ' + creditTerms.minSumTarget +' до ' + creditTerms.maxSumTarget + ' ' + creditTerms.currency;
+        creditTerms.desc = 'от ' + creditTerms.minSumTarget + ' до ' + creditTerms.maxSumTarget + ' ' + creditTerms.currency;
         creditTerms.currentSum = creditTerms.minSumTarget;
 
         if (document.querySelector('.input-price__sum')) {
-          var targetPrice = new inputPrice('.input-price__sum', creditTerms, {
+          var targetPrice = new InputPrice('.input-price__sum', creditTerms, {
             inputEl: '#price-target',
             descEl: '.calculator__input-desc',
             btnIncrease: '.input-price__btn_minus',
@@ -233,7 +234,7 @@
         }
 
         if (document.querySelector('.input-price__initial')) {
-          var firstPrice = new initialPrice('.input-price__initial', creditTerms, {
+          var firstPrice = new InitialPrice('.input-price__initial', creditTerms, {
             percent: 0.1,
             percentStep: 0.05,
             inputEl: '#price-first',

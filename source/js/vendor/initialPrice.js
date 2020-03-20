@@ -1,14 +1,23 @@
 'use strict';
 
-function initialPrice (classEl, terms, param) {
+function InitialPrice(classEl, terms, param) {
+
+  // Elements
+
   var root = document.querySelector(classEl);
+
   var range = root.querySelector(param.rangeEl);
+
   var line = range.querySelector('.range__line');
   var lineWidth = window.getComputedStyle(line, null).getPropertyValue('width');
   lineWidth = Number(lineWidth.slice(0, lineWidth.length - 2));
+  var offset = Math.ceil(Number(lineWidth * param.percent));
+  var increasedLineWidth = lineWidth + offset;
+
   var rangeRoller = range.querySelector(param.rangeToggleEl);
   var rangeRollerWidth = window.getComputedStyle(rangeRoller, null).getPropertyValue('width');
   rangeRollerWidth = Number(rangeRollerWidth.slice(0, rangeRollerWidth.length - 2));
+
   var rangeValue = range.querySelector(param.rangeValueEl);
 
   // FUNCTION - start
@@ -35,16 +44,27 @@ function initialPrice (classEl, terms, param) {
     return Number(terms.currentSum) * Number(param.percent);
   };
 
-  var calculatePercent = function () {
-    var result = (100 / terms.currentSum) * terms.initialSum;
-    return Math.ceil(result);
+  var calculatePosition = function (percent) {
+    var position = Math.ceil((percent * increasedLineWidth) - offset) - (rangeRollerWidth / 2);
+    return position;
   };
 
-  var calclatePosition = function () {
-    var currentPercent = calculatePercent();
-    currentPercent = currentPercent - (param.percent * 100 - (currentPercent * param.percent - 1));
-    var currentPosition = Math.ceil(lineWidth * (currentPercent / 100));
-    return currentPosition;
+  var setPosition = function (element, position) {
+    element.style.left = position + 'px';
+  };
+
+  var calculateRangeSteps = function () {
+    var array = [];
+    var countPoints = (1 - Number(param.percent)) / param.percentStep;
+    for (var i = 0; i <= countPoints; i++) {
+      array.push({
+        count: i,
+        percent: Number((param.percent + param.percentStep * i).toFixed(2)),
+      });
+      array[i].position = calculatePosition(array[i].percent);
+      array[i].value = Math.floor(array[i].percent * terms.currentSum);
+    }
+    return array;
   };
 
   // HANDLERS - start
@@ -81,17 +101,27 @@ function initialPrice (classEl, terms, param) {
 
     var mouseMoveToggleHandler = function (kdtEvt) {
       kdtEvt.preventDefault();
-
-      var leftPos = Math.max(0, Math.min(kdtEvt.pageX, lineWidth - rangeRollerWidth));
-
-      rangeRoller.style.left = leftPos + 'px';
-      rangeValue.style.left = leftPos + 'px';
+      var leftMovePos = Math.max(0, Math.min(kdtEvt.pageX, lineWidth - rangeRollerWidth));
+      setPosition(rangeRoller, leftMovePos);
+      setPosition(rangeValue, leftMovePos);
     };
 
     var mouseUpToggleHandler = function (kutEvt) {
       kutEvt.preventDefault();
 
-      console.log('key up');
+      var leftUpPos = Math.max(0, Math.min(kutEvt.pageX, lineWidth - rangeRollerWidth));
+
+      for (var i = 0; i < rangeSteps.length; i++) {
+        if (leftUpPos >= rangeSteps[i].position) {
+          setPosition(rangeRoller, rangeSteps[i].position);
+          setPosition(rangeValue, rangeSteps[i].position);
+          replaceInnerText(rangeValue, (rangeSteps[i].percent * 100).toFixed(0) + '%');
+          terms.initialSum = rangeSteps[i].value;
+          setValueInput(root.querySelector(param.inputEl), rangeSteps[i].value + ' ' + terms.currency);
+          root.querySelector(param.inputEl).value = rangeSteps[i].value + ' ' + terms.currency;
+        }
+      }
+
       document.removeEventListener('mousemove', mouseMoveToggleHandler);
       document.removeEventListener('mouseup', mouseUpToggleHandler);
     };
@@ -101,6 +131,9 @@ function initialPrice (classEl, terms, param) {
   };
 
   // init
+
+  terms.initialSum = calculateMinValue();
+  var rangeSteps = calculateRangeSteps();
 
   var update = function () {
     if (terms.initialSum < calculateMinValue()) {
@@ -114,20 +147,27 @@ function initialPrice (classEl, terms, param) {
     root.querySelector(param.inputEl).onfocus = focusInputHandler;
     root.querySelector(param.inputEl).onblur = blurInputHandler;
 
+    rangeSteps = calculateRangeSteps();
     updateRange();
-  }
-
-  terms.initialSum = calculateMinValue();
-
-  var updateRange = function () {
-    replaceInnerText(rangeValue, calculatePercent() + '%');
-    rangeRoller.style.left = calclatePosition() + 'px';
   };
 
-  update();
+  var updateRange = function () {
+    var positionRange;
+    if (terms.initialSum <= calculateMinValue()) {
+      replaceInnerText(rangeValue, (param.percent * 100) + '%');
+      positionRange = calculatePosition(param.percent);
+    } else {
+      var actualPercent = Math.ceil(terms.initialSum * (100 / terms.currentSum));
+      replaceInnerText(rangeValue, actualPercent + '%');
+      positionRange = calculatePosition(actualPercent / 100);
+    }
+    setPosition(rangeRoller, positionRange);
+    setPosition(rangeValue, positionRange);
+  };
+
   rangeRoller.addEventListener('mousedown', mouseDownToggleHandler);
 
   window.initialPrice = {
     update: update
   };
-};
+}
