@@ -8,45 +8,40 @@ function InitialPrice(classEl, terms, param) {
 
   var range = root.querySelector(param.rangeEl);
 
-  var line = range.querySelector('.range__line');
-  var lineWidth = window.getComputedStyle(line, null).getPropertyValue('width');
-  lineWidth = Number(lineWidth.slice(0, lineWidth.length - 2));
-  var offset = Math.ceil(Number(lineWidth * param.percent));
-  var increasedLineWidth = lineWidth + offset;
-
   var rangeRoller = range.querySelector(param.rangeToggleEl);
   var rangeRollerWidth = window.getComputedStyle(rangeRoller, null).getPropertyValue('width');
   rangeRollerWidth = Number(rangeRollerWidth.slice(0, rangeRollerWidth.length - 2));
+
+  var line = range.querySelector('.range__line');
+  var lineWidth = window.getComputedStyle(line, null).getPropertyValue('width');
+  lineWidth = Number(lineWidth.slice(0, lineWidth.length - 2));
+
+  var lineWidthPercent = lineWidth / (1 - terms.percent);
+
+  var offset = Math.ceil(lineWidthPercent * terms.percent);
 
   var rangeValue = range.querySelector(param.rangeValueEl);
 
   // FUNCTION - start
 
   var replaceInnerText = function (element, text) {
-    if (element) {
-      element.innerText = text;
-    }
+    element.innerText = text;
   };
 
   var getValueInput = function (element) {
-    if (element) {
-      return element.value;
-    }
+    return element.value;
   };
 
   var setValueInput = function (element, value) {
-    if (element) {
-      element.setAttribute('value', value);
-    }
+    element.setAttribute('value', value);
   };
 
   var calculateMinValue = function () {
-    return Number(terms.currentSum) * Number(param.percent);
+    return Number(terms.currentSum) * Number(terms.percent);
   };
 
   var calculatePosition = function (percent) {
-    var position = Math.ceil((percent * increasedLineWidth) - offset) - (rangeRollerWidth / 2);
-    return position;
+    return Math.ceil((percent * (lineWidth + offset)) - offset);
   };
 
   var setPosition = function (element, position) {
@@ -55,11 +50,11 @@ function InitialPrice(classEl, terms, param) {
 
   var calculateRangeSteps = function () {
     var array = [];
-    var countPoints = (1 - Number(param.percent)) / param.percentStep;
+    var countPoints = (1 - Number(terms.percent)) / terms.percentStep;
     for (var i = 0; i <= countPoints; i++) {
       array.push({
         count: i,
-        percent: Number((param.percent + param.percentStep * i).toFixed(2)),
+        percent: Number((terms.percent + terms.percentStep * i).toFixed(2)),
       });
       array[i].position = calculatePosition(array[i].percent);
       array[i].value = Math.floor(array[i].percent * terms.currentSum);
@@ -154,8 +149,8 @@ function InitialPrice(classEl, terms, param) {
   var updateRange = function () {
     var positionRange;
     if (terms.initialSum <= calculateMinValue()) {
-      replaceInnerText(rangeValue, (param.percent * 100) + '%');
-      positionRange = calculatePosition(param.percent);
+      replaceInnerText(rangeValue, (terms.percent * 100) + '%');
+      positionRange = calculatePosition(terms.percent);
     } else {
       var actualPercent = Math.ceil(terms.initialSum * (100 / terms.currentSum));
       replaceInnerText(rangeValue, actualPercent + '%');

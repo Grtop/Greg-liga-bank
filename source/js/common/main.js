@@ -193,6 +193,8 @@
             maxSumTarget: 25000000,
             stepSumTarget: 100000,
             initialSum: 0,
+            percent: 0.1,
+            percentStep: 0.05,
             currency: 'рублей'
           };
           break;
@@ -204,6 +206,8 @@
             maxSumTarget: 5000000,
             stepSumTarget: 50000,
             initialSum: 0,
+            percent: 0.2,
+            percentStep: 0.05,
             currency: 'рублей'
           };
           break;
@@ -214,11 +218,13 @@
             minSumTarget: 500000,
             maxSumTarget: 3000000,
             stepSumTarget: 50000,
+            percent: 0.1,
+            percentStep: 0.05,
             initialSum: 0,
             currency: 'рублей'
           };
           break;
-      }
+      };
 
       if (creditTerms.status !== 0) {
         creditTerms.desc = 'от ' + creditTerms.minSumTarget + ' до ' + creditTerms.maxSumTarget + ' ' + creditTerms.currency;
@@ -235,8 +241,6 @@
 
         if (document.querySelector('.input-price__initial')) {
           var firstPrice = new InitialPrice('.input-price__initial', creditTerms, {
-            percent: 0.1,
-            percentStep: 0.05,
             inputEl: '#price-first',
             rangeEl: '.range__price-first',
             rangeToggleEl: '.range__roller',
@@ -244,10 +248,10 @@
           });
           document.querySelector('#price-target').addEventListener('change', updateInitialChange);
         }
-      }
 
-      window.inputPrice.update();
-      window.initialPrice.update();
+        window.inputPrice.update();
+        window.initialPrice.update();
+      }
     };
 
     // SELECT -- init
