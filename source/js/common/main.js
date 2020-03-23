@@ -154,12 +154,16 @@
       minSumTarget: 0,
       maxSumTarget: 0,
       stepSumTarget: 0,
+      parentCapital: false
     };
 
     // SELECT -- handlers
     var selectCreditChange = function (scEvt) {
       scEvt.preventDefault();
+
       var root = scEvt.target;
+
+      var hideStep = document.querySelector('.calculator__step-second');
 
       var listStatus = {
         none: 'none',
@@ -175,11 +179,11 @@
 
       for (var i = 0; i < root.children.length; i++) {
         if (root.children[i].hasAttribute('selected')) {
-          var currentValue = root.children[i].getAttribute('value');
+          var currentStatus = root.children[i].getAttribute('value');
         }
       }
 
-      switch (currentValue) {
+      switch (currentStatus) {
         case listStatus.none:
           creditTerms = {
             status: 0
@@ -195,7 +199,9 @@
             initialSum: 0,
             percent: 0.1,
             percentStep: 0.05,
-            currency: 'рублей'
+            minPeriod: 5,
+            maxPeriod: 30,
+            stepPeriod: 1
           };
           break;
         case listStatus.car:
@@ -208,7 +214,9 @@
             initialSum: 0,
             percent: 0.2,
             percentStep: 0.05,
-            currency: 'рублей'
+            minPeriod: 1,
+            maxPeriod: 5,
+            stepPeriod: 1
           };
           break;
         case listStatus.consumer:
@@ -218,17 +226,24 @@
             minSumTarget: 500000,
             maxSumTarget: 3000000,
             stepSumTarget: 50000,
+            initialSum: 0,
             percent: 0.1,
             percentStep: 0.05,
-            initialSum: 0,
-            currency: 'рублей'
+            minPeriod: 1,
+            maxPeriod: 7,
+            stepPeriod: 1
           };
           break;
       };
 
       if (creditTerms.status !== 0) {
+        creditTerms.currency = 'рублей';
         creditTerms.desc = 'от ' + creditTerms.minSumTarget + ' до ' + creditTerms.maxSumTarget + ' ' + creditTerms.currency;
         creditTerms.currentSum = creditTerms.minSumTarget;
+        creditTerms.currentPeriod = creditTerms.minPeriod;
+        creditTerms.labelPeriod = ['год', 'года', 'лет'];
+
+        hideStep.classList.add('calculator__step-show');
 
         if (document.querySelector('.input-price__sum')) {
           var targetPrice = new InputPrice('.input-price__sum', creditTerms, {
@@ -249,9 +264,34 @@
           document.querySelector('#price-target').addEventListener('change', updateInitialChange);
         }
 
+        if (document.querySelector('.input-price__period')) {
+          var period = new Period('.input-price__period', creditTerms, {
+            inputEl: '#credit-period',
+            rangeEl: '.range__credit-period',
+            rangeToggleEl: '.range__roller',
+            rangeValueMinEl: '.range__limit-start',
+            rangeValueMaxEl: '.range__limit-end'
+          });
+        }
+
+        var parentCapitalEl = document.querySelector('#parent-capital');
+        if (parentCapitalEl) {
+          // console.dir(parentCapitalEl);
+          var parentCapitalHandler = function (pcEvt) {
+            pcEvt.preventDefault();
+            creditTerms.parentCapital = pcEvt.target.checked;
+          };
+          parentCapitalEl.addEventListener('change', parentCapitalHandler);
+        }
+
         window.inputPrice.update();
         window.initialPrice.update();
+        window.period.update();
+      } else {
+        hideStep.classList.remove('calculator__step-show');
       }
+
+
     };
 
     // SELECT -- init
@@ -262,9 +302,9 @@
         classElement: 'select__item',
         classActiveElement: 'select__item_selected'
       });
-    }
 
-    document.querySelector('#credit-target').addEventListener('change', selectCreditChange);
+      document.querySelector('#credit-target').addEventListener('change', selectCreditChange);
+    }
   };
 
   window.addEventListener('load', initPage);

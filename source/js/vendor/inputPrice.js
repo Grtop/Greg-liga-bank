@@ -1,7 +1,12 @@
 'use strict';
 
 function InputPrice(classEl, terms, param) {
+
+  // Elements
+
   var root = document.querySelector(classEl);
+
+  var inputEl = root.querySelector(param.inputEl);
 
   var Errors = {
     message: 'Некорректное значение',
@@ -11,21 +16,15 @@ function InputPrice(classEl, terms, param) {
   // FUNCTION - start
 
   var replaceInnerText = function (element, text) {
-    if (element) {
-      element.innerText = text;
-    }
+    element.innerText = text;
   };
 
   var getValueInput = function (element) {
-    if (element) {
-      return element.value;
-    }
+    return element.value;
   };
 
   var setValueInput = function (element, value) {
-    if (element) {
-      element.setAttribute('value', value);
-    }
+    element.setAttribute('value', value);
   };
 
   var setErrorMessage = function (element) {
@@ -44,8 +43,8 @@ function InputPrice(classEl, terms, param) {
 
     if (terms.currentSum > terms.minSumTarget) {
       terms.currentSum = Number(terms.currentSum) - Number(terms.stepSumTarget);
-      setValueInput(root.querySelector(param.inputEl), terms.currentSum + ' ' + terms.currency);
-      root.querySelector(param.inputEl).value = terms.currentSum + ' ' + terms.currency;
+      setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
+      inputEl.value = terms.currentSum + ' ' + terms.currency;
       window.initialPrice.update();
     }
   };
@@ -55,8 +54,8 @@ function InputPrice(classEl, terms, param) {
 
     if (terms.currentSum < terms.maxSumTarget) {
       terms.currentSum = Number(terms.currentSum) + Number(terms.stepSumTarget);
-      setValueInput(root.querySelector(param.inputEl), terms.currentSum + ' ' + terms.currency);
-      root.querySelector(param.inputEl).value = terms.currentSum + ' ' + terms.currency;
+      setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
+      inputEl.value = terms.currentSum + ' ' + terms.currency;
       window.initialPrice.update();
     }
   };
@@ -64,8 +63,8 @@ function InputPrice(classEl, terms, param) {
   var focusInputHandler = function (fiEvt) {
     fiEvt.preventDefault();
 
-    setValueInput(root.querySelector(param.inputEl), terms.currentSum);
-    root.querySelector(param.inputEl).value = terms.currentSum;
+    setValueInput(inputEl, terms.currentSum);
+    inputEl.value = terms.currentSum;
     fiEvt.target.setAttribute('type', 'number');
   };
 
@@ -77,15 +76,15 @@ function InputPrice(classEl, terms, param) {
 
     if (terms.currentSum < terms.minSumTarget || terms.currentSum > terms.maxSumTarget) {
       if (terms.currentSum < terms.minSumTarget) {
-        setErrorMessage(root.querySelector(param.inputEl));
+        setErrorMessage(inputEl);
       }
       if (terms.currentSum > terms.maxSumTarget) {
-        setErrorMessage(root.querySelector(param.inputEl));
+        setErrorMessage(inputEl);
       }
     } else {
-      removeErrorMessage(root.querySelector(param.inputEl));
-      setValueInput(root.querySelector(param.inputEl), terms.currentSum + ' ' + terms.currency);
-      root.querySelector(param.inputEl).value = terms.currentSum + ' ' + terms.currency;
+      removeErrorMessage(inputEl);
+      setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
+      inputEl.value = terms.currentSum + ' ' + terms.currency;
       window.initialPrice.update();
     }
   };
@@ -93,7 +92,7 @@ function InputPrice(classEl, terms, param) {
   // init
 
   var update = function () {
-    root.querySelector(param.inputEl).value = terms.minSumTarget + ' ' + terms.currency;
+    inputEl.value = terms.minSumTarget + ' ' + terms.currency;
     replaceInnerText(root.querySelector('label'), terms.label);
     replaceInnerText(root.querySelector(param.descEl), terms.desc);
   };
@@ -102,8 +101,8 @@ function InputPrice(classEl, terms, param) {
 
   root.querySelector(param.btnIncrease).onclick = increaseSumHandler;
   root.querySelector(param.btnDecrease).onclick = decreaseSumHandler;
-  root.querySelector(param.inputEl).onfocus = focusInputHandler;
-  root.querySelector(param.inputEl).onblur = blurInputHandler;
+  inputEl.onfocus = focusInputHandler;
+  inputEl.onblur = blurInputHandler;
 
   window.inputPrice = {
     update: update

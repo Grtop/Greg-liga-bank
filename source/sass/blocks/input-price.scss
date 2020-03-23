@@ -2,6 +2,24 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  &__sum input {
+    margin: 0 0 4px 0;
+  }
+
+  &__initial {
+    input {
+      margin: 0 0 15px 0;
+    }
+
+    .range {
+      margin-bottom: 3px;
+    }
+  }
+
+  &__period input {
+    margin: 0 0 10px 0;
+  }
 }
 
 .input-price__wrapper {
@@ -18,10 +36,24 @@
   transform: translateY(-50%);
 
   &_plus {
-    right: 24px;
+    right: 16px;
   }
 
   &_minus {
-    left: 24px;
+    left: 16px;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  .input-price {
+    &__sum {
+      input {
+        margin: 0 0 8px;
+      }
+    }
+
+    &__period input {
+      margin: 0 0 13px 0;
+    }
   }
 }

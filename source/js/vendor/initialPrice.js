@@ -6,6 +6,8 @@ function InitialPrice(classEl, terms, param) {
 
   var root = document.querySelector(classEl);
 
+  var inputEl = root.querySelector(param.inputEl);
+
   var range = root.querySelector(param.rangeEl);
 
   var rangeRoller = range.querySelector(param.rangeToggleEl);
@@ -15,6 +17,7 @@ function InitialPrice(classEl, terms, param) {
   var line = range.querySelector('.range__line');
   var lineWidth = window.getComputedStyle(line, null).getPropertyValue('width');
   lineWidth = Number(lineWidth.slice(0, lineWidth.length - 2));
+  var lineOffsetLeft = line.offsetParent.offsetLeft;
 
   var lineWidthPercent = lineWidth / (1 - terms.percent);
 
@@ -52,11 +55,20 @@ function InitialPrice(classEl, terms, param) {
     var array = [];
     var countPoints = (1 - Number(terms.percent)) / terms.percentStep;
     for (var i = 0; i <= countPoints; i++) {
+
       array.push({
         count: i,
         percent: Number((terms.percent + terms.percentStep * i).toFixed(2)),
       });
-      array[i].position = calculatePosition(array[i].percent);
+
+      if (i === 0) {
+        array[i].position = 0;
+      } else if (i === countPoints) {
+        array[i].position = lineWidth - rangeRollerWidth;
+      } else {
+        array[i].position = calculatePosition(array[i].percent) - (rangeRollerWidth / 2);
+      }
+
       array[i].value = Math.floor(array[i].percent * terms.currentSum);
     }
     return array;
@@ -67,8 +79,8 @@ function InitialPrice(classEl, terms, param) {
   var focusInputHandler = function (fiEvt) {
     fiEvt.preventDefault();
 
-    setValueInput(root.querySelector(param.inputEl), terms.initialSum);
-    root.querySelector(param.inputEl).value = terms.initialSum;
+    setValueInput(inputEl, terms.initialSum);
+    inputEl.value = terms.initialSum;
     fiEvt.target.setAttribute('type', 'number');
   };
 
@@ -79,13 +91,13 @@ function InitialPrice(classEl, terms, param) {
     var currentValue = getValueInput(biEvt.target);
 
     if (currentValue < calculateMinValue()) {
-      setValueInput(root.querySelector(param.inputEl), calculateMinValue() + ' ' + terms.currency);
-      root.querySelector(param.inputEl).value = calculateMinValue() + ' ' + terms.currency;
+      setValueInput(inputEl, calculateMinValue() + ' ' + terms.currency);
+      inputEl.value = calculateMinValue() + ' ' + terms.currency;
       terms.initialSum = calculateMinValue();
     } else {
       terms.initialSum = Number(currentValue);
-      setValueInput(root.querySelector(param.inputEl), currentValue + ' ' + terms.currency);
-      root.querySelector(param.inputEl).value = currentValue + ' ' + terms.currency;
+      setValueInput(inputEl, currentValue + ' ' + terms.currency);
+      inputEl.value = currentValue + ' ' + terms.currency;
     }
 
     updateRange();
@@ -96,7 +108,7 @@ function InitialPrice(classEl, terms, param) {
 
     var mouseMoveToggleHandler = function (kdtEvt) {
       kdtEvt.preventDefault();
-      var leftMovePos = Math.max(0, Math.min(kdtEvt.pageX, lineWidth - rangeRollerWidth));
+      var leftMovePos = Math.max(0, Math.min(kdtEvt.pageX - lineOffsetLeft, lineWidth));
       setPosition(rangeRoller, leftMovePos);
       setPosition(rangeValue, leftMovePos);
     };
@@ -104,7 +116,7 @@ function InitialPrice(classEl, terms, param) {
     var mouseUpToggleHandler = function (kutEvt) {
       kutEvt.preventDefault();
 
-      var leftUpPos = Math.max(0, Math.min(kutEvt.pageX, lineWidth - rangeRollerWidth));
+      var leftUpPos = Math.max(0, Math.min(kutEvt.pageX - lineOffsetLeft, lineWidth));
 
       for (var i = 0; i < rangeSteps.length; i++) {
         if (leftUpPos >= rangeSteps[i].position) {
@@ -112,8 +124,8 @@ function InitialPrice(classEl, terms, param) {
           setPosition(rangeValue, rangeSteps[i].position);
           replaceInnerText(rangeValue, (rangeSteps[i].percent * 100).toFixed(0) + '%');
           terms.initialSum = rangeSteps[i].value;
-          setValueInput(root.querySelector(param.inputEl), rangeSteps[i].value + ' ' + terms.currency);
-          root.querySelector(param.inputEl).value = rangeSteps[i].value + ' ' + terms.currency;
+          setValueInput(inputEl, rangeSteps[i].value + ' ' + terms.currency);
+          inputEl.value = rangeSteps[i].value + ' ' + terms.currency;
         }
       }
 
@@ -132,30 +144,24 @@ function InitialPrice(classEl, terms, param) {
 
   var update = function () {
     if (terms.initialSum < calculateMinValue()) {
-      setValueInput(root.querySelector(param.inputEl), calculateMinValue() + ' ' + terms.currency);
-      root.querySelector(param.inputEl).value = calculateMinValue() + ' ' + terms.currency;
+      setValueInput(inputEl, calculateMinValue() + ' ' + terms.currency);
+      inputEl.value = calculateMinValue() + ' ' + terms.currency;
       terms.initialSum = calculateMinValue();
     } else {
-      setValueInput(root.querySelector(param.inputEl), terms.initialSum + ' ' + terms.currency);
-      root.querySelector(param.inputEl).value = terms.initialSum + ' ' + terms.currency;
+      setValueInput(inputEl, terms.initialSum + ' ' + terms.currency);
+      inputEl.value = terms.initialSum + ' ' + terms.currency;
     }
-    root.querySelector(param.inputEl).onfocus = focusInputHandler;
-    root.querySelector(param.inputEl).onblur = blurInputHandler;
+    inputEl.onfocus = focusInputHandler;
+    inputEl.onblur = blurInputHandler;
 
     rangeSteps = calculateRangeSteps();
     updateRange();
   };
 
   var updateRange = function () {
-    var positionRange;
-    if (terms.initialSum <= calculateMinValue()) {
-      replaceInnerText(rangeValue, (terms.percent * 100) + '%');
-      positionRange = calculatePosition(terms.percent);
-    } else {
-      var actualPercent = Math.ceil(terms.initialSum * (100 / terms.currentSum));
-      replaceInnerText(rangeValue, actualPercent + '%');
-      positionRange = calculatePosition(actualPercent / 100);
-    }
+    var actualPercent = Math.ceil(terms.initialSum * (100 / terms.currentSum));
+    replaceInnerText(rangeValue, actualPercent + '%');
+    var positionRange = calculatePosition(actualPercent / 100);
     setPosition(rangeRoller, positionRange);
     setPosition(rangeValue, positionRange);
   };

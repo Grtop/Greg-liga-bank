@@ -166,7 +166,7 @@
 
           <form action="https://echo.htmlacademy.ru" method="post">
 
-            <fieldset>
+            <fieldset class="calculator__step-first">
               <legend class="visually-hidden">Шаг 1. Цель кредита</legend>
               <div class="fieldset">
                 <h3 class="legend">Шаг 1. Цель кредита</h3>
@@ -184,7 +184,7 @@
               </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="calculator__step-second">
               <legend class="visually-hidden">Шаг 2. Введите параметры кредита</legend>
               <div class="fieldset">
                 <h3 class="legend">Шаг 2. Введите параметры кредита</h3>
@@ -194,7 +194,7 @@
                   <label for="price-target">Сумма объекта</label>
 
                   <div class="input-price__wrapper">
-                    <input type="text" id="price-target" value="0" required>
+                    <input type="text" id="price-target" value="0" autocomplete="off">
                     <button class="input-price__btn input-price__btn_plus" type="button">
                       <svg width="16" height="16">
                         <use xlink:href="#icon-btn_plus">
@@ -216,7 +216,7 @@
 
                   <label for="price-first">Первоначальный взнос</label>
 
-                  <input type="text" id="price-first" value="0">
+                  <input type="text" id="price-first" value="0" autocomplete="off">
 
                   <div class="range range__price-first">
                     <div class="range__line">
@@ -228,10 +228,10 @@
 
                 </div>
 
-                <div class="calculator__input input-price">
+                <div class="calculator__input input-price input-price__period">
                   <label for="credit-period">Срок кредитования</label>
 
-                  <input type="text" id="credit-period" value="5">
+                  <input type="text" id="credit-period" value="0" autocomplete="off">
 
                   <div class="range range__credit-period">
                     <div class="range__line">
