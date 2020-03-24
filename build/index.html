@@ -164,94 +164,122 @@
         <div class="container">
           <h2 class="calculator__title">Кредитный калькулятор</h2>
 
-          <form action="https://echo.htmlacademy.ru" method="post">
+          <div class="calculator__wrapper">
 
-            <fieldset class="calculator__step-first">
-              <legend class="visually-hidden">Шаг 1. Цель кредита</legend>
-              <div class="fieldset">
-                <h3 class="legend">Шаг 1. Цель кредита</h3>
+            <form action="https://echo.htmlacademy.ru" method="post">
+              <fieldset class="calculator__step-first">
+                <legend class="visually-hidden">Шаг 1. Цель кредита</legend>
+                <div class="fieldset">
+                  <h3 class="legend">Шаг 1. Цель кредита</h3>
+                  <select name="credit-targer" id="credit-target">
+                    <option value="none" selected="">Выберете цель кредита</option>
+                    <option value="mortgage-loan">Ипотечное кредитование</option>
+                    <option value="car-loan">Автомобильное кредитование</option>
+                    <option value="consumer-loan">Потребительский кредит</option>
+                  </select>
+                  <ul class="select">
+                    <li class="select__item">Выберете цель кредита</li>
+                  </ul>
+                </div>
+              </fieldset>
+              <fieldset class="calculator__step-second">
+                <legend class="visually-hidden">Шаг 2. Введите параметры кредита</legend>
+                <div class="fieldset">
+                  <h3 class="legend">Шаг 2. Введите параметры кредита</h3>
+                  <div class="calculator__input input-price input-price__sum">
+                    <label for="price-target">Сумма объекта</label>
+                    <div class="input-price__wrapper">
+                      <input type="text" id="price-target" value="0" autocomplete="off">
+                      <button class="input-price__btn input-price__btn_plus" type="button">
+                        <svg width="16" height="16">
+                          <use xlink:href="#icon-btn_plus">
+                        </use></svg>
+                        <span class="visually-hidden">Уменьшить сумму</span>
+                      </button>
+                      <button class="input-price__btn input-price__btn_minus" type="button">
+                        <svg width="16" height="16">
+                          <use xlink:href="#icon-btn_minus">
+                        </use></svg>
+                        <span class="visually-hidden">Увеличить сумму</span>
+                      </button>
+                    </div>
+                    <p class="calculator__input-desc">От __ до __</p>
+                  </div>
+                  <div class="calculator__input input-price input-price__initial">
+                    <label for="price-first">Первоначальный взнос</label>
+                    <input type="text" id="price-first" value="0" autocomplete="off">
+                    <div class="range range__price-first">
+                      <div class="range__line">
+                        <div class="range__roller"></div>
+                        <span class="range__value">0%</span>
+                      </div>
+                      <div class="range__fill"></div>
+                    </div>
+                  </div>
+                  <div class="calculator__input input-price input-price__period">
+                    <label for="credit-period">Срок кредитования</label>
+                    <input type="text" id="credit-period" value="0" autocomplete="off">
+                    <div class="range range__credit-period">
+                      <div class="range__line">
+                        <div class="range__roller"></div>
+                      </div>
+                      <div class="range__limit">
+                        <span class="range__limit-start">0</span>
+                        <span class="range__limit-end">0</span>
+                      </div>
+                      <div class="range__fill"></div>
+                    </div>
+                  </div>
+                  <div class="calculator__params">
+                    <div class="calculator__param calculator__param_capital">
+                      <input type="checkbox" id="parent-capital" name="parent-capital">
+                      <label for="parent-capital">Использовать материнский капитал</label>
+                    </div>
+                    <div class="calculator__param calculator__param_insurance">
+                      <input type="checkbox" id="insurance-car" name="insurance-car">
+                      <label for="insurance-car">Каско</label>
+                      <input type="checkbox" id="insurance-life" name="insurance-life">
+                      <label for="insurance-life">Страхование жизни</label>
+                    </div>
+                    <div class="calculator__param calculator__param_client">
+                      <input type="checkbox" id="salary-client" name="salary-client">
+                      <label for="salary-client">Зарплатный проект</label>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
 
-                <select name="credit-targer" id="credit-target">
-                  <option value="none" selected="">Выберете цель кредита</option>
-                  <option value="mortgage-loan">Ипотечное кредитование</option>
-                  <option value="car-loan">Автомобильное кредитование</option>
-                  <option value="consumer-loan">Потребительский кредит</option>
-                </select>
-
-                <ul class="select">
-                  <li class="select__item">Выберете цель кредита</li>
-                </ul>
+            <div class="offer">
+              <p class="offer__title">Наше предложение</p>
+              <div class="offer__wrapper">
+                <div class="offer__item">
+                  <p class="offer__item-label offer__label">Сумма</p>
+                  <p class="offer__item-value offer__value">0 рублей</p>
+                </div>
+                <div class="offer__item">
+                  <p class="offer__item-label">Процентная ставка</p>
+                  <p class="offer__item-value offer__rate">0%</p>
+                </div>
+                <div class="offer__item">
+                  <p class="offer__item-label">Ежемесячный платеж</p>
+                  <p class="offer__item-value offer__payment">0 рублей</p>
+                </div>
+                <div class="offer__item">
+                  <p class="offer__item-label">Необходимый доход</p>
+                  <p class="offer__item-value offer__income">0 рублей</p>
+                </div>
               </div>
-            </fieldset>
+              <a class="offer__link btn btn_blue" href="#">Оформить заявку</a>
+            </div>
 
-            <fieldset class="calculator__step-second">
-              <legend class="visually-hidden">Шаг 2. Введите параметры кредита</legend>
-              <div class="fieldset">
-                <h3 class="legend">Шаг 2. Введите параметры кредита</h3>
+            <div class="offer offer__deny">
+              <p class="offer__title">Наш банк не выдаёт <span class="offer__deny-target">...</span> меньше 200 000 рублей.</p>
+              <p class="offer__desc">Попробуйте использовать другие параметры для расчёта.</p>
+            </div>
 
-                <div class="calculator__input input-price input-price__sum">
+          </div>
 
-                  <label for="price-target">Сумма объекта</label>
-
-                  <div class="input-price__wrapper">
-                    <input type="text" id="price-target" value="0" autocomplete="off">
-                    <button class="input-price__btn input-price__btn_plus" type="button">
-                      <svg width="16" height="16">
-                        <use xlink:href="#icon-btn_plus">
-                      </use></svg>
-                      <span class="visually-hidden">Уменьшить сумму</span>
-                    </button>
-                    <button class="input-price__btn input-price__btn_minus" type="button">
-                      <svg width="16" height="16">
-                        <use xlink:href="#icon-btn_minus">
-                      </use></svg>
-                      <span class="visually-hidden">Увеличить сумму</span>
-                    </button>
-                  </div>
-
-                  <p class="calculator__input-desc">От __ до __</p>
-                </div>
-
-                <div class="calculator__input input-price input-price__initial">
-
-                  <label for="price-first">Первоначальный взнос</label>
-
-                  <input type="text" id="price-first" value="0" autocomplete="off">
-
-                  <div class="range range__price-first">
-                    <div class="range__line">
-                      <div class="range__roller"></div>
-                      <span class="range__value">0%</span>
-                    </div>
-                    <div class="range__fill"></div>
-                  </div>
-
-                </div>
-
-                <div class="calculator__input input-price input-price__period">
-                  <label for="credit-period">Срок кредитования</label>
-
-                  <input type="text" id="credit-period" value="0" autocomplete="off">
-
-                  <div class="range range__credit-period">
-                    <div class="range__line">
-                      <div class="range__roller"></div>
-                    </div>
-                    <div class="range__limit">
-                      <span class="range__limit-start">0</span>
-                      <span class="range__limit-end">0</span>
-                    </div>
-                    <div class="range__fill"></div>
-                  </div>
-                </div>
-
-                <input type="checkbox" id="parent-capital" name="parent-capital">
-                <label for="parent-capital">Использовать материнский капитал</label>
-
-              </div>
-            </fieldset>
-
-          </form>
         </div>
       </section>
     
