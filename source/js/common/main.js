@@ -147,15 +147,7 @@
     }
 
     // SELECT - start
-    var creditTerms = {
-      status: 0,
-      label: '',
-      desc: '',
-      minSumTarget: 0,
-      maxSumTarget: 0,
-      stepSumTarget: 0,
-      parentCapital: false
-    };
+    var creditTerms = {};
 
     // SELECT -- handlers
     var selectCreditChange = function (scEvt) {
@@ -172,9 +164,123 @@
         consumer: 'consumer-loan'
       };
 
+      var creditParam = {};
+
       var updateInitialChange = function (uiEvt) {
         uiEvt.preventDefault();
         window.initialPrice.update();
+      };
+
+      var updateCredit = function () {
+
+        var creditCalculate = function () {
+          var currentInitialValue = creditTerms.initialSum;
+          if (creditTerms.parentCapital) {
+            currentInitialValue = creditTerms.initialSum + creditTerms.parentCapitalValue;
+          }
+          return creditTerms.currentSum - currentInitialValue;
+        };
+
+        var paymentCalculate = function () {
+          var currentPercent = Number((creditParam.rate / 12).toFixed(5));
+          var currentPeriod = creditTerms.currentPeriod * 12;
+          var result = Math.ceil(creditParam.value * (currentPercent + (currentPercent / (Math.pow((1 + currentPercent), currentPeriod) - 1))));
+          return result;
+        };
+
+        var interestRateCalculate = function () {
+          var percent = (creditTerms.initialSum * 100) / creditTerms.currentSum;
+
+          if (creditTerms.status === 1) {
+            var rate = {
+              min: 0.0850,
+              max: 0.0940
+            };
+            if (percent < 15) {
+              return rate.max;
+            }
+            return rate.min;
+          }
+
+          if (creditTerms.status === 2 ) {
+            var rate = {
+              min: 0.1500,
+              max: 0.1600,
+              low: 0.0350,
+              high: 0.0850
+            };
+            if (creditTerms.insuranceCar && creditTerms.insuranceLife) {
+              return rate.low;
+            }
+            if (creditTerms.insuranceCar || creditTerms.insuranceLife) {
+              return rate.high;
+            }
+            if (creditTerms.currentSum < 2000000) {
+              return rate.max;
+            }
+            return rate.min;
+          }
+
+          if (creditTerms.status === 3 ) {
+            var rate = {
+              min: 0.0950,
+              mid: 0.1250,
+              max: 0.1500
+            };
+            var forSalary = 0.005;
+            var currentRate = 0;
+            if (creditTerms.currentSum < 750000) {
+              currentRate = rate.max;
+            }
+            if (creditTerms.currentSum >= 750000 && creditTerms.currentSum < 2000000) {
+              currentRate = rate.mid;
+            }
+            if (creditTerms.currentSum >= 2000000) {
+              currentRate = rate.min;
+            }
+            if (creditTerms.salaryClient) {
+              currentRate = currentRate - forSalary;
+            }
+            return currentRate;
+          }
+        };
+
+        var updateOfferBlock = function (classEl) {
+          var rootEl = document.querySelector('.' + classEl);
+          var rootElDeny = document.querySelector('.' + classEl + '__deny');
+
+          if (creditParam.value < creditParam.minValue) {
+            rootEl.style.display = 'none';
+            rootElDeny.style.display = 'block';
+            rootElDeny.querySelector('.offer__deny-target').innerText = creditParam.desc;
+            return;
+          } else {
+            rootEl.style.display = 'block';
+            rootElDeny.style.display = 'none';
+          }
+
+          var offerLabelEl = rootEl.querySelector('.' + classEl + '__label');
+          var offerValueEl = rootEl.querySelector('.' + classEl + '__value');
+          var offerRateEl = rootEl.querySelector('.' + classEl + '__rate');
+          var offerPaymentEl = rootEl.querySelector('.' + classEl + '__payment');
+          var offerIncomeEl = rootEl.querySelector('.' + classEl + '__income');
+
+          offerLabelEl.innerText = creditParam.label;
+          offerValueEl.innerText = creditParam.value + ' ' + creditTerms.currency;
+          offerRateEl.innerText = (creditParam.rate * 100).toFixed(2) + '%';
+          offerPaymentEl.innerText = creditParam.payment + ' ' + creditTerms.currency;
+          offerIncomeEl.innerText = creditParam.income + ' ' + creditTerms.currency;
+        };
+
+        creditParam.rate = interestRateCalculate();
+        creditParam.value = creditCalculate();
+        creditParam.payment = paymentCalculate();
+        creditParam.income = Math.ceil(creditParam.payment / 0.45);
+        updateOfferBlock('offer');
+      };
+
+      window.credit = {
+        update: updateCredit
       };
 
       for (var i = 0; i < root.children.length; i++) {
@@ -201,8 +307,16 @@
             percentStep: 0.05,
             minPeriod: 5,
             maxPeriod: 30,
-            stepPeriod: 1
+            stepPeriod: 1,
+            parentCapital: false,
+            parentCapitalValue: 470000
           };
+          creditParam = {
+            label: 'Сумма ипотеки',
+            desc: 'ипотечные кредиты',
+            minValue: 500000
+          };
+
           break;
         case listStatus.car:
           creditTerms = {
@@ -216,7 +330,14 @@
             percentStep: 0.05,
             minPeriod: 1,
             maxPeriod: 5,
-            stepPeriod: 1
+            stepPeriod: 1,
+            insuranceCar: false,
+            insuranceLife: false
+          };
+          creditParam = {
+            label: 'Сумма автокредита',
+            desc: 'автокредиты',
+            minValue: 200000
           };
           break;
         case listStatus.consumer:
@@ -231,7 +352,11 @@
             percentStep: 0.05,
             minPeriod: 1,
             maxPeriod: 7,
-            stepPeriod: 1
+            stepPeriod: 1,
+            salaryClient: false
+          };
+          creditParam = {
+            label: 'Сумма кредита'
           };
           break;
       };
@@ -274,24 +399,67 @@
           });
         }
 
-        var parentCapitalEl = document.querySelector('#parent-capital');
-        if (parentCapitalEl) {
-          // console.dir(parentCapitalEl);
-          var parentCapitalHandler = function (pcEvt) {
+        var paramsEl = document.querySelector('.calculator__params');
+        if (paramsEl) {
+
+          var paramElHandler = function (pcEvt) {
             pcEvt.preventDefault();
-            creditTerms.parentCapital = pcEvt.target.checked;
+            if (creditTerms.status === 1) {
+              creditTerms.parentCapital = pcEvt.target.checked;
+            }
+            if (creditTerms.status === 2) {
+              if (pcEvt.target.name === 'insurance-car') {
+                creditTerms.insuranceCar = pcEvt.target.checked;
+              }
+              if (pcEvt.target.name === 'insurance-life') {
+                creditTerms.insuranceLife = pcEvt.target.checked;
+              }
+            }
+            if (creditTerms.status === 3) {
+              creditTerms.salaryClient = pcEvt.target.checked;
+            }
+            updateCredit();
           };
-          parentCapitalEl.addEventListener('change', parentCapitalHandler);
+
+          var addEvent = function (arrayAdd, handler) {
+            for (var i = 0; i < arrayAdd.length; i++) {
+              arrayAdd[i].onchange = handler;
+            }
+          };
+
+          var removeEvent = function (arrayRem) {
+            for (var i = 0; i < arrayRem.length; i++) {
+              arrayRem[i].onchange = '';
+            }
+          };
+
+          paramsEl.querySelectorAll('.calculator__param').forEach(function (item) {
+            item.classList.remove('calculator__param_show');
+            var inputs = item.getElementsByTagName('input');
+            removeEvent(inputs, paramElHandler);
+          });
+
+          var element;
+          if (creditTerms.status === 1) {
+            element = paramsEl.querySelector('.calculator__param_capital');
+          }
+          if (creditTerms.status === 2) {
+            element = paramsEl.querySelector('.calculator__param_insurance');
+          }
+          if (creditTerms.status === 3) {
+            element = paramsEl.querySelector('.calculator__param_client');
+          }
+          element.classList.add('calculator__param_show');
+          addEvent(element.getElementsByTagName('input'), paramElHandler);
         }
 
         window.inputPrice.update();
         window.initialPrice.update();
         window.period.update();
+        updateCredit();
       } else {
         hideStep.classList.remove('calculator__step-show');
       }
-
-
     };
 
     // SELECT -- init

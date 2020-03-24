@@ -107,6 +107,7 @@ function Period(classEl, terms, param) {
     }
 
     updateRange();
+    window.credit.update();
   };
 
   var mouseDownToggleHandler = function (mdtEvt) {
@@ -129,6 +130,7 @@ function Period(classEl, terms, param) {
           terms.currentPeriod = rangeSteps[i].value;
           setValueInput(inputEl, rangeSteps[i].value + ' ' + getLabelPeriod(rangeSteps[i].value));
           inputEl.value = rangeSteps[i].value + ' ' + getLabelPeriod(rangeSteps[i].value);
+          window.credit.update();
         }
       }
 
@@ -173,6 +175,7 @@ function Period(classEl, terms, param) {
 
     rangeSteps = calculateRangeSteps();
     updateRange();
+    window.credit.update();
   };
 
   var updateRange = function () {

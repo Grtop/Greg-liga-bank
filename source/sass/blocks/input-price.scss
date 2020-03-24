@@ -52,8 +52,12 @@
       }
     }
 
-    &__period input {
-      margin: 0 0 13px 0;
+    &__period {
+      margin-bottom: 14px;
+
+      input {
+        margin: 0 0 13px 0;
+      }
     }
   }
 }

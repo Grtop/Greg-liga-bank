@@ -46,6 +46,7 @@ function InputPrice(classEl, terms, param) {
       setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
       inputEl.value = terms.currentSum + ' ' + terms.currency;
       window.initialPrice.update();
+      window.credit.update();
     }
   };
 
@@ -57,6 +58,7 @@ function InputPrice(classEl, terms, param) {
       setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
       inputEl.value = terms.currentSum + ' ' + terms.currency;
       window.initialPrice.update();
+      window.credit.update();
     }
   };
 
@@ -86,6 +88,7 @@ function InputPrice(classEl, terms, param) {
       setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
       inputEl.value = terms.currentSum + ' ' + terms.currency;
       window.initialPrice.update();
+      window.credit.update();
     }
   };
 

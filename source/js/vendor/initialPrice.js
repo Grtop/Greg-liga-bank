@@ -101,6 +101,7 @@ function InitialPrice(classEl, terms, param) {
     }
 
     updateRange();
+    window.credit.update();
   };
 
   var mouseDownToggleHandler = function (mdtEvt) {
@@ -126,6 +127,7 @@ function InitialPrice(classEl, terms, param) {
           terms.initialSum = rangeSteps[i].value;
           setValueInput(inputEl, rangeSteps[i].value + ' ' + terms.currency);
           inputEl.value = rangeSteps[i].value + ' ' + terms.currency;
+          window.credit.update();
         }
       }
 
@@ -156,6 +158,7 @@ function InitialPrice(classEl, terms, param) {
 
     rangeSteps = calculateRangeSteps();
     updateRange();
+    window.credit.update();
   };
 
   var updateRange = function () {
