@@ -20,6 +20,15 @@
     }
   }
 
+  @include retina {
+    &_deposit {
+      #{$bl}__body {
+        background-image: url("../img/service-piggy@2x.jpg");
+        background-size: 38%;
+      }
+    }
+  }
+
   &_credit {
     #{$bl}__head {
       left: 25%;
@@ -38,6 +47,15 @@
     }
   }
 
+  @include retina {
+    &_credit {
+      #{$bl}__body {
+        background-image: url("../img/service-car@2x.jpg");
+        background-size: 38%;
+      }
+    }
+  }
+
   &_insurance {
     #{$bl}__head {
       left: 50%;
@@ -45,6 +63,15 @@
 
     #{$bl}__body {
       background-image: url("../img/service-padlock@1x.jpg");
+    }
+  }
+
+  @include retina {
+    &_insurance {
+      #{$bl}__body {
+        background-image: url("../img/service-padlock@2x.jpg");
+        background-size: 38%;
+      }
     }
   }
 
@@ -66,6 +93,15 @@
     }
   }
 
+  @include retina {
+    &_online {
+      #{$bl}__body {
+        background-image: url("../img/service-mobile@2x.jpg");
+        background-size: 38%;
+      }
+    }
+  }
+
   &_active {
     #{$bl}__head,
     #{$bl}__body {
@@ -77,40 +113,6 @@
       vertical-align: middle;
       width: 100%;
       margin-top: 93px;
-    }
-  }
-}
-
-@media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-  .service-item {
-    $bl: ".service-item";
-
-    &_deposit {
-      #{$bl}__body {
-        background-image: url("../img/service-piggy@2x.jpg");
-        background-size: 38%;
-      }
-    }
-
-    &_credit {
-      #{$bl}__body {
-        background-image: url("../img/service-car@2x.jpg");
-        background-size: 38%;
-      }
-    }
-
-    &_insurance {
-      #{$bl}__body {
-        background-image: url("../img/service-padlock@2x.jpg");
-        background-size: 38%;
-      }
-    }
-
-    &_online {
-      #{$bl}__body {
-        background-image: url("../img/service-mobile@2x.jpg");
-        background-size: 38%;
-      }
     }
   }
 }
@@ -251,6 +253,14 @@
       }
     }
 
+    @include retina {
+      &_deposit {
+        #{$bl}__body {
+          background-image: url("../img/service-piggy_tablet@2x.jpg");
+        }
+      }
+    }
+
     &_credit {
       #{$bl}__body {
         background-image: url("../img/service-car_tablet@1x.jpg");
@@ -267,11 +277,27 @@
       }
     }
 
+    @include retina {
+      &_credit {
+        #{$bl}__body {
+          background-image: url("../img/service-car_tablet@2x.jpg");
+        }
+      }
+    }
+
     &_insurance {
       #{$bl}__body {
         background-image: url("../img/service-padlock_tablet@1x.jpg");
         background-position: 90.5% 61%;
         background-size: 37%;
+      }
+    }
+
+    @include retina {
+      &_insurance {
+        #{$bl}__body {
+          background-image: url("../img/service-padlock_tablet@2x.jpg");
+        }
       }
     }
 
@@ -291,39 +317,17 @@
       }
     }
 
-    &_active #{$bl}__body {
-      display: block;
-      margin-top: 0;
-    }
-  }
-
-  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-    .service-item {
-      $bl: ".service-item";
-
-      &_deposit {
-        #{$bl}__body {
-          background-image: url("../img/service-piggy_tablet@2x.jpg");
-        }
-      }
-
-      &_credit {
-        #{$bl}__body {
-          background-image: url("../img/service-car_tablet@2x.jpg");
-        }
-      }
-
-      &_insurance {
-        #{$bl}__body {
-          background-image: url("../img/service-padlock_tablet@2x.jpg");
-        }
-      }
-
+    @include retina {
       &_online {
         #{$bl}__body {
           background-image: url("../img/service-mobile_tablet@2x.jpg");
         }
       }
+    }
+
+    &_active #{$bl}__body {
+      display: block;
+      margin-top: 0;
     }
   }
 
@@ -383,6 +387,14 @@
       }
     }
 
+    @include retina {
+      &_deposit {
+        #{$bl}__body {
+          background-image: url("../img/service-piggy_mobile@2x.jpg");
+        }
+      }
+    }
+
     &_credit {
       #{$bl}__body {
         background-image: url("../img/service-car_mobile@1x.jpg");
@@ -403,6 +415,14 @@
       }
     }
 
+    @include retina {
+      &_credit {
+        #{$bl}__body {
+          background-image: url("../img/service-car_mobile@2x.jpg");
+        }
+      }
+    }
+
     &_insurance {
       #{$bl}__body {
         background-image: url("../img/service-padlock_mobile@1x.jpg");
@@ -416,6 +436,14 @@
 
       #{$bl}__title {
         width: 90%;
+      }
+    }
+
+    @include retina {
+      &_insurance {
+        #{$bl}__body {
+          background-image: url("../img/service-padlock_mobile@2x.jpg");
+        }
       }
     }
 
@@ -435,30 +463,8 @@
         margin: 0 0 25px;
       }
     }
-  }
 
-  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-    .service-item {
-      $bl: ".service-item";
-
-      &_deposit {
-        #{$bl}__body {
-          background-image: url("../img/service-piggy_mobile@2x.jpg");
-        }
-      }
-
-      &_credit {
-        #{$bl}__body {
-          background-image: url("../img/service-car_mobile@2x.jpg");
-        }
-      }
-
-      &_insurance {
-        #{$bl}__body {
-          background-image: url("../img/service-padlock_mobile@2x.jpg");
-        }
-      }
-
+    @include retina {
       &_online {
         #{$bl}__body {
           background-image: url("../img/service-mobile_mobile@2x.jpg");

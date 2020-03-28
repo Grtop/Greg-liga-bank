@@ -35,6 +35,20 @@
     }
   }
 
+  @include retina {
+    &_blue {
+      background-image: url("../img/gradient-blue@2x.jpg");
+      background-size: cover;
+      background-position: 0 0;
+
+      #{$bl}__wrapper {
+        background-image: url("../img/card-black@2x.png"), url("../img/card-white@2x.png");
+        background-size: 24.5%, 25%;
+        background-position: 68.5% 68%, 79.5% 35%;
+      }
+    }
+  }
+
   &_man {
     background: $color-gradient-first;
     background: linear-gradient(90deg, $color-gradient-first 0%, $color-gradient-second 75%, $color-gradient-second 85%, $color-gradient-first 100%);
@@ -43,6 +57,14 @@
       background-image: url("../img/person-man@1x.png");
       background-position: 79% 0;
       background-size: auto 100%;
+    }
+  }
+
+  @include retina {
+    &_man {
+      #{$bl}__wrapper {
+        background-image: url("../img/person-man@2x.png");
+      }
     }
   }
 
@@ -56,41 +78,19 @@
       background-size: auto 100%;
     }
   }
-}
 
-.slider-item__wrapper {
-  height: 100%;
-  background-repeat: no-repeat;
-}
-
-@media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-  .slider-item {
-    $bl: ".slider-item";
-
-    &_blue {
-      background-image: url("../img/gradient-blue@2x.jpg");
-      background-size: cover;
-      background-position: 0 0;
-
-      #{$bl}__wrapper {
-        background-image: url("../img/card-black@2x.png"), url("../img/card-white@2x.png");
-        background-size: 24.5%, 25%;
-        background-position: 68.5% 68%, 79.5% 35%;
-      }
-    }
-
-    &_man {
-      #{$bl}__wrapper {
-        background-image: url("../img/person-man@2x.png");
-      }
-    }
-
+  @include retina {
     &_girl {
       #{$bl}__wrapper {
         background-image: url("../img/person-girl@2x.png");
       }
     }
   }
+}
+
+.slider-item__wrapper {
+  height: 100%;
+  background-repeat: no-repeat;
 }
 
 .slider-item__title {
@@ -118,6 +118,15 @@
       }
     }
 
+    @include retina {
+      &_blue {
+        #{$bl}__wrapper {
+          background-size: 34%, 34%;
+          background-position: 70% 70%, 86% 34%;
+        }
+      }
+    }
+
     &_man {
       #{$bl}__wrapper {
         background-position: 87% 0;
@@ -127,19 +136,6 @@
     &_girl {
       #{$bl}__wrapper {
         background-position: 90% 0;
-      }
-    }
-  }
-
-  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-    .slider-item {
-      $bl: ".slider-item";
-
-      &_blue {
-        #{$bl}__wrapper {
-          background-size: 34%, 34%;
-          background-position: 70% 70%, 86% 34%;
-        }
       }
     }
   }
@@ -167,19 +163,7 @@
       }
     }
 
-    &_man #{$bl}__wrapper {
-      background-position: 129%;
-    }
-
-    &_girl #{$bl}__wrapper {
-      background-position: 130%;
-    }
-  }
-
-  @media (min-resolution: 144dpi), (min-resolution: 1.5dppx) {
-    .slider-item {
-      $bl: ".slider-item";
-
+    @include retina {
       &_blue {
         #{$bl}__wrapper {
           background-image: url("../img/card-black@2x.png");
@@ -187,6 +171,14 @@
           background-position: 300% 58%;
         }
       }
+    }
+
+    &_man #{$bl}__wrapper {
+      background-position: 129%;
+    }
+
+    &_girl #{$bl}__wrapper {
+      background-position: 130%;
     }
   }
 

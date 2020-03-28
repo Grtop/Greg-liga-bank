@@ -8,23 +8,23 @@
 
   form {
     width: 100%;
+  }
 
-    fieldset {
-      margin: 0;
-    }
+  fieldset {
+    margin: 0;
+  }
 
-    .fieldset {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      width: 100%;
-    }
+  .fieldset {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
 
-    input {
-      font-size: 22px;
-      font-weight: 500;
-      line-height: 31px;
-    }
+  input {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 31px;
   }
 
   &_show {
@@ -105,13 +105,12 @@
 @media (max-width: $width-desktop) {
   .request {
     width: 100%;
+    margin: 0 auto;
     padding: 53px 0;
     background-color: $color-bg-white;
 
-    form {
-      input:not(:first-of-type) {
-        margin-bottom: 42px;
-      }
+    input:not(:first-of-type) {
+      margin-bottom: 36px;
     }
   }
 
@@ -135,29 +134,29 @@
   .request {
     padding: 41px 0;
 
-    form {
-      input {
-        padding: 19px 10px;
-        font-size: 18px;
-        line-height: 25px;
-      }
+    input {
+      padding: 0;
+      font-size: 18px;
+      line-height: 25px;
+      text-align: left;
+    }
 
-      input:first-of-type {
-        margin-bottom: 19px;
-      }
+    input:first-of-type {
+      margin-bottom: 19px;
+    }
 
-      input:not(:first-of-type) {
-        width: 100%;
-        margin-bottom: 18px;
-      }
+    input:not(:first-of-type) {
+      width: 100%;
+      margin-bottom: 18px;
+    }
 
-      input:last-of-type {
-        margin-bottom: 28px;
-      }
+    input:last-of-type {
+      margin-bottom: 1px;
     }
   }
 
   .request__title {
+    margin: 0 0 24px 0;
     font-size: 16px;
     line-height: 22px;
   }

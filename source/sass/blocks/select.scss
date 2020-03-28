@@ -62,3 +62,9 @@
     font-weight: 500;
   }
 }
+
+@media (max-width: $width-tablet) {
+  .select__item {
+    padding: 17px 15px;
+  }
+}

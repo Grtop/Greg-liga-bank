@@ -51,6 +51,7 @@
           ntEvt.target.classList.add('header__nav-toggle_opened');
           nav.classList.remove('nav-main_closed');
           nav.classList.add('nav-main_opened');
+          document.body.style.overflow = 'hidden';
           return;
         }
         if (ntEvt.target.classList.contains('header__nav-toggle_opened')) {
@@ -58,6 +59,7 @@
           ntEvt.target.classList.add('header__nav-toggle_closed');
           nav.classList.remove('nav-main_opened');
           nav.classList.add('nav-main_closed');
+          document.body.style.overflow = 'scroll';
           return;
         }
       }

@@ -64,8 +64,26 @@
 
 @media (max-width: $width-tablet) {
   .input-price {
+    &__sum {
+      input {
+        margin: 0 0 6px;
+      }
+    }
+
+    &__initial {
+      .range {
+        margin-bottom: 0;
+      }
+    }
+
     &__period {
       margin-bottom: 12px;
+    }
+  }
+
+  .input-price__btn {
+    &_plus {
+      right: 9px;
     }
   }
 }
