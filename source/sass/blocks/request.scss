@@ -1,0 +1,174 @@
+.request {
+  position: relative;
+  display: none;
+  width: 66%;
+  margin: 30px auto 0 auto;
+  padding: 62px 72px 69px 72px;
+  background-color: $color-bg-block;
+
+  form {
+    width: 100%;
+
+    fieldset {
+      margin: 0;
+    }
+
+    .fieldset {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    input {
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 31px;
+    }
+  }
+
+  &_show {
+    display: block;
+  }
+}
+
+.request__title {
+  margin: 0 0 15px 0;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 31px;
+  text-align: center;
+}
+
+.request__list {
+  margin: 0 0 27px 0;
+
+  input {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    text-align: right;
+    outline: none;
+  }
+}
+
+.request__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 13px 0;
+  border-bottom: 1px solid black;
+}
+
+.request__item-label {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.request__send {
+  margin: 0 auto;
+  padding: 14px 53px;
+}
+
+.request_error {
+  animation-name: modal-shake;
+  animation-duration: 0.5s;
+}
+
+@keyframes modal-shake {
+  0%,
+  100% {
+    left: 0;
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    left: -10px;
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    left: 10px;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  .request {
+    width: 100%;
+    padding: 53px 0;
+    background-color: $color-bg-white;
+
+    form {
+      input:not(:first-of-type) {
+        margin-bottom: 42px;
+      }
+    }
+  }
+
+  .request__title {
+    margin: 0 0 28px 0;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .request__list {
+    margin: 0 0 30px 0;
+  }
+
+  .request__send {
+    width: 100%;
+    padding: 16px 53px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .request {
+    padding: 41px 0;
+
+    form {
+      input {
+        padding: 19px 10px;
+        font-size: 18px;
+        line-height: 25px;
+      }
+
+      input:first-of-type {
+        margin-bottom: 19px;
+      }
+
+      input:not(:first-of-type) {
+        width: 100%;
+        margin-bottom: 18px;
+      }
+
+      input:last-of-type {
+        margin-bottom: 28px;
+      }
+    }
+  }
+
+  .request__title {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .request__item {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 4px;
+  }
+
+  .request__item-value {
+    order: -1;
+  }
+}

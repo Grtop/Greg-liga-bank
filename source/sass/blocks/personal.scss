@@ -1,0 +1,27 @@
+.personal {
+  .fieldset {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  input {
+    padding: 14px 22px;
+    text-align: left;
+  }
+
+  input:first-of-type {
+    width: 100%;
+    margin: 0 0 29px 0;
+  }
+
+  input:not(:first-of-type) {
+    width: 48%;
+    margin-bottom: 39px;
+  }
+
+  input:last-of-type {
+    margin-left: auto;
+  }
+}

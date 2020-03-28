@@ -1,7 +1,13 @@
 .offer {
+  display: none;
   width: 42.5%;
+  margin-top: 9px;
   padding: 52px 57px;
   background-color: $color-bg-block;
+
+  &_show {
+    display: block;
+  }
 }
 
 .offer__title,
@@ -54,6 +60,10 @@
 .offer__deny {
   display: none;
 
+  &_show {
+    display: block;
+  }
+
   .offer__title {
     margin: 0 0 12px 0;
   }
@@ -72,7 +82,7 @@
 @media (max-width: $width-desktop) {
   .offer {
     width: 100%;
-    padding: 50px 61px;
+    padding: 50px 61px 62px 61px;
   }
 
   .offer__wrapper {
@@ -83,7 +93,8 @@
 
 @media (max-width: $width-tablet) {
   .offer {
-    padding: 30px 15px 40px 15px;
+    margin-top: 4px;
+    padding: 33px 15px 40px 15px;
   }
 
   .offer__wrapper {

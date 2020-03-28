@@ -148,6 +148,10 @@
 
     // SELECT - start
     var creditTerms = {};
+    var requestParam = {
+      number: 10,
+      label: ''
+    };
 
     // SELECT -- handlers
     var selectCreditChange = function (scEvt) {
@@ -155,7 +159,8 @@
 
       var root = scEvt.target;
 
-      var hideStep = document.querySelector('.calculator__step-second');
+      var hideStepTwo = document.querySelector('.calculator__step-second');
+      var hideStepThree = document.querySelector('.request');
 
       var listStatus = {
         none: 'none',
@@ -169,6 +174,121 @@
       var updateInitialChange = function (uiEvt) {
         uiEvt.preventDefault();
         window.initialPrice.update();
+      };
+
+      var offerLinkHandler = function (olEvt) {
+        olEvt.preventDefault();
+
+        var updateRequestBlock = function (classEl) {
+
+          var submitRequestFormHandler = function (sfEvt) {
+            sfEvt.preventDefault();
+
+            var setError = function (error) {
+              // Need create modal error for this event
+            };
+
+            rootEl.classList.remove('request_error');
+            if (!nameInput.value) {
+              nameInput.focus();
+            }
+            if (nameInput.value && !phoneInput.value) {
+              phoneInput.focus();
+            }
+            if (nameInput.value && phoneInput.value && !emailInput.value) {
+              emailInput.focus();
+            }
+
+            if (!nameInput.value || !phoneInput.value || !emailInput.value) {
+              rootEl.classList.add('request_error');
+              return;
+            }
+
+            if (isStorageSupport) {
+              localStorage.setItem('name', nameInput.value);
+              localStorage.setItem('phone', phoneInput.value);
+              localStorage.setItem('email', emailInput.value);
+            }
+
+            window.data.send(new FormData(sfEvt.target), function () {
+              window.modal.open('modal-overlay', 'modal-request');
+            }, setError);
+          };
+
+          var rootEl = document.querySelector('.' + classEl);
+          rootEl.classList.add(classEl + '_show');
+
+          rootEl.querySelector('.' + classEl + '__number').value = '№ ' + window.util.getCreditNumber(requestParam.number);
+          requestParam.number = requestParam.number + 1;
+          rootEl.querySelector('.' + classEl + '__target').value = window.util.toUpperFirstSymbol(currentLabels[currentLabels.length - 1]);
+          rootEl.querySelector('.' + classEl + '__target-label').innerText = creditTerms.label;
+          rootEl.querySelector('.' + classEl + '__target-sum').value = window.util.formatPrice(creditTerms.currentSum) + ' ' + creditTerms.currency;
+          rootEl.querySelector('.' + classEl + '__initial-sum').value = window.util.formatPrice(creditTerms.initialSum) + ' ' + creditTerms.currency;
+          rootEl.querySelector('.' + classEl + '__period').value = creditTerms.currentPeriod + ' ' + window.util.getLabelPeriod(creditTerms.currentPeriod, creditTerms);
+
+
+          var nameInput = rootEl.querySelector('#request-name');
+          nameInput.focus();
+          var phoneInput = rootEl.querySelector('#request-phone');
+          var emailInput = rootEl.querySelector('#request-email');
+
+          var isStorageSupport = true;
+          var storageName = '';
+          var storagePhone = '';
+          var storageEmail = '';
+
+          try {
+            storageName = localStorage.getItem('name');
+            storagePhone = localStorage.getItem('phone');
+            storageEmail = localStorage.getItem('email');
+          } catch (err) {
+            isStorageSupport = false;
+          }
+
+          if (isStorageSupport) {
+            if (storageName) {
+              nameInput.value = storageName;
+            }
+            if (storagePhone) {
+              phoneInput.value = storagePhone;
+            }
+            if (storageEmail) {
+              emailInput.value = storageEmail;
+            }
+          }
+
+          rootEl.getElementsByTagName('form')[0].onsubmit = submitRequestFormHandler;
+        };
+
+        updateRequestBlock('request');
+      };
+
+      var updateOfferBlock = function (classEl) {
+        var rootEl = document.querySelector('.' + classEl);
+        var rootElDeny = document.querySelector('.' + classEl + '__deny');
+
+        if (creditTerms.status === 0) {
+          rootEl.classList.remove(classEl + '_show');
+          rootElDeny.classList.remove(classEl + '__deny' + '_show');
+          return;
+        }
+
+        if (creditParam.value < creditParam.minValue) {
+          rootEl.classList.remove(classEl + '_show');
+          rootElDeny.classList.add(classEl + '__deny' + '_show');
+          rootElDeny.querySelector('.offer__deny-target').innerText = creditParam.desc;
+          return;
+        } else {
+          rootEl.classList.add(classEl + '_show');
+          rootElDeny.classList.remove(classEl + '__deny' + '_show');
+        }
+
+        rootEl.querySelector('.' + classEl + '__label').innerText = creditParam.label;
+        rootEl.querySelector('.' + classEl + '__value').innerText = window.util.formatPrice(creditParam.value) + ' ' + creditTerms.currency;
+        rootEl.querySelector('.' + classEl + '__rate').innerText = (creditParam.rate * 100).toFixed(2) + '%';
+        rootEl.querySelector('.' + classEl + '__payment').innerText = window.util.formatPrice(creditParam.payment) + ' ' + creditTerms.currency;
+        rootEl.querySelector('.' + classEl + '__income').innerText = window.util.formatPrice(creditParam.income) + ' ' + creditTerms.currency;
+        rootEl.querySelector('.' + classEl + '__link').onclick = offerLinkHandler;
       };
 
       var updateCredit = function () {
@@ -190,9 +310,10 @@
 
         var interestRateCalculate = function () {
           var percent = (creditTerms.initialSum * 100) / creditTerms.currentSum;
+          var rate = {};
 
           if (creditTerms.status === 1) {
-            var rate = {
+            rate = {
               min: 0.0850,
               max: 0.0940
             };
@@ -202,8 +323,8 @@
             return rate.min;
           }
 
-          if (creditTerms.status === 2 ) {
-            var rate = {
+          if (creditTerms.status === 2) {
+            rate = {
               min: 0.1500,
               max: 0.1600,
               low: 0.0350,
@@ -221,8 +342,8 @@
             return rate.min;
           }
 
-          if (creditTerms.status === 3 ) {
-            var rate = {
+          if (creditTerms.status === 3) {
+            rate = {
               min: 0.0950,
               mid: 0.1250,
               max: 0.1500
@@ -241,35 +362,8 @@
             if (creditTerms.salaryClient) {
               currentRate = currentRate - forSalary;
             }
-            return currentRate;
           }
-        };
-
-        var updateOfferBlock = function (classEl) {
-          var rootEl = document.querySelector('.' + classEl);
-          var rootElDeny = document.querySelector('.' + classEl + '__deny');
-
-          if (creditParam.value < creditParam.minValue) {
-            rootEl.style.display = 'none';
-            rootElDeny.style.display = 'block';
-            rootElDeny.querySelector('.offer__deny-target').innerText = creditParam.desc;
-            return;
-          } else {
-            rootEl.style.display = 'block';
-            rootElDeny.style.display = 'none';
-          }
-
-          var offerLabelEl = rootEl.querySelector('.' + classEl + '__label');
-          var offerValueEl = rootEl.querySelector('.' + classEl + '__value');
-          var offerRateEl = rootEl.querySelector('.' + classEl + '__rate');
-          var offerPaymentEl = rootEl.querySelector('.' + classEl + '__payment');
-          var offerIncomeEl = rootEl.querySelector('.' + classEl + '__income');
-
-          offerLabelEl.innerText = creditParam.label;
-          offerValueEl.innerText = creditParam.value + ' ' + creditTerms.currency;
-          offerRateEl.innerText = (creditParam.rate * 100).toFixed(2) + '%';
-          offerPaymentEl.innerText = creditParam.payment + ' ' + creditTerms.currency;
-          offerIncomeEl.innerText = creditParam.income + ' ' + creditTerms.currency;
+          return currentRate;
         };
 
         creditParam.rate = interestRateCalculate();
@@ -286,6 +380,7 @@
       for (var i = 0; i < root.children.length; i++) {
         if (root.children[i].hasAttribute('selected')) {
           var currentStatus = root.children[i].getAttribute('value');
+          var currentLabels = window.util.getDataAttr(root.children[i]);
         }
       }
 
@@ -298,7 +393,7 @@
         case listStatus.mortgage:
           creditTerms = {
             status: 1,
-            label: 'Стоимость недвижимости',
+            label: 'Стоимость ' + currentLabels[0].toLowerCase(),
             minSumTarget: 1200000,
             maxSumTarget: 25000000,
             stepSumTarget: 100000,
@@ -312,8 +407,8 @@
             parentCapitalValue: 470000
           };
           creditParam = {
-            label: 'Сумма ипотеки',
-            desc: 'ипотечные кредиты',
+            label: 'Сумма ' + currentLabels[1].toLowerCase(),
+            desc: currentLabels[2],
             minValue: 500000
           };
 
@@ -321,7 +416,7 @@
         case listStatus.car:
           creditTerms = {
             status: 2,
-            label: 'Стоимость автомобиля',
+            label: 'Стоимость ' + currentLabels[0].toLowerCase(),
             minSumTarget: 500000,
             maxSumTarget: 5000000,
             stepSumTarget: 50000,
@@ -335,15 +430,15 @@
             insuranceLife: false
           };
           creditParam = {
-            label: 'Сумма автокредита',
-            desc: 'автокредиты',
+            label: 'Сумма ' + currentLabels[1].toLowerCase(),
+            desc: currentLabels[2],
             minValue: 200000
           };
           break;
         case listStatus.consumer:
           creditTerms = {
             status: 3,
-            label: 'Сумма потребительского кредита',
+            label: 'Сумма ' + currentLabels[0].toLowerCase(),
             minSumTarget: 500000,
             maxSumTarget: 3000000,
             stepSumTarget: 50000,
@@ -356,10 +451,10 @@
             salaryClient: false
           };
           creditParam = {
-            label: 'Сумма кредита'
+            label: 'Сумма ' + currentLabels[1].toLowerCase()
           };
           break;
-      };
+      }
 
       if (creditTerms.status !== 0) {
         creditTerms.currency = 'рублей';
@@ -368,7 +463,7 @@
         creditTerms.currentPeriod = creditTerms.minPeriod;
         creditTerms.labelPeriod = ['год', 'года', 'лет'];
 
-        hideStep.classList.add('calculator__step-show');
+        hideStepTwo.classList.add('calculator__step-show');
 
         if (document.querySelector('.input-price__sum')) {
           var targetPrice = new InputPrice('.input-price__sum', creditTerms, {
@@ -401,7 +496,6 @@
 
         var paramsEl = document.querySelector('.calculator__params');
         if (paramsEl) {
-
           var paramElHandler = function (pcEvt) {
             pcEvt.preventDefault();
             if (creditTerms.status === 1) {
@@ -422,14 +516,14 @@
           };
 
           var addEvent = function (arrayAdd, handler) {
-            for (var i = 0; i < arrayAdd.length; i++) {
-              arrayAdd[i].onchange = handler;
+            for (var j = 0; j < arrayAdd.length; j++) {
+              arrayAdd[j].onchange = handler;
             }
           };
 
           var removeEvent = function (arrayRem) {
-            for (var i = 0; i < arrayRem.length; i++) {
-              arrayRem[i].onchange = '';
+            for (var k = 0; k < arrayRem.length; k++) {
+              arrayRem[k].onchange = '';
             }
           };
 
@@ -458,7 +552,9 @@
         window.period.update();
         updateCredit();
       } else {
-        hideStep.classList.remove('calculator__step-show');
+        updateOfferBlock('offer');
+        hideStepTwo.classList.remove('calculator__step-show');
+        hideStepThree.classList.remove('request_show');
       }
     };
 

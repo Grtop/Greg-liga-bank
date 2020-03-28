@@ -1,0 +1,41 @@
+.modal-request {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  width: 500px;
+  padding: 52px 0;
+  text-align: center;
+  background-color: $color-bg-block;
+  border-radius: 4px;
+  transform: translate(-50%, -47%);
+  z-index: 105;
+
+  &_show {
+    display: block;
+  }
+}
+
+.modal-request__title {
+  margin: 0 0 11px 0;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 31px;
+}
+
+.modal-request__desc {
+  width: 60%;
+  margin: 0 auto;
+  padding: 0;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+.modal-request__close {
+  position: absolute;
+  top: 23px;
+  right: 23px;
+  background-color: transparent;
+  border: none;
+}

@@ -53,11 +53,19 @@
     }
 
     &__period {
-      margin-bottom: 14px;
+      margin-bottom: 15px;
 
       input {
         margin: 0 0 13px 0;
       }
+    }
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .input-price {
+    &__period {
+      margin-bottom: 12px;
     }
   }
 }

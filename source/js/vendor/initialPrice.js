@@ -91,13 +91,13 @@ function InitialPrice(classEl, terms, param) {
     var currentValue = getValueInput(biEvt.target);
 
     if (currentValue < calculateMinValue()) {
-      setValueInput(inputEl, calculateMinValue() + ' ' + terms.currency);
-      inputEl.value = calculateMinValue() + ' ' + terms.currency;
+      setValueInput(inputEl, window.util.formatPrice(calculateMinValue()) + ' ' + terms.currency);
+      inputEl.value = window.util.formatPrice(calculateMinValue()) + ' ' + terms.currency;
       terms.initialSum = calculateMinValue();
     } else {
       terms.initialSum = Number(currentValue);
-      setValueInput(inputEl, currentValue + ' ' + terms.currency);
-      inputEl.value = currentValue + ' ' + terms.currency;
+      setValueInput(inputEl, window.util.formatPrice(currentValue) + ' ' + terms.currency);
+      inputEl.value = window.util.formatPrice(currentValue) + ' ' + terms.currency;
     }
 
     updateRange();
@@ -125,8 +125,8 @@ function InitialPrice(classEl, terms, param) {
           setPosition(rangeValue, rangeSteps[i].position);
           replaceInnerText(rangeValue, (rangeSteps[i].percent * 100).toFixed(0) + '%');
           terms.initialSum = rangeSteps[i].value;
-          setValueInput(inputEl, rangeSteps[i].value + ' ' + terms.currency);
-          inputEl.value = rangeSteps[i].value + ' ' + terms.currency;
+          setValueInput(inputEl, window.util.formatPrice(rangeSteps[i].value) + ' ' + terms.currency);
+          inputEl.value = window.util.formatPrice(rangeSteps[i].value) + ' ' + terms.currency;
           window.credit.update();
         }
       }
@@ -146,13 +146,10 @@ function InitialPrice(classEl, terms, param) {
 
   var update = function () {
     if (terms.initialSum < calculateMinValue()) {
-      setValueInput(inputEl, calculateMinValue() + ' ' + terms.currency);
-      inputEl.value = calculateMinValue() + ' ' + terms.currency;
       terms.initialSum = calculateMinValue();
-    } else {
-      setValueInput(inputEl, terms.initialSum + ' ' + terms.currency);
-      inputEl.value = terms.initialSum + ' ' + terms.currency;
     }
+    setValueInput(inputEl, window.util.formatPrice(terms.initialSum) + ' ' + terms.currency);
+    inputEl.value = window.util.formatPrice(terms.initialSum) + ' ' + terms.currency;
     inputEl.onfocus = focusInputHandler;
     inputEl.onblur = blurInputHandler;
 

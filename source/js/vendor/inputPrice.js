@@ -9,8 +9,8 @@ function InputPrice(classEl, terms, param) {
   var inputEl = root.querySelector(param.inputEl);
 
   var Errors = {
-    message: 'Некорректное значение',
-    color: 'red'
+    MESSAGE: 'Некорректное значение',
+    COLOR: 'red'
   };
 
   // FUNCTION - start
@@ -28,8 +28,8 @@ function InputPrice(classEl, terms, param) {
   };
 
   var setErrorMessage = function (element) {
-    element.style.border = '1px solid ' + Errors.color;
-    element.value = Errors.message;
+    element.style.border = '1px solid ' + Errors.COLOR;
+    element.value = Errors.MESSAGE;
   };
 
   var removeErrorMessage = function (element) {
@@ -43,8 +43,8 @@ function InputPrice(classEl, terms, param) {
 
     if (terms.currentSum > terms.minSumTarget) {
       terms.currentSum = Number(terms.currentSum) - Number(terms.stepSumTarget);
-      setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
-      inputEl.value = terms.currentSum + ' ' + terms.currency;
+      setValueInput(inputEl, window.util.formatPrice(terms.currentSum) + ' ' + terms.currency);
+      inputEl.value = window.util.formatPrice(terms.currentSum) + ' ' + terms.currency;
       window.initialPrice.update();
       window.credit.update();
     }
@@ -55,8 +55,8 @@ function InputPrice(classEl, terms, param) {
 
     if (terms.currentSum < terms.maxSumTarget) {
       terms.currentSum = Number(terms.currentSum) + Number(terms.stepSumTarget);
-      setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
-      inputEl.value = terms.currentSum + ' ' + terms.currency;
+      setValueInput(inputEl, window.util.formatPrice(terms.currentSum) + ' ' + terms.currency);
+      inputEl.value = window.util.formatPrice(terms.currentSum) + ' ' + terms.currency;
       window.initialPrice.update();
       window.credit.update();
     }
@@ -85,8 +85,8 @@ function InputPrice(classEl, terms, param) {
       }
     } else {
       removeErrorMessage(inputEl);
-      setValueInput(inputEl, terms.currentSum + ' ' + terms.currency);
-      inputEl.value = terms.currentSum + ' ' + terms.currency;
+      setValueInput(inputEl, window.util.formatPrice(terms.currentSum) + ' ' + terms.currency);
+      inputEl.value = window.util.formatPrice(terms.currentSum) + ' ' + terms.currency;
       window.initialPrice.update();
       window.credit.update();
     }
@@ -95,7 +95,8 @@ function InputPrice(classEl, terms, param) {
   // init
 
   var update = function () {
-    inputEl.value = terms.minSumTarget + ' ' + terms.currency;
+    setValueInput(inputEl, window.util.formatPrice(terms.minSumTarget) + ' ' + terms.currency);
+    inputEl.value = window.util.formatPrice(terms.minSumTarget) + ' ' + terms.currency;
     replaceInnerText(root.querySelector('label'), terms.label);
     replaceInnerText(root.querySelector(param.descEl), terms.desc);
   };

@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     width: 51.5%;
-    margin: 0 0 8px 0;
   }
 
   fieldset {
@@ -15,6 +14,11 @@
   .fieldset {
     display: flex;
     flex-direction: column;
+  }
+
+  .fieldset__wrapper {
+    position: relative;
+    margin: 0 0 58px 0;
   }
 
   .legend {
@@ -82,6 +86,7 @@
 .calculator__wrapper {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   margin: 49px 85px 600px 98px;

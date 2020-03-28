@@ -40,17 +40,7 @@ function Period(classEl, terms, param) {
     element.style.left = position + 'px';
   };
 
-  var getLabelPeriod = function (value) {
-    var valueStr = String(value);
-    var lastNum = Number(valueStr[valueStr.length - 1]);
-    if (lastNum === 1 && value !== 11) {
-      return terms.labelPeriod[0];
-    }
-    if (lastNum > 1 && lastNum < 5 && value !== 12 && value !== 13 && value !== 14) {
-      return terms.labelPeriod[1];
-    }
-    return terms.labelPeriod[2];
-  };
+  // !
 
   var calculateRangeSteps = function () {
     var array = [];
@@ -91,18 +81,18 @@ function Period(classEl, terms, param) {
     var currentValue = getValueInput(biEvt.target);
 
     if (currentValue < terms.minPeriod) {
-      setValueInput(inputEl, terms.minPeriod + ' ' + getLabelPeriod(terms.minPeriod));
-      inputEl.value = terms.minPeriod + ' ' + getLabelPeriod(terms.minPeriod);
+      setValueInput(inputEl, terms.minPeriod + ' ' + window.util.getLabelPeriod(terms.minPeriod, terms));
+      inputEl.value = terms.minPeriod + ' ' + window.util.getLabelPeriod(terms.minPeriod, terms);
       terms.currentPeriod = terms.minPeriod;
     }
     if (currentValue > terms.maxPeriod) {
-      setValueInput(inputEl, terms.maxPeriod + ' ' + getLabelPeriod(terms.maxPeriod));
-      inputEl.value = terms.maxPeriod + ' ' + getLabelPeriod(terms.maxPeriod);
+      setValueInput(inputEl, terms.maxPeriod + ' ' + window.util.getLabelPeriod(terms.maxPeriod, terms));
+      inputEl.value = terms.maxPeriod + ' ' + window.util.getLabelPeriod(terms.maxPeriod, terms);
       terms.currentPeriod = terms.maxPeriod;
     }
     if (currentValue >= terms.minPeriod && currentValue <= terms.maxPeriod) {
-      setValueInput(inputEl, currentValue + ' ' + getLabelPeriod(currentValue));
-      inputEl.value = currentValue + ' ' + getLabelPeriod(currentValue);
+      setValueInput(inputEl, currentValue + ' ' + window.util.getLabelPeriod(currentValue, terms));
+      inputEl.value = currentValue + ' ' + window.util.getLabelPeriod(currentValue, terms);
       terms.currentPeriod = currentValue;
     }
 
@@ -128,8 +118,8 @@ function Period(classEl, terms, param) {
         if (leftUpPos >= rangeSteps[i].position) {
           setPosition(rangeRoller, rangeSteps[i].position);
           terms.currentPeriod = rangeSteps[i].value;
-          setValueInput(inputEl, rangeSteps[i].value + ' ' + getLabelPeriod(rangeSteps[i].value));
-          inputEl.value = rangeSteps[i].value + ' ' + getLabelPeriod(rangeSteps[i].value);
+          setValueInput(inputEl, rangeSteps[i].value + ' ' + window.util.getLabelPeriod(rangeSteps[i].value, terms));
+          inputEl.value = rangeSteps[i].value + ' ' + window.util.getLabelPeriod(rangeSteps[i].value, terms);
           window.credit.update();
         }
       }
@@ -148,26 +138,26 @@ function Period(classEl, terms, param) {
 
   var update = function () {
     if (labelMin) {
-      replaceInnerText(labelMin, terms.minPeriod + ' ' + getLabelPeriod(terms.minPeriod));
+      replaceInnerText(labelMin, terms.minPeriod + ' ' + window.util.getLabelPeriod(terms.minPeriod, terms));
     }
 
     if (labelMax) {
-      replaceInnerText(labelMax, terms.maxPeriod + ' ' + getLabelPeriod(terms.maxPeriod));
+      replaceInnerText(labelMax, terms.maxPeriod + ' ' + window.util.getLabelPeriod(terms.maxPeriod, terms));
     }
 
     if (terms.currentPeriod < terms.minPeriod) {
-      setValueInput(inputEl, terms.minPeriod + ' ' + getLabelPeriod(terms.minPeriod));
-      inputEl.value = terms.minPeriod + ' ' + getLabelPeriod(terms.minPeriod);
+      setValueInput(inputEl, terms.minPeriod + ' ' + window.util.getLabelPeriod(terms.minPeriod, terms));
+      inputEl.value = terms.minPeriod + ' ' + window.util.getLabelPeriod(terms.minPeriod, terms);
       terms.currentPeriod = terms.minPeriod;
     }
     if (terms.currentPeriod > terms.maxPeriod) {
-      setValueInput(inputEl, terms.maxPeriod + ' ' + getLabelPeriod(terms.maxPeriod));
-      inputEl.value = terms.maxPeriod + ' ' + getLabelPeriod(terms.maxPeriod);
+      setValueInput(inputEl, terms.maxPeriod + ' ' + window.util.getLabelPeriod(terms.maxPeriod, terms));
+      inputEl.value = terms.maxPeriod + ' ' + window.util.getLabelPeriod(terms.maxPeriod, terms);
       terms.currentPeriod = terms.maxPeriod;
     }
     if (terms.currentPeriod >= terms.minPeriod && terms.currentPeriod <= terms.maxPeriod) {
-      setValueInput(inputEl, terms.currentPeriod + ' ' + getLabelPeriod(terms.currentPeriod));
-      inputEl.value = terms.currentPeriod + ' ' + getLabelPeriod(terms.currentPeriod);
+      setValueInput(inputEl, terms.currentPeriod + ' ' + window.util.getLabelPeriod(terms.currentPeriod, terms));
+      inputEl.value = terms.currentPeriod + ' ' + window.util.getLabelPeriod(terms.currentPeriod, terms);
     }
 
     inputEl.onfocus = focusInputHandler;
