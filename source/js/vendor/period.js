@@ -40,8 +40,6 @@ function Period(classEl, terms, param) {
     element.style.left = position + 'px';
   };
 
-  // !
-
   var calculateRangeSteps = function () {
     var array = [];
     var countPoints = (terms.maxPeriod - terms.minPeriod) / terms.stepPeriod;
@@ -62,6 +60,18 @@ function Period(classEl, terms, param) {
       }
     }
     return array;
+  };
+
+  var updateRangeRoller = function (mousePosition) {
+    for (var i = 0; i < rangeSteps.length; i++) {
+      if (mousePosition >= rangeSteps[i].position) {
+        setPosition(rangeRoller, rangeSteps[i].position);
+        terms.currentPeriod = rangeSteps[i].value;
+        setValueInput(inputEl, rangeSteps[i].value + ' ' + window.util.getLabelPeriod(rangeSteps[i].value, terms));
+        inputEl.value = rangeSteps[i].value + ' ' + window.util.getLabelPeriod(rangeSteps[i].value, terms);
+        window.credit.update();
+      }
+    }
   };
 
   // HANDLERS - start
@@ -114,15 +124,7 @@ function Period(classEl, terms, param) {
 
       var centerRoller = kutEvt.pageX + (rangeRollerWidth / 2);
       var leftUpPos = Math.max(0, Math.min(centerRoller - lineOffsetLeft, lineWidth));
-      for (var i = 0; i < rangeSteps.length; i++) {
-        if (leftUpPos >= rangeSteps[i].position) {
-          setPosition(rangeRoller, rangeSteps[i].position);
-          terms.currentPeriod = rangeSteps[i].value;
-          setValueInput(inputEl, rangeSteps[i].value + ' ' + window.util.getLabelPeriod(rangeSteps[i].value, terms));
-          inputEl.value = rangeSteps[i].value + ' ' + window.util.getLabelPeriod(rangeSteps[i].value, terms);
-          window.credit.update();
-        }
-      }
+      updateRangeRoller(leftUpPos);
 
       document.removeEventListener('mousemove', mouseMoveToggleHandler);
       document.removeEventListener('mouseup', mouseUpToggleHandler);
@@ -130,6 +132,25 @@ function Period(classEl, terms, param) {
 
     document.addEventListener('mousemove', mouseMoveToggleHandler);
     document.addEventListener('mouseup', mouseUpToggleHandler);
+  };
+
+  var touchStartToggleHandler = function () {
+    var actualPosition = 0;
+
+    var touchMoveToggleHandler = function (tmtEvt) {
+      actualPosition = Math.max(0, Math.min(tmtEvt.touches[0].pageX - lineOffsetLeft, lineWidth));
+      setPosition(rangeRoller, actualPosition);
+    };
+
+    var touchEndToggleHandler = function () {
+      actualPosition = actualPosition + (rangeRollerWidth / 2);
+      updateRangeRoller(actualPosition);
+      document.removeEventListener('touchmove', touchMoveToggleHandler);
+      document.removeEventListener('touchend', touchEndToggleHandler);
+    };
+
+    document.addEventListener('touchmove', touchMoveToggleHandler);
+    document.addEventListener('touchend', touchEndToggleHandler);
   };
 
   // init
@@ -177,6 +198,9 @@ function Period(classEl, terms, param) {
   };
 
   rangeRoller.addEventListener('mousedown', mouseDownToggleHandler);
+  if (!window.util.browserIe) {
+    rangeRoller.ontouchstart = touchStartToggleHandler;
+  }
 
   window.period = {
     update: update

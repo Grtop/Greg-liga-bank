@@ -74,6 +74,20 @@ function InitialPrice(classEl, terms, param) {
     return array;
   };
 
+  var updateRangeRoller = function (mousePosition) {
+    for (var i = 0; i < rangeSteps.length; i++) {
+      if (mousePosition >= rangeSteps[i].position) {
+        setPosition(rangeRoller, rangeSteps[i].position);
+        setPosition(rangeValue, rangeSteps[i].position);
+        replaceInnerText(rangeValue, (rangeSteps[i].percent * 100).toFixed(0) + '%');
+        terms.initialSum = rangeSteps[i].value;
+        setValueInput(inputEl, window.util.formatPrice(rangeSteps[i].value) + ' ' + terms.currency);
+        inputEl.value = window.util.formatPrice(rangeSteps[i].value) + ' ' + terms.currency;
+        window.credit.update();
+      }
+    }
+  };
+
   // HANDLERS - start
 
   var focusInputHandler = function (fiEvt) {
@@ -118,18 +132,7 @@ function InitialPrice(classEl, terms, param) {
       kutEvt.preventDefault();
 
       var leftUpPos = Math.max(0, Math.min(kutEvt.pageX - lineOffsetLeft, lineWidth));
-
-      for (var i = 0; i < rangeSteps.length; i++) {
-        if (leftUpPos >= rangeSteps[i].position) {
-          setPosition(rangeRoller, rangeSteps[i].position);
-          setPosition(rangeValue, rangeSteps[i].position);
-          replaceInnerText(rangeValue, (rangeSteps[i].percent * 100).toFixed(0) + '%');
-          terms.initialSum = rangeSteps[i].value;
-          setValueInput(inputEl, window.util.formatPrice(rangeSteps[i].value) + ' ' + terms.currency);
-          inputEl.value = window.util.formatPrice(rangeSteps[i].value) + ' ' + terms.currency;
-          window.credit.update();
-        }
-      }
+      updateRangeRoller(leftUpPos);
 
       document.removeEventListener('mousemove', mouseMoveToggleHandler);
       document.removeEventListener('mouseup', mouseUpToggleHandler);
@@ -137,6 +140,25 @@ function InitialPrice(classEl, terms, param) {
 
     document.addEventListener('mousemove', mouseMoveToggleHandler);
     document.addEventListener('mouseup', mouseUpToggleHandler);
+  };
+
+  var touchStartToggleHandler = function () {
+    var actualPosition = 0;
+
+    var touchMoveToggleHandler = function (tmtEvt) {
+      actualPosition = Math.max(0, Math.min(tmtEvt.touches[0].pageX - lineOffsetLeft, lineWidth));
+      setPosition(rangeRoller, actualPosition);
+      setPosition(rangeValue, actualPosition);
+    };
+
+    var touchEndToggleHandler = function () {
+      updateRangeRoller(actualPosition);
+      document.removeEventListener('touchmove', touchMoveToggleHandler);
+      document.removeEventListener('touchend', touchEndToggleHandler);
+    };
+
+    document.addEventListener('touchmove', touchMoveToggleHandler);
+    document.addEventListener('touchend', touchEndToggleHandler);
   };
 
   // init
@@ -167,6 +189,9 @@ function InitialPrice(classEl, terms, param) {
   };
 
   rangeRoller.addEventListener('mousedown', mouseDownToggleHandler);
+  if (!window.util.browserIe) {
+    rangeRoller.ontouchstart = touchStartToggleHandler;
+  }
 
   window.initialPrice = {
     update: update

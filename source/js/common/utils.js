@@ -6,6 +6,9 @@
     ENTER: 13
   };
 
+  var ua = navigator.userAgent;
+  var browserIe = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
+
   var formatPrice = function (num) {
     return Number(num).toLocaleString('ru-RU');
   };
@@ -40,6 +43,7 @@
 
   window.util = {
     KeyCode: KeyCode,
+    browserIe: browserIe,
     formatPrice: formatPrice,
     getDataAttr: getDataAttr,
     toUpperFirstSymbol: toUpperFirstSymbol,

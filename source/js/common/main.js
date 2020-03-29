@@ -160,6 +160,7 @@
       scEvt.preventDefault();
 
       var root = scEvt.target;
+      root.form.reset();
 
       var hideStepTwo = document.querySelector('.calculator__step-second');
       var hideStepThree = document.querySelector('.request');
