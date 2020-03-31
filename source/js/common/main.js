@@ -572,6 +572,30 @@
 
       document.querySelector('#credit-target').addEventListener('change', selectCreditChange);
     }
+
+    // MAP -- init
+
+    var headerMapClass = '.map__header';
+
+    var filters = {};
+
+    var changeFiltersHandler = function () {
+      getFilters(headerMapClass);
+      window.map.update(filters);
+    };
+
+    var getFilters = function (classEl) {
+      var root = document.querySelector(classEl);
+      var controls = root.getElementsByTagName('input');
+      for (var l = 0; l < controls.length; l++) {
+        controls[l].onchange = changeFiltersHandler;
+        var name = window.util.getDataAttr(controls[l]);
+        filters[name] = controls[l].checked;
+      }
+    };
+
+    getFilters(headerMapClass);
+    window.map.update(filters);
   };
 
   window.addEventListener('load', initPage);

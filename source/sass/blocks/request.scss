@@ -106,7 +106,7 @@
   .request {
     width: 100%;
     margin: 0 auto;
-    padding: 53px 0;
+    padding: 53px 0 0 0;
     background-color: $color-bg-white;
 
     input:not(:first-of-type) {
@@ -115,7 +115,7 @@
   }
 
   .request__title {
-    margin: 0 0 28px 0;
+    margin: 0 0 26px 0;
     font-size: 18px;
     line-height: 25px;
   }
@@ -132,7 +132,7 @@
 
 @media (max-width: $width-tablet) {
   .request {
-    padding: 41px 0;
+    padding: 41px 0 10px 0;
 
     input {
       padding: 0;

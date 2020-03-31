@@ -13,6 +13,8 @@
     <link rel="preload" href="fonts/Roboto-medium.woff" as="font" crossorigin="anonymous">
     <link rel="preload" href="fonts/Roboto-bold.woff2" as="font" crossorigin="anonymous">
     <link rel="preload" href="fonts/Roboto-bold.woff" as="font" crossorigin="anonymous">
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=83f923aa-03af-4069-b04f-28351fa92788&lang=ru_RU">
+    </script>
   </head>
   <body>
     <header class="header">
@@ -322,7 +324,32 @@
           </div>
         </div>
       </section>
-    </div>
+      <section class="map">
+        <div class="container">
+          <h2 class="map__title">Отделения Лига-Банка</h2>
+          <div class="map__wrapper">
+            <div class="map__header">
+              <h3 class="visually-hidden">Фильтры карты</h3>
+              <form action="https://echo.htmlacademy.ru" method="post">
+                <fieldset>
+                  <div class="fieldset">
+                    <input type="checkbox" id="map-rus" name="map-rus" data-value="rus" checked>
+                    <label for="map-rus">Россия</label>
+                    <input type="checkbox" id="map-cis" name="map-cis" data-value="cis" checked>
+                    <label for="map-cis">СНГ</label>
+                    <input type="checkbox" id="map-eu" name="map-eu" data-value="eu">
+                    <label for="map-eu">Европа</label>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
+            <div class="map__inner">
+              <h3 class="visually-hidden">Карта</h3>
+              <div class="map__body" id="map"></div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
     <div class="modal-overlay"></div>
     <div class="modal-request">

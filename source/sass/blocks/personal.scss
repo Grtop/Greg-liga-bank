@@ -26,6 +26,16 @@
   }
 }
 
+@media (max-width: $width-desktop) {
+  .personal {
+    input {
+      &:not(:first-of-type) {
+        margin-bottom: 36px;
+      }
+    }
+  }
+}
+
 @media (max-width: $width-tablet) {
   .personal {
     input {

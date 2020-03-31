@@ -22,6 +22,18 @@
     return xhr;
   };
 
+  var load = function (url, onLoad, onError) {
+    var xhr = createXhr(onLoad, onError);
+    xhr.addEventListener('error', function () {
+      onError('Ошибка соединения..');
+    });
+    xhr.addEventListener('timeout', function () {
+      onError('Запрос не успел выполниться за ' + xhr.timeout + 'мс');
+    });
+    xhr.open('GET', url);
+    xhr.send();
+  };
+
   var send = function (data, onLoad, onError) {
     var xhr = createXhr(onLoad, onError);
     xhr.open('POST', Url.SERVER);
@@ -29,6 +41,7 @@
   };
 
   window.data = {
+    load: load,
     send: send
   };
 })();

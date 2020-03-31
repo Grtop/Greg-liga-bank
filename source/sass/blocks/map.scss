@@ -1,0 +1,125 @@
+.map {
+  margin: 0 0 110px 0;
+
+  fieldset {
+    margin: 0;
+    border: none;
+  }
+
+  .fieldset {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 28px 0 17px 0;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 24px;
+    font-size: 14px;
+    line-height: 20px;
+    color: $color-text-title-dark;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 45%;
+      left: 0;
+      width: 16px;
+      height: 16px;
+      border: 1px solid $color-icon-active;
+      border-radius: 2px;
+      transform: translateY(-50%);
+    }
+
+    &:not(:first-of-type) {
+      margin: 0 0 0 32px;
+    }
+  }
+
+  input[type="checkbox"]:checked + label {
+    &::before {
+      background-color: $color-icon-active;
+      background-image: url("../img/icon-checkbox_checked.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.map__title {
+  margin: 38px 0 0 98px;
+  font-size: 41px;
+  line-height: 57px;
+}
+
+.map__wrapper {
+  margin: 57px 85px 95px 98px;
+}
+
+.map__header {
+  background-color: $color-bg-block;
+}
+
+.map__inner {
+  height: 462px;
+}
+
+.map__body {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: $width-desktop) {
+  .map {
+    margin: 0 0 80px 0;
+
+    .fieldset {
+      padding: 24px 0 22px 0;
+    }
+  }
+
+  .map__title {
+    margin: 66px 45px 0 45px;
+    font-size: 32px;
+    line-height: 45px;
+  }
+
+  .map__wrapper {
+    margin: 35px 45px 0 45px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .map {
+    margin: 0 0 60px 0;
+
+    .fieldset {
+      padding: 13px 0 9px;
+    }
+
+    input[type="checkbox"] + label {
+      &:not(:first-of-type) {
+        margin: 0 0 0 23px;
+      }
+    }
+  }
+
+  .map__title {
+    margin: 42px 15px 0 15px;
+    font-size: 22px;
+    line-height: 31px;
+  }
+
+  .map__wrapper {
+    margin: 28px 0 0 0;
+  }
+
+  .map__inner {
+    height: 380px;
+  }
+}

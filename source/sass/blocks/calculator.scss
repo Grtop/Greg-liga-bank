@@ -1,7 +1,5 @@
 .calculator {
   form {
-    display: flex;
-    flex-direction: column;
     width: 51.5%;
   }
 
@@ -89,7 +87,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 49px 85px 600px 98px;
+  margin: 49px 85px 95px 98px;
 }
 
 .calculator__step-second,
