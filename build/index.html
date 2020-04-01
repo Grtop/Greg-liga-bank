@@ -66,7 +66,7 @@
             <div class="slider__item-wrapper slider-item__wrapper">
               <p class="slider__item-title slider-item__title">Лига-Банк</p>
               <p class="slider__item-desc slider-item__desc">Кредиты на любой случай</p>
-              <a class="btn btn_white" href="#">Рассчитать кредит</a>
+              <a class="btn btn_white" href="#calculator">Рассчитать кредит</a>
             </div>
           </div>
           <div class="slider__item slider-item  slider-item_light slider-item_man swiper-slide">
@@ -79,7 +79,7 @@
             <div class="slider__item-wrapper slider-item__wrapper">
               <p class="slider__item-title slider-item__title">Лига-Банк</p>
               <p class="slider__item-desc slider-item__desc">Всегда рядом</p>
-              <a class="btn btn_blue" href="#">Найти отделение</a>
+              <a class="btn btn_blue" href="#map-block">Найти отделение</a>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@
             <h2 class="visually-hidden">Услуги</h2>
             <div class="services__list">
               <div class="services__item service-item service-item_deposit service-item_active">
-                <div class="service-item__head">
+                <div class="service-item__head" tabindex="0">
                   <svg width="34" height="33">
                     <use xlink:href="#icon-vault">
                   </use></svg>
@@ -108,7 +108,7 @@
                 </div>
               </div>
               <div class="services__item service-item service-item_credit">
-                <div class="service-item__head">
+                <div class="service-item__head" tabindex="0">
                   <svg width="34" height="30">
                     <use xlink:href="#icon-cards">
                   </use></svg>
@@ -125,7 +125,7 @@
                 </div>
               </div>
               <div class="services__item service-item service-item_insurance">
-                <div class="service-item__head">
+                <div class="service-item__head" tabindex="0">
                   <svg width="28" height="34">
                     <use xlink:href="#icon-security">
                   </use></svg>
@@ -142,7 +142,7 @@
                 </div>
               </div>
               <div class="services__item service-item service-item_online">
-                <div class="service-item__head">
+                <div class="service-item__head" tabindex="0">
                   <svg width="20" height="34">
                     <use xlink:href="#icon-phone">
                   </use></svg>
@@ -162,7 +162,7 @@
           </div>
         </div>
       </section>
-      <section class="calculator">
+      <section class="calculator" id="calculator">
         <div class="container">
           <h2 class="calculator__title">Кредитный калькулятор</h2>
           <div class="calculator__wrapper">
@@ -326,12 +326,12 @@
       </section>
       <section class="map">
         <div class="container">
-          <h2 class="map__title">Отделения Лига-Банка</h2>
+          <h2 class="map__title" id="map-block">Отделения Лига-Банка</h2>
           <div class="map__wrapper">
             <div class="map__header">
-              <h3 class="visually-hidden">Фильтры карты</h3>
               <form action="https://echo.htmlacademy.ru" method="post">
                 <fieldset>
+                  <legend class="visually-hidden">Фильтры карты</legend>
                   <div class="fieldset">
                     <input type="checkbox" id="map-rus" name="map-rus" data-value="rus" checked="">
                     <label for="map-rus">Россия</label>
@@ -391,28 +391,36 @@
             <h2 class="visually-hidden">Ссылки на социальные сети</h2>
             <ul class="social__nav">
               <li class="social__nav-item">
-                <span class="visually-hidden">facebook</span>
-                <svg width="9" height="16">
-                  <use xlink:href="#icon-facebook"></use>
-                </svg>
+                <a href="#">
+                  <span class="visually-hidden">facebook</span>
+                  <svg width="9" height="16">
+                    <use xlink:href="#icon-facebook"></use>
+                  </svg>
+                </a>
               </li>
               <li class="social__nav-item">
-                <span class="visually-hidden">instagram</span>
-                <svg width="16" height="16">
-                  <use xlink:href="#icon-instagram"></use>
-                </svg>
+                <a href="#">
+                  <span class="visually-hidden">instagram</span>
+                  <svg width="16" height="16">
+                    <use xlink:href="#icon-instagram"></use>
+                  </svg>
+                </a>
               </li>
               <li class="social__nav-item">
-                <span class="visually-hidden">twitter</span>
-                <svg width="16" height="13">
-                  <use xlink:href="#icon-twitter"></use>
-                </svg>
+                <a href="#">
+                  <span class="visually-hidden">twitter</span>
+                  <svg width="16" height="13">
+                    <use xlink:href="#icon-twitter"></use>
+                  </svg>
+                </a>
               </li>
               <li class="social__nav-item">
-                <span class="visually-hidden">youtube</span>
-                <svg width="16" height="13">
-                  <use xlink:href="#icon-youtube"></use>
-                </svg>
+                <a href="#">
+                  <span class="visually-hidden">youtube</span>
+                  <svg width="16" height="13">
+                    <use xlink:href="#icon-youtube"></use>
+                  </svg>
+                </a>
               </li>
             </ul>
           </div>
