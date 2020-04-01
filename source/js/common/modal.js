@@ -7,7 +7,7 @@
     var setCloseClickHandler = function (sccEvt) {
       sccEvt.preventDefault();
       var btnClose = sccEvt.target;
-      if (btnClose.classList.contains(modalClass + '__close') || btnClose.parentNode.classList.contains(modalClass + '__close')) {
+      if (btnClose.classList.contains(modalClass + '__close') || btnClose.parentNode.classList.contains(modalClass + '__close') || btnClose.parentNode.parentNode.classList.contains(modalClass + '__close')) {
         overlay.classList.remove(overlayClass + '_show');
         modal.classList.remove(modalClass + '_show');
         document.body.style.overflow = 'scroll';

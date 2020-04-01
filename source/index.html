@@ -46,7 +46,7 @@
           </nav>
           <ul class="nav-user">
             <li>
-              <a href="#">
+              <a class="nav-user__signin" href="#">
                 <svg width="20" height="22">
                   <use xlink:href="#icon-signin">
                 </svg>
@@ -426,6 +426,39 @@
       </div>
     </footer>
     <div class="modal-overlay"></div>
+
+    <div class="modal-login">
+      <div class="modal-login__header">
+        <svg width="170" height="30">
+          <use xlink:href="#icon-logo-big">
+        </svg>
+        <button class="modal-login__close" type="button">
+          <svg width="20" height="20">
+            <use xlink:href="#icon-close">
+          </svg>
+        </button>
+      </div>
+      <div class="modal-login__body">
+        <form action="https://echo.htmlacademy.ru" method="post">
+          <div class="modal-login__item">
+            <label for="login-name">Логин</label>
+            <input type="text" id="login-name" name="login-name" autocomplete="off" required>
+          </div>
+          <div class="modal-login__item">
+            <label for="login-password">Пароль</label>
+            <input type="password" id="login-password" name="login-password" autocomplete="off" required>
+            <button class="modal-login__password" type="button">
+              <svg width="22" height="12">
+                <use xlink:href="#icon-password">
+              </svg>
+            </button>
+          </div>
+          <a class="modal-login__recovery" href="#">Забыли пароль?</a>
+          <button class="modal-login__send btn btn_blue" type="submit">Войти</button>
+        </form>
+      </div>
+    </div>
+
     <div class="modal-request">
       <button class="modal-request__close" type="button">
         <svg width="20" height="20">

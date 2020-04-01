@@ -40,7 +40,33 @@
       };
     }
 
-    // HANDLERS - start
+    var TABLET_SIZE = 1008;
+
+    var controlItems = {
+      signin: 'nav-user__signin',
+      nav: 'header__nav-toggle',
+      tab: 'service-item__head'
+    };
+
+    // LOGIN
+    // LOGIN -- handlers
+
+    var loginLinkHandler = function (llEvt) {
+      llEvt.preventDefault();
+      window.modal.open('modal-overlay', 'modal-login');
+      window.signin.init('modal-login', 'login-name', 'login-password');
+    };
+
+    // LOGIN -- start
+
+    var loginLink = document.querySelector('.' + controlItems.signin);
+    if(loginLink) {
+      loginLink.addEventListener('click', loginLinkHandler);
+    }
+
+    // SLIDER
+    // SLIDER -- handlers
+
     var navToggleHandler = function (ntEvt) {
       ntEvt.preventDefault();
       var nav = document.querySelector('.nav-main');
@@ -77,14 +103,8 @@
         currentTab.parentNode.classList.add(elemItems.tab + '_active');
       }
     };
-    // HANDLERS - end
 
-    var TABLET_SIZE = 1008;
-
-    var controlItems = {
-      nav: 'header__nav-toggle',
-      tab: 'service-item__head'
-    };
+    // SLIDER -- start
 
     var elemItems = {
       tabList: 'services__list',
@@ -117,7 +137,7 @@
       }
     }
 
-    // SLIDER - start
+    // SLIDER - init
     if (document.querySelector('.slider')) {
       var sliderMain = new Swiper('.slider', {
         loop: true,
@@ -148,7 +168,8 @@
       }
     }
 
-    // SELECT - start
+    // SELECT
+    // SELECT -- start
     var creditTerms = {};
     var requestParam = {
       number: 10,
@@ -573,6 +594,7 @@
       document.querySelector('#credit-target').addEventListener('change', selectCreditChange);
     }
 
+    // MAP
     // MAP -- init
 
     var headerMapClass = '.map__header';

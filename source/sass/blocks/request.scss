@@ -30,6 +30,11 @@
   &_show {
     display: block;
   }
+
+  &_error {
+    animation-name: modal-shake;
+    animation-duration: 0.5s;
+  }
 }
 
 .request__title {
@@ -73,11 +78,6 @@
 .request__send {
   margin: 0 auto;
   padding: 14px 53px;
-}
-
-.request_error {
-  animation-name: modal-shake;
-  animation-duration: 0.5s;
 }
 
 @keyframes modal-shake {

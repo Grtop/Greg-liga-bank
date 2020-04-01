@@ -1,0 +1,142 @@
+.modal-login {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: none;
+  width: 544px;
+  padding: 56px;
+  background-color: $color-bg-block;
+  border: 4px solid $color-bg-btn-blue;
+  transform: translate(-50%, -50%);
+  z-index: 106;
+
+  &_show {
+    display: block;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin: 0 0 4px 0;
+    line-height: 22px;
+    color: $color-text-label;
+  }
+
+  input {
+    padding: 17px 5px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    text-align: left;
+    border: 1px solid $color-text-title-dark;
+    border-radius: 4px;
+  }
+}
+
+.modal-login__header {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 0 38px 0;
+
+  svg {
+    margin-left: -12px;
+  }
+}
+
+.modal-login__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.modal-login__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0 6px 0;
+
+  &:not(:last-of-type) {
+    margin: 0 0 24px 0;
+  }
+}
+
+.modal-login__password {
+  position: absolute;
+  top: 54%;
+  right: 19px;
+  background-color: transparent;
+  border: none;
+}
+
+.modal-login__recovery {
+  margin: 0 0 25px auto;
+  font-size: 12px;
+  line-height: 17px;
+  color: $color-text-grey;
+  text-decoration: none;
+}
+
+.modal-login__send {
+  padding: 18px 35px;
+}
+
+@media (max-width: $width-desktop) {
+  .modal-login {
+    width: 678px;
+    padding: 56px 85px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .modal-login {
+    width: 290px;
+    padding: 42px 15px;
+
+    label {
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  .modal-login__header {
+    margin: 4px 0 25px 0;
+  }
+
+  .modal-login__close {
+    svg {
+      width: 13px;
+      height: 13px;
+    }
+  }
+
+  .modal-login__item {
+    &:not(:last-of-type) {
+      margin: 0 0 18px 0;
+    }
+
+    &:last-of-type {
+      margin: 0 0 30px 0;
+    }
+  }
+
+  .modal-login__password {
+    right: 10px;
+  }
+
+  .modal-login__recovery {
+    order: 1;
+    align-self: center;
+    margin: 7px 0 0 0;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
