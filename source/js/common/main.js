@@ -121,6 +121,7 @@
       if (tabItems.length > 0) {
         tabItems.forEach(function (item) {
           item.addEventListener('click', tabClickHandler);
+          item.addEventListener('focus', tabClickHandler);
         });
       }
     } else {
@@ -141,6 +142,9 @@
     if (document.querySelector('.slider')) {
       var sliderMain = new Swiper('.slider', {
         loop: true,
+        autoplay: {
+          delay: 4000,
+        },
         pagination: {
           el: '.slider-pagination',
           type: 'bullets',
