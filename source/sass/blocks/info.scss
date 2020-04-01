@@ -1,0 +1,32 @@
+.info {
+  margin: -79px 0 0 0;
+}
+
+.info__item {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  line-height: 17px;
+  color: $color-text-grey;
+}
+
+
+@media (max-width: $width-desktop + 135) {
+  .info {
+    width: 20%;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  .info {
+    order: 3;
+    width: 40%;
+    margin: 0;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .info {
+    display: none;
+  }
+}

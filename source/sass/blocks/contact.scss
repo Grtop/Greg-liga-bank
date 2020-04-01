@@ -1,0 +1,148 @@
+.contact {
+  width: 43%;
+}
+
+.contact__list {
+  display: flex;
+  flex-direction: row;
+  margin: 7px 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact__item {
+  &_mobile {
+    width: 42%;
+  }
+
+  &_phone {
+    width: 31%;
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 12.5%;
+  }
+}
+
+.contact__item-phone {
+  position: relative;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+  color: $color-text-title-dark;
+  text-decoration: none;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  &_short {
+    padding: 0 0 0 26px;
+
+    &::before {
+      width: 10px;
+      height: 16px;
+      background-image: url("../img/icon-footer-mobile.svg");
+    }
+  }
+
+  &_long {
+    padding: 0 0 0 29px;
+
+    &::before {
+      width: 16px;
+      height: 16px;
+      background-image: url("../img/icon-footer-phone.svg");
+    }
+  }
+}
+
+.contact__item-desc {
+  margin: 0 0 0 26px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 17px;
+  color: $color-text-grey;
+}
+
+@media (max-width: $width-desktop + 260) {
+  .contact {
+    width: 42%;
+  }
+
+  .contact__list {
+    flex-direction: column;
+  }
+
+  .contact__item {
+    &_mobile,
+    &_phone {
+      width: 100%;
+    }
+
+    &:not(:last-of-type) {
+      margin: 0 0 15px 0;
+    }
+  }
+}
+
+@media (max-width: $width-desktop + 135) {
+  .contact {
+    width: 30%;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  .contact {
+    order: 4;
+    width: 50%;
+    padding: 0 0 0 17px;
+  }
+
+  .contact__list {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .contact__item {
+    &:not(:last-of-type) {
+      margin: 0 0 23px 0;
+    }
+  }
+
+  .contact__item-phone {
+    padding: 0 0 0 31px;
+  }
+
+  .contact__item-desc {
+    width: 52%;
+    margin: 0 0 0 30px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .contact {
+    width: 100%;
+    padding: 0;
+  }
+
+  .contact__item {
+    // &_mobile,
+    // &_phone {
+    //   width: 100%;
+    // }
+
+    &:not(:last-of-type) {
+      margin: 0 0 19px 0;
+    }
+  }
+
+  .contact__item-desc {
+    width: 58%;
+  }
+}

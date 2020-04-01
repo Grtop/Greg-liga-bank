@@ -1,0 +1,42 @@
+.footer__wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 50px 73px 50px 97px;
+}
+
+.footer__logo {
+  width: 28.5%;
+}
+
+@media (max-width: $width-desktop) {
+  .footer__wrapper {
+    flex-direction: column;
+    height: 350px;
+    padding: 50px 45px 50px 43px;
+  }
+
+  .footer__logo {
+    margin: 0 0 17px 0;
+
+    svg {
+      width: 135px;
+      height: 25px;
+    }
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .footer__wrapper {
+    height: auto;
+    padding: 40px 15px;
+  }
+
+  .footer__logo {
+    svg {
+      width: 95px;
+      height: 17px;
+    }
+  }
+}
