@@ -3,11 +3,20 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 50px 73px 50px 97px;
+  padding: 52px 73px 50px 97px;
 }
 
 .footer__logo {
   width: 28.5%;
+
+  a {
+    outline: none;
+
+    &:focus,
+    &:hover {
+      opacity: 0.6;
+    }
+  }
 }
 
 @media (max-width: $width-desktop) {

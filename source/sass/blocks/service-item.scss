@@ -127,14 +127,18 @@
   width: 25%;
   padding: 30px 0 33px 0;
   cursor: pointer;
+  outline: none;
 }
 
 .service-item__head-title,
 .service-item__title {
   display: inline-block;
   vertical-align: middle;
+  max-width: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .service-item__body {
@@ -170,6 +174,8 @@
   padding: 0;
   font-size: 18px;
   line-height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .service-item__list-item {
@@ -178,6 +184,8 @@
   padding-left: 20px;
   font-size: 18px;
   line-height: 23px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &::before {
     content: "";

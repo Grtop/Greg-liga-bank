@@ -43,6 +43,8 @@
   border-bottom: 1px solid $color-text-title-dark;
   border-right: 1px solid $color-text-title-dark;
   border-left: 1px solid $color-text-title-dark;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   &:first-of-type {
     border-top: 1px solid $color-text-title-dark;

@@ -1,6 +1,7 @@
 .nav-main {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   margin: 0;
   padding: 0;
@@ -21,6 +22,12 @@
     font-family: $font-primary;
     color: $color-text-title-dark;
     text-decoration: none;
+    outline: none;
+
+    &:focus,
+    &:hover {
+      opacity: 0.6;
+    }
   }
 }
 
@@ -41,10 +48,11 @@
   .nav-main {
     position: fixed;
     top: 47px;
-    display: flex;
+    flex-wrap: nowrap;
     flex-direction: column;
     width: 95%;
-    height: 100vh;
+    height: 92%;
+    overflow: scroll;
     z-index: 9999;
 
     &_closed {

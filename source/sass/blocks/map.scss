@@ -8,21 +8,21 @@
 
   .fieldset {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 28px 0 17px 0;
   }
 
-  input[type="checkbox"] {
-    display: none;
-  }
-
   input[type="checkbox"] + label {
     position: relative;
+    max-width: 300px;
     padding-left: 24px;
     font-size: 14px;
     line-height: 20px;
     color: $color-text-title-dark;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     &::before {
       content: "";
@@ -49,12 +49,19 @@
       background-repeat: no-repeat;
     }
   }
+
+  input[type="checkbox"]:focus + label,
+  input[type="checkbox"]:hover + label {
+    opacity: 0.6;
+  }
 }
 
 .map__title {
   margin: 38px 0 0 98px;
   font-size: 41px;
   line-height: 57px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .map__wrapper {

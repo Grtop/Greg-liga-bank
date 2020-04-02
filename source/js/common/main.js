@@ -60,7 +60,7 @@
     // LOGIN -- start
 
     var loginLink = document.querySelector('.' + controlItems.signin);
-    if(loginLink) {
+    if (loginLink) {
       loginLink.addEventListener('click', loginLinkHandler);
     }
 

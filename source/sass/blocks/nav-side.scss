@@ -6,6 +6,9 @@
 }
 
 .nav-side__item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   &:not(:last-of-type) {
     margin: 0 0 9px 0;
   }
@@ -17,6 +20,12 @@
   line-height: 22px;
   color: $color-text-title-dark;
   text-decoration: none;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: $width-desktop) {

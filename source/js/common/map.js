@@ -24,7 +24,7 @@
       }));
     };
 
-    window.data.load('http://localhost:3000/data.json', function (data) {
+    window.data.load('/data.json', function (data) {
       objectManager.add(data);
     }, setError);
 

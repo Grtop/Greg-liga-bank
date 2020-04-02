@@ -7,6 +7,14 @@
   line-height: 21px;
   border-radius: 4px;
   text-decoration: none;
+  outline: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:focus,
+  &:hover {
+    opacity: 0.6;
+  }
 
   &_blue {
     @include btn-color($color-text-title-light, $color-bg-btn-blue);

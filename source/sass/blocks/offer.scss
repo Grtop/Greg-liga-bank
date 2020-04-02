@@ -17,6 +17,8 @@
   font-size: 22px;
   font-weight: 500;
   line-height: 31px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .offer__desc,
@@ -49,6 +51,8 @@
 
 .offer__item-label {
   order: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .offer__link {

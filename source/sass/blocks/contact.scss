@@ -5,12 +5,16 @@
 .contact__list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 7px 0 0 0;
   padding: 0;
   list-style: none;
 }
 
 .contact__item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   &_mobile {
     width: 42%;
   }
@@ -22,6 +26,10 @@
   &:not(:last-of-type) {
     margin-right: 12.5%;
   }
+
+  &:nth-child(2n) {
+    margin-right: 0;
+  }
 }
 
 .contact__item-phone {
@@ -31,6 +39,12 @@
   line-height: 22px;
   color: $color-text-title-dark;
   text-decoration: none;
+  outline: none;
+
+  &:focus,
+  &:hover {
+    opacity: 0.6;
+  }
 
   &::before {
     content: "";

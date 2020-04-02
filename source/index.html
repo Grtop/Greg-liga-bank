@@ -171,7 +171,7 @@
                 <legend class="visually-hidden">Шаг 1. Цель кредита</legend>
                 <div class="fieldset">
                   <h3 class="legend">Шаг 1. Цель кредита</h3>
-                  <select name="credit-targer" id="credit-target">
+                  <select class="visually-hidden" name="credit-targer" id="credit-target">
                     <option value="none" data-value="" selected>Выберете цель кредита</option>
                     <option value="mortgage-loan" data-value="недвижимости,ипотеки, ипотечные кредиты,ипотека">Ипотечное кредитование</option>
                     <option value="car-loan" data-value="автомобиля,автокредита,автокредиты,автокредит">Автомобильное кредитование</option>
@@ -333,11 +333,11 @@
                 <fieldset>
                   <legend class="visually-hidden">Фильтры карты</legend>
                   <div class="fieldset">
-                    <input type="checkbox" id="map-rus" name="map-rus" data-value="rus" checked>
+                    <input class="visually-hidden" type="checkbox" id="map-rus" name="map-rus" data-value="rus" checked>
                     <label for="map-rus">Россия</label>
-                    <input type="checkbox" id="map-cis" name="map-cis" data-value="cis" checked>
+                    <input class="visually-hidden" type="checkbox" id="map-cis" name="map-cis" data-value="cis" checked>
                     <label for="map-cis">СНГ</label>
-                    <input type="checkbox" id="map-eu" name="map-eu" data-value="eu">
+                    <input class="visually-hidden" type="checkbox" id="map-eu" name="map-eu" data-value="eu">
                     <label for="map-eu">Европа</label>
                   </div>
                 </fieldset>
@@ -354,11 +354,13 @@
     <footer class="footer">
       <div class="container">
         <div class="footer__wrapper">
-          <a class="footer__logo">
-            <svg width="150" height="27">
-              <use xlink:href="#icon-logo-full">
-            </svg>
-          </a>
+          <div class="footer__logo">
+            <a href="index.html">
+              <svg width="150" height="27">
+                <use xlink:href="#icon-logo-full">
+              </svg>
+            </a>
+          </div>
           <h2 class="visually-hidden">Навигация по сайту</h2>
           <ul class="nav-side footer__nav">
             <li class="nav-side__item footer__nav-item">
@@ -378,11 +380,11 @@
             <h2 class="visually-hidden">Контактные телефоны</h2>
             <ul class="contact__list">
               <li class="contact__item contact__item_mobile">
-                <a class="contact__item-phone contact__item-phone_short" href="#">*0904</a>
+                <a class="contact__item-phone contact__item-phone_short" href="tel:0904">*0904</a>
                 <p class="contact__item-desc">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
               </li>
               <li class="contact__item contact__item_phone">
-                <a class="contact__item-phone contact__item-phone_long" href="#">8 800 111 22 33</a>
+                <a class="contact__item-phone contact__item-phone_long" href="tel:88001112233">8 800 111 22 33</a>
                 <p class="contact__item-desc">Бесплатный для всех городов России</p>
               </li>
             </ul>
@@ -391,7 +393,7 @@
             <h2 class="visually-hidden">Ссылки на социальные сети</h2>
             <ul class="social__nav">
               <li class="social__nav-item">
-                <a href="#">
+                <a class="social__nav-link" href="#">
                   <span class="visually-hidden">facebook</span>
                   <svg width="9" height="16">
                     <use xlink:href="#icon-facebook"></use>
@@ -399,7 +401,7 @@
                 </a>
               </li>
               <li class="social__nav-item">
-                <a href="#">
+                <a class="social__nav-link" href="#">
                   <span class="visually-hidden">instagram</span>
                   <svg width="16" height="16">
                     <use xlink:href="#icon-instagram"></use>
@@ -407,7 +409,7 @@
                 </a>
               </li>
               <li class="social__nav-item">
-                <a href="#">
+                <a class="social__nav-link" href="#">
                   <span class="visually-hidden">twitter</span>
                   <svg width="16" height="13">
                     <use xlink:href="#icon-twitter"></use>
@@ -415,7 +417,7 @@
                 </a>
               </li>
               <li class="social__nav-item">
-                <a href="#">
+                <a class="social__nav-link" href="#">
                   <span class="visually-hidden">youtube</span>
                   <svg width="16" height="13">
                     <use xlink:href="#icon-youtube"></use>

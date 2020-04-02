@@ -1,10 +1,12 @@
 .social {
+  width: 9%;
   margin: 10px 0 0 0;
 }
 
 .social__nav {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -16,6 +18,19 @@
 
   &:not(:last-of-type) {
     margin-right: 15px;
+  }
+
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+}
+
+.social__nav-link {
+  outline: none;
+
+  &:focus,
+  &:hover {
+    opacity: 0.6;
   }
 }
 

@@ -8,6 +8,7 @@
 
   form {
     width: 100%;
+    overflow: hidden;
   }
 
   fieldset {
@@ -44,6 +45,8 @@
   font-weight: 500;
   line-height: 31px;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .request__list {

@@ -1,5 +1,8 @@
 .info {
+  width: 27%;
   margin: -79px 0 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .info__item {
