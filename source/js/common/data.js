@@ -10,8 +10,6 @@
 
   var createXhr = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
-    xhr.responseType = 'json';
-    xhr.timeout = TIMEOUT;
     xhr.addEventListener('load', function () {
       if (xhr.status === STATUS_SUCCESS) {
         onLoad(xhr.response);
@@ -37,6 +35,8 @@
   var send = function (data, onLoad, onError) {
     var xhr = createXhr(onLoad, onError);
     xhr.open('POST', Url.SERVER);
+    xhr.responseType = 'json';
+    xhr.timeout = TIMEOUT;
     xhr.send(data);
   };
 

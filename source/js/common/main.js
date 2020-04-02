@@ -94,9 +94,9 @@
     var tabClickHandler = function (tiEvt) {
       tiEvt.preventDefault();
 
-      tabItems.forEach(function (item) {
-        item.parentNode.classList.remove(elemItems.tab + '_active');
-      });
+      for (var m = 0; m < tabItems.length; m++) {
+        tabItems[m].parentNode.classList.remove(elemItems.tab + '_active');
+      };
 
       var currentTab = tiEvt.currentTarget;
       if (currentTab.classList.contains(controlItems.tab)) {
@@ -119,10 +119,10 @@
     if (document.body.offsetWidth > TABLET_SIZE) {
       var tabItems = document.querySelectorAll('.' + controlItems.tab);
       if (tabItems.length > 0) {
-        tabItems.forEach(function (item) {
-          item.addEventListener('click', tabClickHandler);
-          item.addEventListener('focus', tabClickHandler);
-        });
+        for (var n = 0; n < tabItems.length; n++) {
+          tabItems[n].addEventListener('click', tabClickHandler);
+          tabItems[n].addEventListener('focus', tabClickHandler);
+        };
       }
     } else {
       var tabWrapper = document.querySelector('.' + elemItems.tabList);
@@ -555,11 +555,12 @@
             }
           };
 
-          paramsEl.querySelectorAll('.calculator__param').forEach(function (item) {
-            item.classList.remove('calculator__param_show');
-            var inputs = item.getElementsByTagName('input');
+          var calcElements = paramsEl.querySelectorAll('.calculator__param');
+          for (var o = 0; o < calcElements.length; o++) {
+            calcElements[o].classList.remove('calculator__param_show');
+            var inputs = calcElements[o].getElementsByTagName('input');
             removeEvent(inputs, paramElHandler);
-          });
+          };
 
           var element;
           if (creditTerms.status === 1) {
