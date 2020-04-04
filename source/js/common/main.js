@@ -5,48 +5,23 @@
     var nojs = document.querySelector('.nojs');
     nojs.classList.remove('nojs');
 
-    // polyfill for forEach - https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach#Polyfill
-    if (!Array.prototype.forEach) {
-      Array.prototype.forEach = function (callback, thisArg) {
-        var T, k;
-        if (this === null) {
-          throw new TypeError(' this is null or not defined');
-        }
-        var O = Object(this);
-        var len = O.length >>> 0;
-        if (typeof callback !== 'function') {
-          throw new TypeError(callback + ' is not a function');
-        }
-        if (arguments.length > 1) {
-          T = thisArg;
-        }
-        k = 0;
-        while (k < len) {
-          var kValue;
-          if (k in O) {
-            kValue = O[k];
-            callback.call(T, kValue, k, O);
-          }
-          k++;
-        }
-      };
+    if (window.util.browserIe) {
+      // for swiper.js - startsWidth
+      if (!String.prototype.startsWith) {
+        String.prototype.startsWith = function (searchString, position) {
+          position = position || 0;
+          return this.substr(position, searchString.length) === searchString;
+        };
+      }
     }
-
-    // for swiper.js - startsWidth
-    if (!String.prototype.startsWith) {
-      String.prototype.startsWith = function (searchString, position) {
-        position = position || 0;
-        return this.substr(position, searchString.length) === searchString;
-      };
-    }
-
-    var TABLET_SIZE = 1008;
 
     var controlItems = {
       signin: 'nav-user__signin',
       nav: 'header__nav-toggle',
       tab: 'service-item__head'
     };
+
+    var body = document.querySelector('body');
 
     // LOGIN
     // LOGIN -- handlers
@@ -59,87 +34,14 @@
 
     // LOGIN -- start
 
-    var loginLink = document.querySelector('.' + controlItems.signin);
+    var loginLink = body.querySelector('.' + controlItems.signin);
     if (loginLink) {
       loginLink.addEventListener('click', loginLinkHandler);
     }
 
     // SLIDER
-    // SLIDER -- handlers
-
-    var navToggleHandler = function (ntEvt) {
-      ntEvt.preventDefault();
-      var nav = document.querySelector('.nav-main');
-
-      if (ntEvt.target.classList.contains('header__nav-toggle')) {
-        if (ntEvt.target.classList.contains('header__nav-toggle_closed')) {
-          ntEvt.target.classList.remove('header__nav-toggle_closed');
-          ntEvt.target.classList.add('header__nav-toggle_opened');
-          nav.classList.remove('nav-main_closed');
-          nav.classList.add('nav-main_opened');
-          document.body.style.overflow = 'hidden';
-          return;
-        }
-        if (ntEvt.target.classList.contains('header__nav-toggle_opened')) {
-          ntEvt.target.classList.remove('header__nav-toggle_opened');
-          ntEvt.target.classList.add('header__nav-toggle_closed');
-          nav.classList.remove('nav-main_opened');
-          nav.classList.add('nav-main_closed');
-          document.body.style.overflow = 'scroll';
-          return;
-        }
-      }
-    };
-
-    var tabClickHandler = function (tiEvt) {
-      tiEvt.preventDefault();
-
-      for (var m = 0; m < tabItems.length; m++) {
-        tabItems[m].parentNode.classList.remove(elemItems.tab + '_active');
-      };
-
-      var currentTab = tiEvt.currentTarget;
-      if (currentTab.classList.contains(controlItems.tab)) {
-        currentTab.parentNode.classList.add(elemItems.tab + '_active');
-      }
-    };
-
-    // SLIDER -- start
-
-    var elemItems = {
-      tabList: 'services__list',
-      tab: 'service-item'
-    };
-
-    var navToggle = document.querySelector('.' + controlItems.nav);
-    if (navToggle) {
-      navToggle.addEventListener('click', navToggleHandler);
-    }
-
-    if (document.body.offsetWidth > TABLET_SIZE) {
-      var tabItems = document.querySelectorAll('.' + controlItems.tab);
-      if (tabItems.length > 0) {
-        for (var n = 0; n < tabItems.length; n++) {
-          tabItems[n].addEventListener('click', tabClickHandler);
-          tabItems[n].addEventListener('focus', tabClickHandler);
-        };
-      }
-    } else {
-      var tabWrapper = document.querySelector('.' + elemItems.tabList);
-      if (tabWrapper) {
-        tabWrapper.classList.add('swiper-wrapper');
-      }
-      var tabList = document.querySelectorAll('.' + elemItems.tab);
-      if (tabList.length > 0) {
-        tabList.forEach(function (tab) {
-          tab.classList.remove(elemItems.tab + '_active');
-          tab.classList.add('swiper-slide');
-        });
-      }
-    }
-
     // SLIDER - init
-    if (document.querySelector('.slider')) {
+    if (body.querySelector('.slider')) {
       var sliderMain = new Swiper('.slider', {
         loop: true,
         autoplay: {
@@ -156,28 +58,101 @@
       });
     }
 
-    if (document.body.offsetWidth <= TABLET_SIZE) {
-      if (document.querySelector('.services__slider')) {
-        var sliderService = new Swiper('.services__slider', {
-          loop: true,
-          pagination: {
-            el: '.services-pagination',
-            type: 'bullets',
-            bulletElement: 'button',
-            clickable: true,
-            bulletClass: 'services-pagination__item',
-            bulletActiveClass: 'services-pagination__item_active'
-          },
-        });
+    // TABS
+    // TABS -- handlers
+
+    var navToggleHandler = function (ntEvt) {
+      ntEvt.preventDefault();
+      var nav = body.querySelector('.nav-main');
+
+      if (ntEvt.target.classList.contains('header__nav-toggle')) {
+        if (ntEvt.target.classList.contains('header__nav-toggle_closed')) {
+          ntEvt.target.classList.remove('header__nav-toggle_closed');
+          ntEvt.target.classList.add('header__nav-toggle_opened');
+          nav.classList.remove('nav-main_closed');
+          nav.classList.add('nav-main_opened');
+          body.style.overflow = 'hidden';
+          return;
+        }
+        if (ntEvt.target.classList.contains('header__nav-toggle_opened')) {
+          ntEvt.target.classList.remove('header__nav-toggle_opened');
+          ntEvt.target.classList.add('header__nav-toggle_closed');
+          nav.classList.remove('nav-main_opened');
+          nav.classList.add('nav-main_closed');
+          body.style.overflow = 'scroll';
+          return;
+        }
       }
+    };
+
+    var tabClickHandler = function (tiEvt) {
+      tiEvt.preventDefault();
+
+      for (var m = 0; m < tabItems.length; m++) {
+        tabItems[m].parentNode.classList.remove(elemItems.tab + '_active');
+      }
+
+      var currentTab = tiEvt.currentTarget;
+      if (currentTab.classList.contains(controlItems.tab)) {
+        currentTab.parentNode.classList.add(elemItems.tab + '_active');
+      }
+    };
+
+    // TABS -- start
+
+    var TABLET_SIZE = 1008;
+
+    var elemItems = {
+      tabList: 'services__list',
+      tab: 'service-item'
+    };
+
+    var navToggle = body.querySelector('.' + controlItems.nav);
+    if (navToggle) {
+      navToggle.addEventListener('click', navToggleHandler);
+    }
+
+    if (body.offsetWidth > TABLET_SIZE) {
+      var tabItems = body.querySelectorAll('.' + controlItems.tab);
+      if (tabItems.length > 0) {
+        for (var n = 0; n < tabItems.length; n++) {
+          tabItems[n].addEventListener('click', tabClickHandler);
+          tabItems[n].addEventListener('focus', tabClickHandler);
+        }
+      }
+    }
+    if (body.offsetWidth <= TABLET_SIZE) {
+      var tabWrapper = body.querySelector('.' + elemItems.tabList);
+      if (tabWrapper) {
+        tabWrapper.classList.add('swiper-wrapper');
+      }
+      var tabList = body.querySelectorAll('.' + elemItems.tab);
+      if (tabList.length > 0) {
+        for (var p = 0; p < tabList.length; p++) {
+          tabList[0].classList.remove(elemItems.tab + '_active');
+          tabList[0].classList.add('swiper-slide');
+        }
+      }
+      var sliderService = new Swiper('.services__slider', {
+        loop: true,
+        pagination: {
+          el: '.services-pagination',
+          type: 'bullets',
+          bulletElement: 'button',
+          clickable: true,
+          bulletClass: 'services-pagination__item',
+          bulletActiveClass: 'services-pagination__item_active'
+        },
+      });
     }
 
     // SELECT
     // SELECT -- start
+    var NUMBER_START = 10;
+
     var creditTerms = {};
     var requestParam = {
-      number: 10,
-      label: ''
+      number: NUMBER_START
     };
 
     // SELECT -- handlers
@@ -185,10 +160,11 @@
       scEvt.preventDefault();
 
       var root = scEvt.target;
-      root.form.reset();
+      var form = root.form;
+      form.reset();
 
-      var hideStepTwo = document.querySelector('.calculator__step-second');
-      var hideStepThree = document.querySelector('.request');
+      var hideStepTwo = form.querySelector('.calculator__step-second');
+      var hideStepThree = body.querySelector('.request');
 
       var listStatus = {
         none: 'none',
@@ -243,7 +219,7 @@
             }, setError);
           };
 
-          var rootEl = document.querySelector('.' + classEl);
+          var rootEl = body.querySelector('.' + classEl);
           rootEl.classList.add(classEl + '_show');
 
           rootEl.querySelector('.' + classEl + '__number').value = '№ ' + window.util.getCreditNumber(requestParam.number);
@@ -292,8 +268,8 @@
       };
 
       var updateOfferBlock = function (classEl) {
-        var rootEl = document.querySelector('.' + classEl);
-        var rootElDeny = document.querySelector('.' + classEl + '__deny');
+        var rootEl = body.querySelector('.' + classEl);
+        var rootElDeny = body.querySelector('.' + classEl + '__deny');
 
         if (creditTerms.status === 0) {
           rootEl.classList.remove(classEl + '_show');
@@ -439,7 +415,6 @@
             desc: currentLabels[2],
             minValue: 500000
           };
-
           break;
         case listStatus.car:
           creditTerms = {
@@ -493,7 +468,7 @@
 
         hideStepTwo.classList.add('calculator__step-show');
 
-        if (document.querySelector('.input-price__sum')) {
+        if (form.querySelector('.input-price__sum')) {
           var targetPrice = new InputPrice('.input-price__sum', creditTerms, {
             inputEl: '#price-target',
             descEl: '.calculator__input-desc',
@@ -502,17 +477,17 @@
           });
         }
 
-        if (document.querySelector('.input-price__initial')) {
+        if (form.querySelector('.input-price__initial')) {
           var firstPrice = new InitialPrice('.input-price__initial', creditTerms, {
             inputEl: '#price-first',
             rangeEl: '.range__price-first',
             rangeToggleEl: '.range__roller',
             rangeValueEl: '.range__value'
           });
-          document.querySelector('#price-target').addEventListener('change', updateInitialChange);
+          form.querySelector('#price-target').addEventListener('change', updateInitialChange);
         }
 
-        if (document.querySelector('.input-price__period')) {
+        if (form.querySelector('.input-price__period')) {
           var period = new Period('.input-price__period', creditTerms, {
             inputEl: '#credit-period',
             rangeEl: '.range__credit-period',
@@ -522,7 +497,7 @@
           });
         }
 
-        var paramsEl = document.querySelector('.calculator__params');
+        var paramsEl = form.querySelector('.calculator__params');
         if (paramsEl) {
           var paramElHandler = function (pcEvt) {
             pcEvt.preventDefault();
@@ -560,7 +535,7 @@
             calcElements[o].classList.remove('calculator__param_show');
             var inputs = calcElements[o].getElementsByTagName('input');
             removeEvent(inputs, paramElHandler);
-          };
+          }
 
           var element;
           if (creditTerms.status === 1) {
@@ -589,40 +564,93 @@
 
     // SELECT -- init
 
-    if (document.querySelector('.select')) {
+    if (body.querySelector('.select')) {
       var credit = new Select('.select', {
         idSelect: '#credit-target',
         classElement: 'select__item',
         classActiveElement: 'select__item_selected'
       });
 
-      document.querySelector('#credit-target').addEventListener('change', selectCreditChange);
+      body.querySelector('#credit-target').addEventListener('change', selectCreditChange);
     }
 
     // MAP
     // MAP -- init
 
-    var headerMapClass = '.map__header';
-
-    var filters = {};
-
-    var changeFiltersHandler = function () {
-      getFilters(headerMapClass);
-      window.map.update(filters);
+    var Map = {
+      src: 'https://api-maps.yandex.ru/2.1/',
+      api: 'apikey=83f923aa-03af-4069-b04f-28351fa92788',
+      param: 'load=package.standard&lang=ru-RU',
+      filterClass: '.map__header',
+      center: [56.82, 60.59],
+      zoom: 5,
+      timeout: 2000,
+      filters: {}
     };
 
-    var getFilters = function (classEl) {
-      var root = document.querySelector(classEl);
-      var controls = root.getElementsByTagName('input');
-      for (var l = 0; l < controls.length; l++) {
-        controls[l].onchange = changeFiltersHandler;
-        var name = window.util.getDataAttr(controls[l]);
-        filters[name] = controls[l].checked;
+    setTimeout(function () {
+      var mapEl = document.createElement('script');
+      mapEl.type = 'text/javascript';
+      mapEl.src = Map.src + '?' + Map.api + '&' + Map.param;
+      mapEl.onload = getYaMap;
+      body.appendChild(mapEl);
+    }, Map.timeout);
+
+    function getYaMap() {
+      function initMap(filtersList) {
+        ymaps.ready(function () {
+          var mapObj = new ymaps.Map('map', {
+              center: Map.center,
+              zoom: Map.zoom,
+              controls: []
+            }), objectManager = new ymaps.ObjectManager({
+              clusterize: true,
+              gridSize: 5
+            });
+
+          var setError = function () {
+            // Need create error for this event
+          };
+
+          var update = function (list) {
+            mapObj.geoObjects.add(objectManager.setFilter(function (item) {
+              var param = item.properties.clusterCaption;
+              if (item.properties.clusterCaption === param) {
+                return list[param];
+              }
+            }));
+          };
+
+          window.data.load('/data.json', function (data) {
+            objectManager.add(data);
+          }, setError);
+
+          update(filtersList);
+
+          window.maps = {
+            update: update
+          };
+        });
       }
-    };
 
-    getFilters(headerMapClass);
-    window.map.update(filters);
+      var changeFiltersHandler = function () {
+        getFilters(Map.filterClass);
+        window.maps.update(Map.filters);
+      };
+
+      var getFilters = function (classEl) {
+        var root = body.querySelector(classEl);
+        var controls = root.getElementsByTagName('input');
+        for (var l = 0; l < controls.length; l++) {
+          controls[l].onchange = changeFiltersHandler;
+          var name = window.util.getDataAttr(controls[l]);
+          Map.filters[name] = controls[l].checked;
+        }
+      };
+
+      getFilters(Map.filterClass);
+      initMap(Map.filters);
+    }
   };
 
   window.addEventListener('load', initPage);

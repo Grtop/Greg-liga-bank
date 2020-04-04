@@ -23,7 +23,7 @@ function Select(classEl, param) {
   var removeListValue = function (collection) {
     collection[0].classList.remove(param.classActiveElement);
     for (var k = collection.length - 1; k > 0; k--) {
-      if (util.browserIe) {
+      if (window.util.browserIe) {
         collection[k].parentNode.removeChild(collection[k]);
       } else {
         collection[k].remove();

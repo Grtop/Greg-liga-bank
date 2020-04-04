@@ -13,8 +13,8 @@
     <link rel="preload" href="fonts/Roboto-medium.woff" as="font" crossorigin="anonymous">
     <link rel="preload" href="fonts/Roboto-bold.woff2" as="font" crossorigin="anonymous">
     <link rel="preload" href="fonts/Roboto-bold.woff" as="font" crossorigin="anonymous">
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=83f923aa-03af-4069-b04f-28351fa92788&lang=ru_RU">
-    </script>
+    <link rel="preconnect" href="//api-maps.yandex.ru" crossorigin="anonymous">
+    <link rel="dns-prefetch" href="//api-maps.yandex.ru" crossorigin="anonymous">
   </head>
   <body>
     <header class="header">
@@ -171,6 +171,7 @@
                 <legend class="visually-hidden">Шаг 1. Цель кредита</legend>
                 <div class="fieldset">
                   <h3 class="legend">Шаг 1. Цель кредита</h3>
+                  <label class="visually-hidden" for="credit-target">Тип кредита</label>
                   <select class="visually-hidden" name="credit-targer" id="credit-target">
                     <option value="none" data-value="" selected>Выберете цель кредита</option>
                     <option value="mortgage-loan" data-value="недвижимости,ипотеки, ипотечные кредиты,ипотека">Ипотечное кредитование</option>
@@ -355,7 +356,7 @@
       <div class="container">
         <div class="footer__wrapper">
           <div class="footer__logo">
-            <a href="index.html">
+            <a href="index.html"  aria-label="on top link">
               <svg width="150" height="27">
                 <use xlink:href="#icon-logo-full">
               </svg>
@@ -393,7 +394,7 @@
             <h2 class="visually-hidden">Ссылки на социальные сети</h2>
             <ul class="social__nav">
               <li class="social__nav-item">
-                <a class="social__nav-link" href="#">
+                <a class="social__nav-link" href="#" aria-label="facebook link">
                   <span class="visually-hidden">facebook</span>
                   <svg width="9" height="16">
                     <use xlink:href="#icon-facebook"></use>
@@ -401,7 +402,7 @@
                 </a>
               </li>
               <li class="social__nav-item">
-                <a class="social__nav-link" href="#">
+                <a class="social__nav-link" href="#" aria-label="instagram link">
                   <span class="visually-hidden">instagram</span>
                   <svg width="16" height="16">
                     <use xlink:href="#icon-instagram"></use>
@@ -409,7 +410,7 @@
                 </a>
               </li>
               <li class="social__nav-item">
-                <a class="social__nav-link" href="#">
+                <a class="social__nav-link" href="#" aria-label="twitter link">
                   <span class="visually-hidden">twitter</span>
                   <svg width="16" height="13">
                     <use xlink:href="#icon-twitter"></use>
@@ -417,7 +418,7 @@
                 </a>
               </li>
               <li class="social__nav-item">
-                <a class="social__nav-link" href="#">
+                <a class="social__nav-link" href="#" aria-label="youtube link">
                   <span class="visually-hidden">youtube</span>
                   <svg width="16" height="13">
                     <use xlink:href="#icon-youtube"></use>
@@ -436,7 +437,6 @@
       </div>
     </footer>
     <div class="modal-overlay"></div>
-
     <div class="modal-login">
       <div class="modal-login__header">
         <svg width="170" height="30">
@@ -468,7 +468,6 @@
         </form>
       </div>
     </div>
-
     <div class="modal-request">
       <button class="modal-request__close" type="button">
         <svg width="20" height="20">
@@ -481,7 +480,7 @@
     <div style="display: none">
       <include src="build/img/sprite_auto.svg"></include>
     </div>
-    <script src="js/vendor.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/vendor.js" defer></script>
+    <script src="js/main.js" defer></script>
   </body>
 </html>
