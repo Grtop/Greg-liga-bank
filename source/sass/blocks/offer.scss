@@ -86,7 +86,8 @@
 @media (max-width: $width-desktop) {
   .offer {
     width: 100%;
-    padding: 50px 61px 62px 61px;
+    margin-top: 14px;
+    padding: 50px 61px 60px 61px;
   }
 
   .offer__wrapper {
@@ -101,13 +102,13 @@
 
 @media (max-width: $width-tablet) {
   .offer {
-    margin-top: 4px;
-    padding: 33px 15px 40px 15px;
+    margin: 0 0 9px 0;
+    padding: 35px 15px 40px 15px;
   }
 
   .offer__wrapper {
     flex-direction: column;
-    margin: 0 0 17px 0;
+    margin: 0 0 19px 0;
   }
 
   .offer__item {
@@ -118,5 +119,15 @@
   .offer__item-value {
     font-size: 18px;
     line-height: 25px;
+  }
+
+  .offer__deny {
+    .offer__title {
+      width: 80%;
+    }
+
+    .offer__desc {
+      width: 100%;
+    }
   }
 }

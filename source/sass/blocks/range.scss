@@ -30,6 +30,7 @@
   border-radius: 50%;
   background-color: $color-range-roller;
   transform: translateY(-50%);
+  cursor: pointer;
 
   &:hover {
     width: 16px;

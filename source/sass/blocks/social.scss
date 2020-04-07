@@ -34,8 +34,15 @@
   }
 }
 
+@media (max-width: $width-desktop + 295) {
+  .social {
+    width: 12%;
+  }
+}
+
 @media (max-width: $width-desktop + 135) {
   .social {
+    width: 15%;
     margin: 10px 0 0 auto;
   }
 }

@@ -56,6 +56,13 @@
   padding: 0;
   background-color: transparent;
   border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
 }
 
 .modal-login__item {
@@ -75,6 +82,13 @@
   right: 19px;
   background-color: transparent;
   border: none;
+  outline: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
 }
 
 .modal-login__recovery {
@@ -83,10 +97,23 @@
   line-height: 17px;
   color: $color-text-grey;
   text-decoration: none;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
 }
 
 .modal-login__send {
   padding: 18px 35px;
+  border: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
 }
 
 @media (max-width: $width-desktop) {

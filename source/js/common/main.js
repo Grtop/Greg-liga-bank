@@ -130,7 +130,7 @@
       if (tabList.length > 0) {
         for (var p = 0; p < tabList.length; p++) {
           tabList[0].classList.remove(elemItems.tab + '_active');
-          tabList[0].classList.add('swiper-slide');
+          tabList[p].classList.add('swiper-slide');
         }
       }
       var sliderService = new Swiper('.services__slider', {
@@ -227,13 +227,24 @@
           rootEl.querySelector('.' + classEl + '__target').value = window.util.toUpperFirstSymbol(currentLabels[currentLabels.length - 1]);
           rootEl.querySelector('.' + classEl + '__target-label').innerText = creditTerms.label;
           rootEl.querySelector('.' + classEl + '__target-sum').value = window.util.formatPrice(creditTerms.currentSum) + ' ' + creditTerms.currency;
-          rootEl.querySelector('.' + classEl + '__initial-sum').value = window.util.formatPrice(creditTerms.initialSum) + ' ' + creditTerms.currency;
+          if (creditTerms.status !== 3) {
+            rootEl.querySelector('.' + classEl + '__initial-sum').parentNode.style.display = "flex";
+            rootEl.querySelector('.' + classEl + '__initial-sum').value = window.util.formatPrice(creditTerms.initialSum) + ' ' + creditTerms.currency;
+          } else {
+            rootEl.querySelector('.' + classEl + '__initial-sum').parentNode.style.display = "none";
+          }
           rootEl.querySelector('.' + classEl + '__period').value = creditTerms.currentPeriod + ' ' + window.util.getLabelPeriod(creditTerms.currentPeriod, creditTerms);
 
+
+          var validatePhone = function (element) {
+            var imPhone = new Inputmask('+7 (999) 999-99-99');
+            imPhone.mask(element);
+          };
 
           var nameInput = rootEl.querySelector('#request-name');
           nameInput.focus();
           var phoneInput = rootEl.querySelector('#request-phone');
+          validatePhone(phoneInput);
           var emailInput = rootEl.querySelector('#request-email');
 
           var isStorageSupport = true;
@@ -270,6 +281,7 @@
       var updateOfferBlock = function (classEl) {
         var rootEl = body.querySelector('.' + classEl);
         var rootElDeny = body.querySelector('.' + classEl + '__deny');
+        var denyPrices = window.util.getDataAttr(rootElDeny);
 
         if (creditTerms.status === 0) {
           rootEl.classList.remove(classEl + '_show');
@@ -281,6 +293,7 @@
           rootEl.classList.remove(classEl + '_show');
           rootElDeny.classList.add(classEl + '__deny' + '_show');
           rootElDeny.querySelector('.offer__deny-target').innerText = creditParam.desc;
+          rootElDeny.querySelector('.' + classEl + '__deny-sum').innerText = window.util.formatPrice(denyPrices[creditTerms.status]);
           return;
         } else {
           rootEl.classList.add(classEl + '_show');
@@ -442,7 +455,7 @@
           creditTerms = {
             status: 3,
             label: 'Сумма ' + currentLabels[0].toLowerCase(),
-            minSumTarget: 500000,
+            minSumTarget: 50000,
             maxSumTarget: 3000000,
             stepSumTarget: 50000,
             initialSum: 0,
@@ -477,14 +490,21 @@
           });
         }
 
-        if (form.querySelector('.input-price__initial')) {
-          var firstPrice = new InitialPrice('.input-price__initial', creditTerms, {
-            inputEl: '#price-first',
-            rangeEl: '.range__price-first',
-            rangeToggleEl: '.range__roller',
-            rangeValueEl: '.range__value'
-          });
-          form.querySelector('#price-target').addEventListener('change', updateInitialChange);
+        if (creditTerms.status !== 3) {
+          if (form.querySelector('.input-price__initial')) {
+            form.querySelector('.input-price__initial').style.display = 'flex';
+            var firstPrice = new InitialPrice('.input-price__initial', creditTerms, {
+              inputEl: '#price-first',
+              rangeEl: '.range__price-first',
+              rangeToggleEl: '.range__roller',
+              rangeValueEl: '.range__value'
+            });
+            form.querySelector('#price-target').addEventListener('change', updateInitialChange);
+          }
+        } else {
+          if (form.querySelector('.input-price__initial')) {
+            form.querySelector('.input-price__initial').style.display = 'none';
+          }
         }
 
         if (form.querySelector('.input-price__period')) {
@@ -552,7 +572,9 @@
         }
 
         window.inputPrice.update();
-        window.initialPrice.update();
+        if (creditTerms.status !== 3) {
+          window.initialPrice.update();
+        }
         window.period.update();
         updateCredit();
       } else {

@@ -3,7 +3,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 52px 73px 50px 97px;
+  padding: 49px 73px 50px 97px;
+  background-color: $color-bg-block;
 }
 
 .footer__logo {
@@ -39,7 +40,7 @@
 @media (max-width: $width-tablet) {
   .footer__wrapper {
     height: auto;
-    padding: 40px 15px;
+    padding: 39px 15px 41px 15px;
   }
 
   .footer__logo {

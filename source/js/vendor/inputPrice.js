@@ -45,7 +45,9 @@ function InputPrice(classEl, terms, param) {
       terms.currentSum = Number(terms.currentSum) - Number(terms.stepSumTarget);
       setValueInput(inputEl, window.util.formatPrice(terms.currentSum) + ' ' + terms.currency);
       inputEl.value = window.util.formatPrice(terms.currentSum) + ' ' + terms.currency;
-      window.initialPrice.update();
+      if (terms.status !== 3) {
+        window.initialPrice.update();
+      }
       window.credit.update();
     }
   };
@@ -57,7 +59,9 @@ function InputPrice(classEl, terms, param) {
       terms.currentSum = Number(terms.currentSum) + Number(terms.stepSumTarget);
       setValueInput(inputEl, window.util.formatPrice(terms.currentSum) + ' ' + terms.currency);
       inputEl.value = window.util.formatPrice(terms.currentSum) + ' ' + terms.currency;
-      window.initialPrice.update();
+      if (terms.status !== 3) {
+        window.initialPrice.update();
+      }
       window.credit.update();
     }
   };
@@ -87,7 +91,9 @@ function InputPrice(classEl, terms, param) {
       removeErrorMessage(inputEl);
       setValueInput(inputEl, window.util.formatPrice(terms.currentSum) + ' ' + terms.currency);
       inputEl.value = window.util.formatPrice(terms.currentSum) + ' ' + terms.currency;
-      window.initialPrice.update();
+      if (terms.status !== 3) {
+        window.initialPrice.update();
+      }
       window.credit.update();
     }
   };

@@ -121,7 +121,7 @@
                     <li class="service-item__list-item">Автокредит</li>
                     <li class="service-item__list-item">Потребительский кредит</li>
                   </ul>
-                  <p class="service-item__desc">Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим кредитным калькулятором</p>
+                  <p class="service-item__desc">Рассчитайте ежемесячный платеж и ставку по кредиту воспользовавшись нашим <a href="#calculator">кредитным калькулятором</a></p>
                 </div>
               </div>
               <div class="services__item service-item service-item_insurance">
@@ -169,7 +169,7 @@
             <form action="https://echo.htmlacademy.ru" method="post">
               <fieldset class="calculator__step-first">
                 <legend class="visually-hidden">Шаг 1. Цель кредита</legend>
-                <div class="fieldset">
+                <div class="fieldset fieldset_step-one">
                   <h3 class="legend">Шаг 1. Цель кредита</h3>
                   <label class="visually-hidden" for="credit-target">Тип кредита</label>
                   <select class="visually-hidden" name="credit-targer" id="credit-target">
@@ -180,14 +180,14 @@
                   </select>
                   <div class="fieldset__wrapper">
                     <ul class="select">
-                      <li class="select__item">Выберете цель кредита</li>
+                      <li class="select__item" tabindex="0">Выберете цель кредита</li>
                     </ul>
                   </div>
                 </div>
               </fieldset>
               <fieldset class="calculator__step-second">
                 <legend class="visually-hidden">Шаг 2. Введите параметры кредита</legend>
-                <div class="fieldset">
+                <div class="fieldset fieldset_step-two">
                   <h3 class="legend">Шаг 2. Введите параметры кредита</h3>
                   <div class="calculator__input input-price input-price__sum">
                     <label for="price-target">Сумма объекта</label>
@@ -274,8 +274,8 @@
               </div>
               <a class="offer__link btn btn_blue" href="#">Оформить заявку</a>
             </div>
-            <div class="offer offer__deny">
-              <p class="offer__title">Наш банк не выдаёт <span class="offer__deny-target">...</span> меньше 200 000 рублей.</p>
+            <div class="offer offer__deny" class="offer__title" data-value="0,500000,200000">
+              <p class="offer__title">Наш банк не выдаёт <span class="offer__deny-target">...</span> меньше <span class="offer__deny-sum"></span> рублей.</p>
               <p class="offer__desc">Попробуйте использовать другие параметры для расчёта.</p>
             </div>
             <div class="request">
@@ -312,7 +312,7 @@
                     <div class="fieldset personal">
                       <input type="text" name="request-name" id="request-name" placeholder="ФИО" autocomplete="off">
                       <label class="visually-hidden" for="request-name">Фамилия, Имя, Отчество</label>
-                      <input type="tel" name="request-phone" id="request-phone" placeholder="Телефон" pattern="\d{11}" maxlength="11" autocomplete="off">
+                      <input type="tel" name="request-phone" id="request-phone" placeholder="Телефон" pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" maxlength="18" autocomplete="off">
                       <label class="visually-hidden" for="request-phone">Номер телефона</label>
                       <input type="email" name="request-email" id="request-email" placeholder="E-mail" autocomplete="off">
                       <label class="visually-hidden" for="request-email">Электронный адрес</label>

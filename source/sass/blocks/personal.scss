@@ -30,7 +30,7 @@
   .personal {
     input {
       &:not(:first-of-type) {
-        margin-bottom: 36px;
+        margin-bottom: 41px;
       }
     }
   }
@@ -42,7 +42,7 @@
       padding: 17px 12px;
 
       &:first-of-type {
-        margin: 0 0 20px 0;
+        margin: 0 0 17px 0;
       }
 
       &:not(:first-of-type) {
@@ -51,7 +51,7 @@
       }
 
       &:last-of-type {
-        margin: 0 0 28px 0;
+        margin: 0 0 32px 0;
       }
     }
   }

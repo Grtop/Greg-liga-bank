@@ -10,9 +10,9 @@
     content: "";
     position: absolute;
     top: 23px;
-    right: 15px;
-    width: 16px;
-    height: 8px;
+    right: 23px;
+    width: 24px;
+    height: 11px;
     background-image: url("../img/icon-btn-arrow_down.svg");
     background-repeat: no-repeat;
     background-position: center;
@@ -36,7 +36,7 @@
 }
 
 .select__item {
-  padding: 17px 25px;
+  padding: 18px 25px;
   font-size: 16px;
   line-height: 22px;
   background-color: $color-bg-white;
@@ -45,6 +45,12 @@
   border-left: 1px solid $color-text-title-dark;
   overflow: hidden;
   text-overflow: ellipsis;
+  outline: none;
+
+  &:hover {
+    background-color: $color-bg-block;
+    cursor: pointer;
+  }
 
   &:first-of-type {
     border-top: 1px solid $color-text-title-dark;
@@ -67,6 +73,6 @@
 
 @media (max-width: $width-tablet) {
   .select__item {
-    padding: 17px 15px;
+    padding: 18px 15px;
   }
 }

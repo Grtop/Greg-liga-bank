@@ -34,8 +34,48 @@
 
 .modal-request__close {
   position: absolute;
-  top: 23px;
+  top: 28px;
   right: 23px;
   background-color: transparent;
   border: none;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    opacity: 0.6;
+  }
+}
+
+@media (max-width: $width-desktop) {
+  .modal-request {
+    width: 678px;
+  }
+}
+
+@media (max-width: $width-tablet) {
+  .modal-request {
+    width: 290px;
+    padding: 33px 0 36px 0;
+  }
+
+  .modal-request__title {
+    width: 70%;
+    margin: 0 auto 14px auto;
+    font-size: 18px;
+    line-height: 25px;
+  }
+
+  .modal-request__desc {
+    width: 83%;
+  }
+
+  .modal-request__close {
+    top: 13px;
+    right: 8px;
+
+    svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
 }

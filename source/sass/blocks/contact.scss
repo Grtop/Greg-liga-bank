@@ -84,11 +84,13 @@
   color: $color-text-grey;
 }
 
-@media (max-width: $width-desktop + 260) {
+@media (max-width: $width-desktop + 295) {
   .contact {
-    width: 42%;
+    width: 40%;
   }
+}
 
+@media (max-width: $width-desktop + 260) {
   .contact__list {
     flex-direction: column;
   }

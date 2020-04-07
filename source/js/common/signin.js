@@ -51,6 +51,8 @@
     if (showPasswordBtn) {
       showPasswordBtn.onmousedown = onMouseDownBtnHandler;
       showPasswordBtn.onmouseup = onMouseUpBtnHandler;
+      showPasswordBtn.ontouchstart = onMouseDownBtnHandler;
+      showPasswordBtn.ontouchend = onMouseUpBtnHandler;
     }
 
     root.getElementsByTagName('form')[0].onsubmit = submitFormHandler;

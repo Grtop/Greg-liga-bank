@@ -4,7 +4,7 @@
   }
 
   fieldset {
-    margin: 0 0 34px 0;
+    margin: 0;
     padding: 0;
     border: none;
   }
@@ -12,6 +12,14 @@
   .fieldset {
     display: flex;
     flex-direction: column;
+
+    &_step-one {
+      margin: 0 0 34px 0;
+    }
+
+    &_step-two {
+      margin: 0 0 28px 0;
+    }
   }
 
   .fieldset__wrapper {
@@ -86,12 +94,22 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  margin: 49px 85px 95px 98px;
+  margin: 49px 85px 63px 98px;
 }
 
 .calculator__step-second,
 .calculator__param {
   display: none;
+}
+
+.calculator__param {
+  label {
+    cursor: pointer;
+  }
+
+  label:hover {
+    opacity: 0.6;
+  }
 }
 
 .calculator__step-show,
@@ -134,7 +152,17 @@
     }
 
     fieldset {
-      margin: 0 0 34px;
+      margin: 0;
+    }
+
+    .fieldset {
+      &_step-one {
+        margin: 0 0 2px 0;
+      }
+
+      &_step-two {
+        margin: 33px 0 28px 0;
+      }
     }
 
     .legend {
@@ -168,10 +196,21 @@
 @media (max-width: $width-tablet) {
   .calculator {
     fieldset {
-      margin: 0 0 26px;
+      margin: 0;
+    }
+
+    .fieldset {
+      &_step-one {
+        margin: 0 0 12px 0;
+      }
+
+      &_step-two {
+        margin: 14px 0 28px 0;
+      }
     }
 
     .legend {
+      max-width: 100%;
       margin: 0 0 15px 0;
       font-size: 16px;
       line-height: 22px;
