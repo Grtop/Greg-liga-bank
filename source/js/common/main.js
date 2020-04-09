@@ -643,7 +643,7 @@
             }));
           };
 
-          window.data.load('/data.json', function (data) {
+          window.data.load(window.location.href + '/data.json', function (data) {
             objectManager.add(data);
           }, setError);
 

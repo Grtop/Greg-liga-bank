@@ -1,10 +1,13 @@
+.footer {
+  background-color: $color-bg-block;
+}
+
 .footer__wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 49px 73px 50px 97px;
-  background-color: $color-bg-block;
 }
 
 .footer__logo {

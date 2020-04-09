@@ -167,7 +167,7 @@ function InitialPrice(classEl, terms, param) {
   var rangeSteps = calculateRangeSteps();
 
   var update = function () {
-    if (terms.initialSum < calculateMinValue()) {
+    if (terms.initialSum < calculateMinValue() || terms.initialSum > calculateMinValue()) {
       terms.initialSum = calculateMinValue();
     }
     setValueInput(inputEl, window.util.formatPrice(terms.initialSum) + ' ' + terms.currency);

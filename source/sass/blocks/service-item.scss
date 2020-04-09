@@ -186,6 +186,12 @@
   a {
     font-weight: 500;
     color: $color-text-title-dark;
+    outline: none;
+
+    &:hover,
+    &:focus {
+      opacity: 0.6;
+    }
   }
 }
 
