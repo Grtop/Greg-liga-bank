@@ -1,8 +1,8 @@
 .offer {
   display: none;
   width: 42.5%;
-  margin-top: 9px;
-  padding: 52px 57px;
+  margin: 8px 9px 0 0;
+  padding: 51px 61px 62px 59px;
   background-color: $color-bg-block;
 
   &_show {
@@ -39,7 +39,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 0 7px 0;
+  margin: 0 0 9px 0;
 }
 
 .offer__item {
@@ -87,7 +87,7 @@
   .offer {
     width: 100%;
     margin-top: 14px;
-    padding: 50px 61px 60px 61px;
+    padding: 49px 62px 60px;
   }
 
   .offer__wrapper {
@@ -95,8 +95,14 @@
     justify-content: flex-start;
   }
 
-  .offer__item {
-    margin: 0 0 29px 0;
+  .offer__deny {
+    .offer__title {
+      width: 75%;
+    }
+
+    .offer__desc {
+      width: 60%;
+    }
   }
 }
 
@@ -109,6 +115,10 @@
   .offer__wrapper {
     flex-direction: column;
     margin: 0 0 19px 0;
+  }
+
+  .offer__title {
+    margin: 0 0 23px 0;
   }
 
   .offer__item {

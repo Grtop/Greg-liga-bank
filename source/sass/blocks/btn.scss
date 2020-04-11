@@ -30,6 +30,10 @@
     padding: 15px 35px;
     letter-spacing: -1.5px;
   }
+
+  &_middle {
+    padding: 16px 48px;
+  }
 }
 
 @media (max-width: $width-desktop) {
@@ -40,6 +44,10 @@
 
     &_short {
       letter-spacing: 0;
+    }
+
+    &_middle {
+      padding: 15px 39px;
     }
   }
 }
@@ -53,6 +61,10 @@
     &_short {
       width: 80%;
       text-align: center;
+    }
+
+    &_middle {
+      padding: 14px 37px;
     }
   }
 }

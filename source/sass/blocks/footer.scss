@@ -7,7 +7,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  padding: 49px 73px 50px 97px;
+  padding: 49px 89px 50px 97px;
 }
 
 .footer__logo {
@@ -43,7 +43,7 @@
 @media (max-width: $width-tablet) {
   .footer__wrapper {
     height: auto;
-    padding: 39px 15px 41px 15px;
+    padding: 38px 15px 41px 15px;
   }
 
   .footer__logo {

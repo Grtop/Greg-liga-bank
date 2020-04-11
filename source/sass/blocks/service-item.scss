@@ -82,6 +82,7 @@
 
     #{$bl}__body {
       background-image: url("../img/service-mobile@1x.jpg");
+      background-position: 81.5% 54%;
     }
 
     #{$bl}__title {
@@ -269,8 +270,8 @@
     &_deposit {
       #{$bl}__body {
         background-image: url("../img/service-piggy_tablet@1x.jpg");
-        background-position: 88.5% 55%;
-        background-size: 36%;
+        background-position: 90.5% 50%;
+        background-size: 37%;
       }
 
       #{$bl}__list {
@@ -289,8 +290,8 @@
     &_credit {
       #{$bl}__body {
         background-image: url("../img/service-car_tablet@1x.jpg");
-        background-position: 88.5% 55%;
-        background-size: 36%;
+        background-position: 90.5% 54%;
+        background-size: 38%;
       }
 
       #{$bl}__title {

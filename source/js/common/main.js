@@ -228,10 +228,10 @@
           rootEl.querySelector('.' + classEl + '__target-label').innerText = creditTerms.label;
           rootEl.querySelector('.' + classEl + '__target-sum').value = window.util.formatPrice(creditTerms.currentSum) + ' ' + creditTerms.currency;
           if (creditTerms.status !== 3) {
-            rootEl.querySelector('.' + classEl + '__initial-sum').parentNode.style.display = "flex";
+            rootEl.querySelector('.' + classEl + '__initial-sum').parentNode.style.display = 'flex';
             rootEl.querySelector('.' + classEl + '__initial-sum').value = window.util.formatPrice(creditTerms.initialSum) + ' ' + creditTerms.currency;
           } else {
-            rootEl.querySelector('.' + classEl + '__initial-sum').parentNode.style.display = "none";
+            rootEl.querySelector('.' + classEl + '__initial-sum').parentNode.style.display = 'none';
           }
           rootEl.querySelector('.' + classEl + '__period').value = creditTerms.currentPeriod + ' ' + window.util.getLabelPeriod(creditTerms.currentPeriod, creditTerms);
 

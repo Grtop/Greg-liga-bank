@@ -1,9 +1,9 @@
 .request {
   position: relative;
   display: none;
-  width: 66%;
+  width: 65%;
   margin: 37px auto 32px auto;
-  padding: 62px 72px 73px 72px;
+  padding: 62px 72px 73px 64px;
   background-color: $color-bg-block;
 
   form {
@@ -110,7 +110,7 @@
 @media (max-width: $width-desktop) {
   .request {
     width: 100%;
-    margin: 0 auto;
+    margin: 0;
     padding: 53px 0 0 0;
     background-color: $color-bg-white;
 

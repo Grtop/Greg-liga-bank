@@ -34,8 +34,8 @@
 
 .modal-request__close {
   position: absolute;
-  top: 28px;
-  right: 23px;
+  top: 23px;
+  right: 18px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -49,6 +49,15 @@
 @media (max-width: $width-desktop) {
   .modal-request {
     width: 678px;
+  }
+
+  .modal-request__close {
+    top: 27px;
+    right: 22px;
+  }
+
+  .modal-request__desc {
+    width: 45%;
   }
 }
 

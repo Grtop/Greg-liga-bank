@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  margin: 25px 83px 36px 61px;
+  margin: 25px 98px 36px 61px;
 }
 
 .header__logo {
@@ -17,12 +17,15 @@
 
 @media (max-width: $width-desktop + 41) {
   .header__wrapper {
-    align-items: flex-start;
     margin: 23px 45px 19px 40px;
   }
 }
 
 @media (max-width: $width-desktop) {
+  .header__wrapper {
+    align-items: flex-start;
+  }
+
   .header__logo {
     margin-right: 63px;
 

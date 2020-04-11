@@ -72,6 +72,13 @@
 }
 
 @media (max-width: $width-tablet) {
+  .select {
+    &::before {
+      top: 25px;
+      right: 12px;
+    }
+  }
+
   .select__item {
     padding: 18px 15px;
   }
