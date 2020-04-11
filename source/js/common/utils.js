@@ -41,6 +41,13 @@
     return '00' + value;
   };
 
+  var getPathLocation = function (href) {
+    if (href[href.length - 1] !== '/') {
+      return href.slice(0, [href.lastIndexOf('/')]);
+    }
+    return href;
+  };
+
   window.util = {
     KeyCode: KeyCode,
     browserIe: browserIe,
@@ -48,6 +55,7 @@
     getDataAttr: getDataAttr,
     toUpperFirstSymbol: toUpperFirstSymbol,
     getLabelPeriod: getLabelPeriod,
-    getCreditNumber: getCreditNumber
+    getCreditNumber: getCreditNumber,
+    getPathLocation: getPathLocation
   };
 })();

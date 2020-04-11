@@ -642,8 +642,7 @@
               }
             }));
           };
-
-          window.data.load(window.location.href + '/data.json', function (data) {
+          window.data.load(window.location.origin + window.util.getPathLocation(window.location.pathname) + '/data.json', function (data) {
             objectManager.add(data);
           }, setError);
 
