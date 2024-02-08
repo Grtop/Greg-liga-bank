@@ -1,17 +1,3 @@
-.DS_Store
-.idea
-.vscode
-package-lock.json
-*.ai
-*.pdf
-*.psd
-*.sublime*
-node_modules/
-npm-debug.*
-source/css/*.css
-source/css/*.map
-Thumbs.db
-
 # dependencies
 /node_modules
 /.pnp
@@ -23,15 +9,17 @@ Thumbs.db
 # production
 /build
 
-# editors
-.idea
-*.sublime*
-.vscode
-
 # misc
+Thumbs.db
+.DS_Store
 .env
 *.log*
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# editors
+.idea
+*.sublime*
+.vscode
