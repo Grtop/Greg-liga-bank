@@ -12,3 +12,8 @@ npm-debug.*
 source/css/*.css
 source/css/*.map
 Thumbs.db
+
+# editors
+.idea
+*.sublime*
+.vscode
