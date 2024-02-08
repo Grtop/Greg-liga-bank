@@ -1,57 +1,50 @@
 {
-  "name": "Liga-A-start-template",
-  "version": "1.0.0",
-  "description": "Стартовый шаблон сборки Лиги А",
+  "private": true,
+  "dependencies": {
+    "history": "^5.3.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-redux": "^8.0.1",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1"
+  },
   "devDependencies": {
-    "@htmlacademy/editorconfig-cli": "1.x",
-    "autoprefixer": "9.5.x",
-    "browser-sync": "2.26.x",
-    "eslint": "6.8.0",
-    "eslint-config-htmlacademy": "0.4.x",
-    "gulp": "4.0.x",
-    "gulp-concat": "^2.6.1",
-    "gulp-csso": "^3.0.1",
-    "gulp-imagemin": "^5.0.3",
-    "gulp-plumber": "1.2.x",
-    "gulp-postcss": "8.0.x",
-    "gulp-posthtml": "^3.0.4",
-    "gulp-rename": "^1.4.0",
-    "gulp-sass": "4.0.x",
-    "gulp-sourcemaps": "2.6.x",
-    "gulp-svgstore": "^7.0.1",
-    "gulp-uglify": "^3.0.2",
-    "gulp-webp": "^4.0.1",
-    "pixel-glass": "^1.0.13",
-    "posthtml-include": "^1.2.0",
-    "stylelint": "9.10.x",
-    "stylelint-config-htmlacademy": "0.1.x"
+    "@types/node": "^17.0.31",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
+    "@types/react-redux": "^7.1.20",
+    "@types/react-router-dom": "^5.3.2",
+    "classnames": "^2.3.1",
+    "eslint-config-htmlacademy": "^5.1.2",
+    "react-focus-on": "^3.6.0",
+    "react-number-format": "^4.9.3",
+    "typescript": "^4.6.4"
   },
   "scripts": {
-    "editorconfig": "editorconfig-cli",
-    "stylelint": "stylelint \"source/sass/**/*.scss\" --syntax scss",
-    "test": "npm run editorconfig && npm run stylelint && eslint source/js/",
-    "build": "gulp build",
-    "start": "gulp start",
-    "webp": "gulp webp",
-    "sprite": "gulp sprite"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --passWithNoTests",
+    "eject": "react-scripts eject",
+    "eslint": "eslint --ext .tsx --ext .ts src/",
+    "eslint:fix": "eslint --ext .tsx --ext .ts src/ -- --fix"
   },
-  "browserslist": [
-    "last 2 versions",
-    "IE 11",
-    "Firefox ESR"
-  ],
-  "editorconfig-cli": [
-    "*.json",
-    "*.js",
-    "source/*.html",
-    "source/js/**/*.js",
-    "source/img/**/*.svg",
-    "source/sass/**/*.{sass,scss}"
-  ],
-  "engines": {
-    "node": "8.15"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest",
+      "htmlacademy/react-typescript"
+    ]
   },
-  "dependencies": {
-    "del": "^4.1.1"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
