@@ -1,0 +1,16 @@
+.main-map {
+  padding-bottom: 110px;
+}
+
+.main-map img {
+  background: var(--basic-blue);
+}
+
+.main-map h2 {
+  font-weight: 700;
+  font-size: 41px;
+  line-height: 140%;
+  color:  var(--basic-black);
+  margin-top: 25px;
+  margin-bottom: 55px;
+}
