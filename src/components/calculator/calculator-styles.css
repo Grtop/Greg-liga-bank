@@ -1,0 +1,157 @@
+.calculator {
+  margin-top: 62px;
+}
+
+.calculator h2 {
+  font-weight: 700;
+  font-size: 41px;
+  line-height: 140%;
+  color:  var(--basic-black);
+}
+
+.calculator h3 {
+  margin-top: 16px;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 140%;
+  color:  var(--basic-black);
+}
+
+.calculator__layout {
+  display: grid;
+  grid-template-areas:
+  'steps proposal'
+  'step3 step3';
+  grid-template-columns: 600px 500px;
+  grid-template-rows: auto auto;
+  gap: 70px;
+}
+
+.steps {
+  grid-area: steps;
+}
+
+.calculator__layout--steps {
+  margin-top: 33px;
+}
+
+.calculator__layout--steps h3 {
+  margin-bottom: 16px;
+}
+
+.step3 {
+  grid-area: step3;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 770px;
+  height: 722px;
+  background:  var(--basic-white);
+  border-radius: 4px;
+  margin-top: -5px;
+  padding-top: 49px;
+  margin-bottom: 71px;
+}
+
+.step3 h3 {
+  text-align: center;
+}
+
+.step3-description__list {
+  display: grid;
+  grid-template-rows:min-content min-content min-content min-content min-content;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-left: 69px;
+  padding-right: 20px;
+  margin-top: -7px;
+}
+
+.step3-description__item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 635px;
+  height: 53px;
+  border-bottom: 1px solid var(--special-grey);
+  padding-right: 5px;
+}
+
+.step3-description__item strong {
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: var(--special-dark);
+}
+
+.step3-description__item span {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 140%;
+  color:  var(--basic-black);
+}
+
+.submit-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 30px;
+  margin-top: 35px;
+}
+
+.submit-form__surname-label {
+  justify-self: center;
+  width: 630px;
+  height: 60px;
+  border-radius: 4px;
+  grid-column: 1/-1;
+}
+
+.submit-form__surname {
+  width: 630px;
+  height: 60px;
+  border: 1px solid var(--special-darkBlue);
+  border-radius: 4px;
+  padding-left: 24px;
+}
+
+.submit-form__phone, .submit-form__mail {
+  width: 300px;
+  height: 60px;
+  border: 1px solid var(--special-darkBlue);
+  border-radius: 4px;
+  padding-left: 24px;
+}
+
+.submit-form__phone {
+margin-left: 68px;
+}
+
+.submit-form__surname placeholder,
+.submit-form__mail placeholder,
+.submit-form__phone placeholder {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 140%;
+  letter-spacing: 0.03em;
+  color: var(--special-lightGrey);
+}
+
+.submit-form__btn {
+  grid-column: 1/-1;
+  width: 198px;
+  height: 51px;
+  justify-self: center;
+  align-items: center;
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color:  var(--basic-white);
+}

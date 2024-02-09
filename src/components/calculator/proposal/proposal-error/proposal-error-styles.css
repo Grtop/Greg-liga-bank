@@ -1,0 +1,30 @@
+.proposal__wrong {
+  width: 500px;
+  height: 225px;
+  padding: 45px 58px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  background:  var(--basic-white);
+  border-radius: 4px;
+  margin-top: 20px;
+}
+
+.proposal__wrong h3 {
+  margin: 0;
+  padding: 0;
+
+
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 140%;
+  color:  var(--basic-black);
+}
+
+.proposal__wrong p {
+
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 140%;
+  color: var(--special-dark);
+}
