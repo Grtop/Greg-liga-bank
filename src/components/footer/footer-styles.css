@@ -1,0 +1,94 @@
+.footer {
+  display: grid;
+  grid-template-columns: 255px 250px 250px 155px auto;
+  justify-items: center;
+  align-items: baseline;
+  gap: 25px;
+  min-height: 224px;
+  background-color:  var(--basic-white);
+  padding-top: 43px;
+}
+
+.footer__logo address {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  color: var(--special-lightGrey);
+  margin-top: 14px;
+}
+
+.footer__links {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color:  var(--basic-black);
+  padding-left: 2px;
+  list-style: none;
+}
+
+.footer__links--item {
+  margin-bottom: 8px;
+}
+
+.footer__links:last-child {
+  margin-bottom: 0;
+}
+
+.footer__sms {
+  margin-left: -42px;
+}
+
+.footer__phone {
+margin-left: 8px;
+}
+
+.footer__sms p,
+.footer__phone p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  color: var(--special-lightGrey);
+  padding-top: 0;
+  margin-top: 4px;
+  padding-left: 21px;
+}
+
+.footer__phone p {
+  padding-left: 25px
+}
+
+.footer__sms a,
+.footer__phone a {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 19px;
+  margin-left: -8px;
+}
+
+.footer__sms-text,
+.footer__phone-text {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 140%;
+  color:  var(--basic-black);
+}
+
+.footer__sms-svg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__social {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 15px;
+  padding-left: 56px;
+  list-style: none;
+}
