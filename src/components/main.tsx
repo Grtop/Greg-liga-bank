@@ -9,12 +9,12 @@ import Map from './map/map';
 import React from 'react';
 
 export default function Main() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
-      <Header setIsModalOpen={setIsModalOpen} />
+      {showModal && <Modal setIsModalOpen={setShowModal} />}
+      <Header setIsModalOpen={setShowModal} />
       <main className="main">
         <h1 className="visually-hidden">Лига Банк, описание продуктов</h1>
         <Slider />

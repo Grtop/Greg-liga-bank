@@ -8,6 +8,7 @@
     if (window.util.browserIe) {
       // for swiper.js - startsWidth
       if (!String.prototype.startsWith) {
+        // eslint-disable-next-line no-extend-native
         String.prototype.startsWith = function (searchString, position) {
           position = position || 0;
           return this.substr(position, searchString.length) === searchString;
