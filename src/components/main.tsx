@@ -6,15 +6,14 @@ import Modal from './modal/modal';
 import Slider from './slider/slider/slider';
 import Calculator from './calculator/calculator';
 import Map from './map/map';
-import React from 'react';
 
 export default function Main() {
-  const [showModal, setShowModal] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-      {showModal && <Modal setIsModalOpen={setShowModal} />}
-      <Header setIsModalOpen={setShowModal} />
+      {isModalOpen && <Modal setIsModalOpen={setIsModalOpen} />}
+      <Header setIsModalOpen={setIsModalOpen} />
       <main className="main">
         <h1 className="visually-hidden">Лига Банк, описание продуктов</h1>
         <Slider />
